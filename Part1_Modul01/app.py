@@ -26,3 +26,19 @@ def run_count():
     global count
     count += 1
     return f'Страница открыта {count} раз!'
+
+
+# globl variable by class:
+class OpenCounter:
+    def __init__(self):
+        self.count_state = 0
+
+    def __call__(self):
+        self.count_state += 1
+    def __str__(self):
+        return str(self.count_state)
+
+
+@app.route('/class_counter')
+def class_count():
+    return f'Страница открыта раз: {OpenCounter()}'
