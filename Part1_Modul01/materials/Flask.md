@@ -71,3 +71,25 @@
 
 # После исполнения должен пропасть маркер с названием виртуального окружения — 
 # это значит, что вы успешно вышли из него.
+
+
+=============================================================================
+    * для Linux/MacOS
+
+        ```bash
+        cd repo
+        export FLASK_APP="app.py"
+        export FLASK_DEBUG=1
+        python -m flask run --port=5555
+        ```
+  
+    * для Windows:
+
+        ```bash
+        cd repo
+        setx FLASK_APP "app.py"
+        setx FLASK_DEBUG 1
+        python -m flask run --port=5555
+        ```
+
+* перейдите на http://127.0.0.1:5555/test
