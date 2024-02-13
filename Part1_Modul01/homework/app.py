@@ -1,5 +1,7 @@
 import datetime
+import random
 from flask import Flask
+
 
 app = Flask(__name__)
 
@@ -9,17 +11,24 @@ def hello():
     return f'«Привет, мир!»'
 
 
-car_list = ['Chevrolet', 'Renault', 'Ford', 'Lada']
-
+car_list = [
+    'Chevrolet', 'Renault', 'Ford', 'Lada'
+]
 @app.route('/cars')
 def cars():
     car_str = ', '.join(car_list)
     return car_str
 
 
-# @app.route('/cats')
-# def test_function():
-#     pass
+cats_list = [
+    'корниш-рекс', 'русская голубая', 
+    'шотландская вислоухая', 'мейн-кун', 
+    'манчкин',
+]
+@app.route('/cats')
+def cats():
+    cat = random.choice(cats_list)
+    return cat
 
 
 # @app.route('/get_time/now')
