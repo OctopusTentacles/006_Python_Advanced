@@ -5,13 +5,16 @@ app = Flask(__name__)
 
 
 @app.route('/hello_world')
-def test_function():
+def hello():
     return f'«Привет, мир!»'
 
 
-# @app.route('/cars')
-# def test_function():
-#     pass
+car_list = ['Chevrolet', 'Renault', 'Ford', 'Lada']
+
+@app.route('/cars')
+def cars():
+    car_str = ', '.join(car_list)
+    return car_str
 
 
 # @app.route('/cats')
