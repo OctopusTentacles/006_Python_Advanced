@@ -39,9 +39,10 @@ def time_now():
 
 @app.route('/get_time/future')
 def time_future():
-    current_time = datetime.datetime.now().strftime('%H:%M:%S')
+    current_time = datetime.datetime.now()
     one_hour = datetime.timedelta(hours=1)
     current_time_after_hour = current_time + one_hour
+    current_time_after_hour = current_time_after_hour.strftime('%H:%M:%S')
     return f'«Точное время через час будет {current_time_after_hour}»'
 
 
