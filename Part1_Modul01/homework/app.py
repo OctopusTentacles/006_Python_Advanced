@@ -37,9 +37,12 @@ def time_now():
     return f'«Точное время: {current_time}»'
 
 
-# @app.route('/get_time/future')
-# def test_function():
-#     pass
+@app.route('/get_time/future')
+def time_future():
+    current_time = datetime.datetime.now().strftime('%H:%M:%S')
+    one_hour = datetime.timedelta(hours=1)
+    current_time_after_hour = current_time + one_hour
+    return f'«Точное время через час будет {current_time_after_hour}»'
 
 
 # @app.route('/get_random_word')
