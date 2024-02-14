@@ -31,9 +31,10 @@ def cats():
     return cat
 
 
-# @app.route('/get_time/now')
-# def test_function():
-#     pass
+@app.route('/get_time/now')
+def time_now():
+    current_time = datetime.datetime.now().strftime('%H:%M:%S')
+    return f'«Точное время: {current_time}»'
 
 
 # @app.route('/get_time/future')
