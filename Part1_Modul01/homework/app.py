@@ -1,4 +1,5 @@
 import datetime
+import os
 import random
 from flask import Flask
 
@@ -46,9 +47,13 @@ def time_future():
     return f'«Точное время через час будет {current_time_after_hour}»'
 
 
-# @app.route('/get_random_word')
-# def test_function():
-#     pass
+
+BASE_DIR = os.path.join(os.path.abspath(__file__))
+BOOK_FILE = os.path.join(BASE_DIR, 'war_and_peace')
+
+@app.route('/get_random_word')
+def get_random_word():
+    pass
 
 
 # @app.route('/counter')
