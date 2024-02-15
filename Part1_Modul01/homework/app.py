@@ -47,13 +47,22 @@ def time_future():
     return f'«Точное время через час будет {current_time_after_hour}»'
 
 
+# ===================================================================
+words = list()
 
 BASE_DIR = os.path.join(os.path.abspath(__file__))
 BOOK_FILE = os.path.join(BASE_DIR, 'war_and_peace')
 
+def get_words():
+    global words
+    with open() as book:
+
+    return
+
 @app.route('/get_random_word')
 def get_random_word():
-    pass
+    word = 
+    return f'Случайное слово из "Война и мир": {word}'
 
 
 # @app.route('/counter')
