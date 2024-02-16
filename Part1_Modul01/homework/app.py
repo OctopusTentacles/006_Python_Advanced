@@ -68,10 +68,13 @@ def get_random_word():
     return f'Случайное слово из "Война и мир": {word}'
 
 
-# @app.route('/counter')
-# def test_function():
-#     pass
+# ==================================================================
+@app.route('/counter')
+def counter():
+    counter.visits += 1
+    return f'Страница открыта {counter.visits} раз!'
 
+counter.visits = 0
 
 if __name__ == '__main__':
     app.run(debug=True)
