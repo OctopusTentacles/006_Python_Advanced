@@ -1,6 +1,7 @@
 import datetime
 import os
 import random
+import re
 from flask import Flask
 
 
@@ -50,18 +51,20 @@ def time_future():
 # ===================================================================
 words = list()
 
-BASE_DIR = os.path.join(os.path.abspath(__file__))
-BOOK_FILE = os.path.join(BASE_DIR, 'war_and_peace')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BOOK_FILE = os.path.join(BASE_DIR, 'war_and_peace.txt')
 
 def get_words():
     global words
-    with open() as book:
-
-    return
+    with open(BOOK_FILE, 'r', encoding='utf8') as book:
+        patern = r"\b[A-Za-zА-Яа-яЁё]+\b"
+        words.extend(re.findall(patern, book.read()))
+    
+get_words()
 
 @app.route('/get_random_word')
 def get_random_word():
-    word = 
+    word = random.choice(words)
     return f'Случайное слово из "Война и мир": {word}'
 
 
