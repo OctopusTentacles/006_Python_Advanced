@@ -11,3 +11,19 @@
 # (1024 байта = 1 кБ, 1024 кБ = 1 МБ и тд). 
 # Напишите функцию, которая по output из ls -la 
 # выводит суммарный размер файлов в человекочитаемом формате.
+
+
+import subprocess
+
+
+def human_readable_size(size_in_bytes):
+    """
+    Преобразует размер из байтов в человекочитаемый формат.
+    """
+    suffixes = ['B', 'KB', 'MB', 'GB', 'TB']
+    index = 0
+    while size_in_bytes >= 1024 and index < len(suffixes) - 1:
+        size_in_bytes /= 1024.0
+        index += 1
+    return f"{size_in_bytes:.2f} {suffixes[index]}"
+
