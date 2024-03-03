@@ -27,3 +27,27 @@ def human_readable_size(size_in_bytes):
         index += 1
     return f"{size_in_bytes:.2f} {suffixes[index]}"
 
+
+def parse_ls_output(ls_output):
+    """
+    Парсит вывод команды ls -la и возвращает количество файлов и папок,
+    а также суммарный размер всех файлов в папке.
+    """
+    total_size = 0
+    num_files = 0
+    num_dirs = 0
+
+    for line in ls_output.split('\n'):
+        if line.startswith('d'):
+            num_dirs += 1
+        else:
+            num_files += 1
+            fields = line.split()
+            if len(fields) > 4:
+                try:
+                    size = int(fields[4])
+                    total_size += size
+                except ValueError:
+                    pass
+
+    return num_files, num_dirs, total_size
