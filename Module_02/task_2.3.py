@@ -66,3 +66,20 @@ def get_ls_output(directory):
     except subprocess.CalledProcessError as e:
         print(f"Error: {e}")
         return None
+    
+# ==========================================================================
+if __name__ == "__main__":
+    directory = "/etc"
+    ls_output = get_ls_output(directory)
+    
+    if ls_output:
+        num_files, num_dirs, total_size = parse_ls_output(ls_output)
+        print(f"Количество файлов: {num_files}")
+        print(f"Количество папок: {num_dirs}")
+        print(f"Суммарный размер файлов: {human_readable_size(total_size)}")
+    else:
+        print("Не удалось получить вывод команды ls -la.")
+
+# код сначала выполняет команду ls -la для указанной директории, 
+# затем парсит вывод этой команды и выводит количество файлов и папок, 
+# а также суммарный размер всех файлов в человекочитаемом формате.
