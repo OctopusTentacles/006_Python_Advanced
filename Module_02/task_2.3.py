@@ -59,8 +59,9 @@ def get_ls_output(directory):
     """
     try:
         result = subprocess.run(
-            ['ls', '-la', directory], 
-            capture_output=True, text=True, check=True
+            ['ls', '-la'], 
+            capture_output=True, text=True, check=True,
+            cwd=directory  # Устанавливаем текущую рабочую директорию
         )
         return result.stdout
     except subprocess.CalledProcessError as e:
