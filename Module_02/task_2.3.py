@@ -51,3 +51,18 @@ def parse_ls_output(ls_output):
                     pass
 
     return num_files, num_dirs, total_size
+
+
+def get_ls_output(directory):
+    """
+    Выполняет команду ls -la для указанной директории и возвращает ее вывод.
+    """
+    try:
+        result = subprocess.run(
+            ['ls', '-la', directory], 
+            capture_output=True, text=True, check=True
+        )
+        return result.stdout
+    except subprocess.CalledProcessError as e:
+        print(f"Error: {e}")
+        return None
