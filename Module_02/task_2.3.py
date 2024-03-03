@@ -36,7 +36,7 @@ def parse_ls_output(ls_output):
     total_size = 0
     num_files = 0
     num_dirs = 0
-
+    
     for line in ls_output.split('\n'):
         if line.startswith('d'):
             num_dirs += 1
