@@ -24,6 +24,19 @@ def even(number: int):
     return f'Tne number {number} is <b>{res}</b>'
 
 
+# ===================================================================
+@app.route('/compare/<float:number_1>/<float:number_2>')
+def compare(number_1: float, number_2: float):
+    if number_1 < number_2:
+        result = '<'
+    elif number_1 > number_2:
+        result = '>'
+    else:
+        result = '=='
+
+    return f'<h3>COMPARE</h3> {number_1} {result} {number_2}'
+
+
 
 # @app.route("/compare/<float:number_1>/<float:number_2>")
 # def compare(number_1: float, number_2: float):
