@@ -38,16 +38,19 @@ def compare(number_1: float, number_2: float):
 
 
 
-# @app.route("/compare/<float:number_1>/<float:number_2>")
-# def compare(number_1: float, number_2: float):
-#     if number_1 < number_2:
-#         result = "<"
-#     elif number_1 > number_2:
-#         result = ">"
-#     else:
-#         result = "=="
+# ===================================================================
+@app.route('/check_exists/<path:file_path>')
+def check_exists(file_path):
+    """
+    Check if file with relative path exists in file system
 
-#     return f"<h3>Compare</h3> {number_1} {result} {number_2}"
+    Args:
+        file_path (path): the relative path
+    
+    :return: http response
+    """
+    
+
 
 
 # @app.route("/check_exists/<path:file_path>")
