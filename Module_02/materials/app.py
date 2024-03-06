@@ -49,23 +49,11 @@ def check_exists(file_path):
     
     :return: http response
     """
-    
+    file_exists = os.path.exists(file_path)
+    result = "exists" if file_exists else "does not exist"
+    status_code = 200 if file_exists else 404
 
-
-
-# @app.route("/check_exists/<path:file_path>")
-# def check_exists(file_path):
-#     """
-#     Check if file with relative path exists in file system
-
-#     :param file_path: the relative path
-#     :return: http response
-#     """
-#     file_exists = os.path.exists(file_path)
-#     result = "exists" if file_exists else "does not exist"
-#     status_code = 200 if file_exists else 404
-
-#     return f"File <i>{file_path}</i> {result}", status_code
+    return f'File <i>{file_path}</i> {result}', status_code
 
 
 if __name__ == "__main__":
