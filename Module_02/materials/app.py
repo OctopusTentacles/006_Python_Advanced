@@ -12,14 +12,17 @@ def hello_world(username):
     return f"Привет, {username}!"
 
 
-# @app.route("/even/<int:number>")
-# def even(number: int):
-#     if number % 2:
-#         res = "odd"
-#     else:
-#         res = "even"
+# ===================================================================
+@app.route('/even/<int:number>')
+def even(number: int):
+    if number % 2:
+        res = 'odd'
+    else:
+        res = 'even'
 
-#     return f"The number {number} is <b>{res}</b>"
+    # is <b>{res}</b>' - выделяет жирным
+    return f'Tne number {number} is <b>{res}</b>'
+
 
 
 # @app.route("/compare/<float:number_1>/<float:number_2>")
