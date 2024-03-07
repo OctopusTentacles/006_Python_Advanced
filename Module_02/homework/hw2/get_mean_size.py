@@ -11,8 +11,11 @@ import sys
 
 
 def get_mean_size(ls_output: str) -> float:
-    ...
 
+    total_memory = 0
+    count = 0
+
+    return ls_output
 
 if __name__ == '__main__':
     data: str = sys.stdin.read()
