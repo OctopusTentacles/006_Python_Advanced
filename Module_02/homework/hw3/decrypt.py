@@ -34,11 +34,29 @@ $ echo  ‘абраа..-.кадабра’ | python3 decrypt.py
 Команда echo выводит текст (в стандартный поток вывода).
 """
 
+
 import sys
 
 
 def decrypt(encryption: str) -> str:
-    ...
+    decrypted_message = ''
+
+    count_dot = 0
+
+    for char in encryption:
+        decrypted_message += char
+
+        if char == '.':
+            count_dot += 1
+            if count_dot == 2:
+                decrypted_message = decrypted_message[:-3]
+                
+
+
+
+
+
+    return (decrypted_message)
 
 
 if __name__ == '__main__':
