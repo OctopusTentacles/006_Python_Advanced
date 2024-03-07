@@ -11,7 +11,6 @@ import sys
 
 
 def get_mean_size(ls_output: str) -> float:
-    print(ls_output)
 
     total_memory = 0
     count = 0
@@ -21,7 +20,7 @@ def get_mean_size(ls_output: str) -> float:
         total_memory += int(columns[4])
         count += 1
 
-    return total_memory / count
+    return total_memory / count if count > 0 else 0
 
 if __name__ == '__main__':
     data: str = sys.stdin.readlines()[1:]
