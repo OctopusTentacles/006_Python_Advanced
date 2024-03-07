@@ -28,8 +28,12 @@ def get_summary_rss(ps_output_file_path: str) -> str:
 
     units = ['Б', 'Кб', 'Мб', 'Гб', 'Тб']
     cur_unit_index = 0
+
+    while total_memory >= 1024 and cur_unit_index < len(units):
+        total_memory /= 1024
+        cur_unit_index += 1
         
-    return total_memory
+    return f'{total_memory:.2f} {units[cur_unit_index]}'
 
 
 if __name__ == '__main__':
