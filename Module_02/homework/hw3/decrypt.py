@@ -44,17 +44,22 @@ def decrypt(encryption: str) -> str:
 
     for char in encryption:
         
-
-            if decrypted_message[-1].isalpha and char == '.':
+            if char.isalpha() :
+                decrypted_message += char
+                print(decrypted_message)
+            
+                 
+            elif decrypted_message[-1].isalpha() and char == '.':
                 decrypted_message += char
                 print(decrypted_message)
 
-            elif decrypted_message[-1] == '.' and char.isalpha:
-                decrypted_message = decrypted_message[:-1] + char
+            elif decrypted_message[-1] == '.' and char.isalpha():
+                decrypted_message = decrypted_message[:-1]
+                decrypted_message += char
                 print(decrypted_message)
 
             elif decrypted_message[-1] == '.' and char == '.':
-                decrypted_message = decrypted_message[:-3]
+                decrypted_message = decrypted_message[:-2]
                 print(decrypted_message)
 
 
