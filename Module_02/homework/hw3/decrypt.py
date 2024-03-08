@@ -41,16 +41,17 @@ import sys
 def decrypt(encryption: str) -> str:
     decrypted_message = ''
 
+    count_dot = 0
 
     for char in encryption:
         
-            if char.isalpha() :
+            if char.isalpha() or char == '-':
                 decrypted_message += char
                 print(decrypted_message)
             
                  
             elif decrypted_message[-1].isalpha() and char == '.':
-                decrypted_message += char
+                count_dot += 1
                 print(decrypted_message)
 
             elif decrypted_message[-1] == '.' and char.isalpha():
@@ -61,9 +62,6 @@ def decrypt(encryption: str) -> str:
             elif decrypted_message[-1] == '.' and char == '.':
                 decrypted_message = decrypted_message[:-2]
                 print(decrypted_message)
-
-
-
 
 
     return (decrypted_message)
