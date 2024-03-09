@@ -48,22 +48,24 @@ def decrypt(encryption: str) -> str:
                 print(decrypted_message)
             
                  
-            elif decrypted_message and \
-                decrypted_message[-1].isalpha() \
-                and char == '.':
+            elif decrypted_message[-1].isalpha() and \
+                char == '.':
                 decrypted_message += char
                 print(decrypted_message)
 
-            elif decrypted_message.endswith('.') and char.isalpha():
+            elif decrypted_message.endswith('.') and \
+                char != '.':
                 decrypted_message = decrypted_message[:-1] + char
                 print(decrypted_message)
 
-            elif decrypted_message[-1] == '.' and char == '.':
+            elif decrypted_message and \
+                decrypted_message[-1] == '.' and \
+                char == '.':
                 decrypted_message = decrypted_message[:-2]
                 print(decrypted_message)
 
     if decrypted_message.endswith('.'):
-         decrypted_message = decrypted_message[-1]
+         decrypted_message = decrypted_message[:-1]
 
 
     return (decrypted_message)
