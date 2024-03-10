@@ -35,41 +35,51 @@ $ echo  ‘абраа..-.кадабра’ | python3 decrypt.py
 """
 
 
+import re
 import sys
 
 
+# logical =============================================================
+# def decrypt(encryption: str) -> str:
+#     decrypted_message = ''
+#     flag = False
+
+#     for char in encryption:
+#         if char != '.':
+#             if flag:
+#                decrypted_message = decrypted_message[:-1] + char
+#                flag = False
+#             else:
+#                 decrypted_message += char
+#         else:
+#             if flag:
+#                 decrypted_message = decrypted_message[:-2]
+#                 flag = False
+#             else:
+#                 decrypted_message += char
+#                 flag = True
+
+#     if decrypted_message.endswith('.'):
+#          decrypted_message = decrypted_message[:-1]
+
+#     return (decrypted_message)
+
+
+# if __name__ == '__main__':
+#     data: str = sys.stdin.read()
+#     decryption: str = decrypt(data)
+#     print(decryption)
+
+
+# regular ===========================================================
 def decrypt(encryption: str) -> str:
-    decrypted_message = ''
-    flag = False
 
-    for char in encryption:
-       
-        if char != '.':
-            if flag:
-               decrypted_message = decrypted_message[:-1] + char
-               flag = False
-            else:
-                decrypted_message += char
-
-        else:
-            if flag:
-                decrypted_message = decrypted_message[:-2]
-                flag = False
-            else:
-                decrypted_message += char
-                flag = True
-
-
-
-
-    if decrypted_message.endswith('.'):
-         decrypted_message = decrypted_message[:-1]
-
-
-    return (decrypted_message)
-
+    decrypted_message = re.sub(r'\w\.', lambda x: x.group(0)[0], encryption)
+    decrypted_message = re.sub(r'\w\.\.', '', decrypted_message)
+    return decrypted_message
 
 if __name__ == '__main__':
     data: str = sys.stdin.read()
     decryption: str = decrypt(data)
     print(decryption)
+
