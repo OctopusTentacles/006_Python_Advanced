@@ -40,29 +40,20 @@ import sys
 
 def decrypt(encryption: str) -> str:
     decrypted_message = ''
+    flag = False
 
     for char in encryption:
-        
-            if char.isalpha() or char == '-':
+       
+        if char != '.':
+            if flag:
+               decrypted_message = decrypted_message[:-1] + char
+               flag = False
+            else:
                 decrypted_message += char
-                print(decrypted_message)
+
+        else:
             
-                 
-            elif decrypted_message[-1] != '.' and \
-                char == '.':
-                decrypted_message += char
-                print(decrypted_message)
 
-            elif decrypted_message[-1] == ('.') and \
-                char != '.':
-                decrypted_message = decrypted_message[:-1] + char
-                print(decrypted_message)
-
-            elif decrypted_message and \
-                decrypted_message[-1] == '.' and \
-                char == '.':
-                decrypted_message = decrypted_message[:-2]
-                print(decrypted_message)
 
 
     if decrypted_message.endswith('.'):
