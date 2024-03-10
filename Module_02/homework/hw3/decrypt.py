@@ -52,7 +52,13 @@ def decrypt(encryption: str) -> str:
                 decrypted_message += char
 
         else:
-            
+            if flag:
+                decrypted_message = decrypted_message[:-2]
+                flag = False
+            else:
+                decrypted_message += char
+                flag = True
+
 
 
 
