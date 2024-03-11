@@ -77,11 +77,11 @@ def decrypt(encryption: str) -> str:
         char = match.group(1)
         dots = match.group(2)
         if dots == '..':
-            return ''
+            return remove_dots(re.sub(patern, r'', match.group(0)))
         elif dots == '.':
-            return char
+            return remove_dots(re.sub(patern, char, match.group(0)))
         else:
-            return remove_dots(re.sub(patern, match))
+            return match.group(0)
 
     patern = r'(^|[^.])(\.{1,2})'
     decrypted_message = re.sub(patern, remove_dots, encryption)
