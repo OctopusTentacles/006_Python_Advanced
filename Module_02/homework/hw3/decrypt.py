@@ -74,20 +74,19 @@ import sys
 # regular ===========================================================
 def decrypt(encryption: str) -> str:
 
-    pattern = r'(^|[^.])(\.{1,2})'
+    
+    pattern = r'[^.]\.+'
 
-    def remove_dots(match):
-        char = match.group(1)
-        dots = match.group(2)
-        if dots == '..':
-            return remove_dots(re.sub(pattern, r'', match.group(0)))
-        elif dots == '.':
-            return remove_dots(re.sub(pattern, char, match.group(0)))
-        else:
-            return match.group(0)
+    def remove_dots(message):
 
+
+        return message.group(0).replace('.', '')
+    
+    
     decrypted_message = re.sub(pattern, remove_dots, encryption)
+
     return decrypted_message
+
 
 if __name__ == '__main__':
     data: str = sys.stdin.read()
