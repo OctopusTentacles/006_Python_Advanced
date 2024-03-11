@@ -73,9 +73,10 @@ import sys
 
 # regular ===========================================================
 def decrypt(encryption: str) -> str:
+    def
 
     decrypted_message = re.sub(r'(\w)\.', r'\1', encryption)
-    decrypted_message = re.sub(r'(\w)\.\.', r'', decrypted_message)
+    decrypted_message = re.sub(r'(\w)\.\.', r'', encryption)
     return decrypted_message
 
 if __name__ == '__main__':
