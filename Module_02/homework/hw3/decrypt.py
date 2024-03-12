@@ -77,13 +77,15 @@ def decrypt(encryption: str) -> str:
     
     pattern = r'[^.]\.+'
 
-    def remove_dots(message):
+    def remove_dots(match):
+        return match.group(1)
 
-
-        return message.group(0).replace('.', '')
-    
-    
+    # Выполняем замену с использованием функции обратного вызова для удаления последовательностей из точек
     decrypted_message = re.sub(pattern, remove_dots, encryption)
+
+    # Проверяем, остались ли в результате пустые строки
+    if not decrypted_message.strip():
+        return "<пустая строка>"
 
     return decrypted_message
 
