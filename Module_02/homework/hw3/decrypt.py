@@ -75,17 +75,28 @@ import sys
 def decrypt(encryption: str) -> str:
 
     
-    pattern = r'[^.]\.+'
+    pattern = r'([^.])(\.+)'
 
-    def remove_dots(match):
-        return match.group(1)
+    def remove_dots(message):
+        char = message.group(1)
+        dots = message.group(2)
 
-    # Выполняем замену с использованием функции обратного вызова для удаления последовательностей из точек
+        if len(dots) == 2:
+            
+            message = char[:-1] + dots[2:]
+
+        elif len(dots) == 1:
+
+            message = char + dots[1:]
+
+        return re.sub(pattern, remove_dots, message)
+
+
+        
+
+    
+    
     decrypted_message = re.sub(pattern, remove_dots, encryption)
-
-    # Проверяем, остались ли в результате пустые строки
-    if not decrypted_message.strip():
-        return "<пустая строка>"
 
     return decrypted_message
 
@@ -94,4 +105,3 @@ if __name__ == '__main__':
     data: str = sys.stdin.read()
     decryption: str = decrypt(data)
     print(decryption)
-
