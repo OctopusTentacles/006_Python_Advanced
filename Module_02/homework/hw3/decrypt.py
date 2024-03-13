@@ -74,28 +74,24 @@ import sys
 # regular ===========================================================
 def decrypt(encryption: str) -> str:
 
-    
-    pattern = r'([^.])(\.+)'
+        pattern = r'([^.])(\.+)'
 
-    def remove_dots(message):
-        char = message.group(1)
-        dots = message.group(2)
+        def remove_dots(message):
+            char = message.group(1)
+            dots = message.group(2)
 
-        if len(dots) >= 2:
-            return char[:-1] + dots[2:]
+            if len(dots) >= 2:
+                return char[:-1] + dots[2:]
 
-        elif len(dots) == 1:
+            elif len(dots) == 1:
+                return char + dots[1:] if char else ''
             
-            return char + dots[1:] if char else ''
-        
-        else: return message.group(0)
 
 
+        while re.search(pattern, encryption):
+            encryption = re.sub(pattern, remove_dots, encryption)
 
-    while re.search(pattern, encryption):
-        encryption = re.sub(pattern, remove_dots, encryption)
-
-    return encryption
+        return encryption
 
 
 if __name__ == '__main__':
