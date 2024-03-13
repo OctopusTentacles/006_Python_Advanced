@@ -81,24 +81,21 @@ def decrypt(encryption: str) -> str:
         char = message.group(1)
         dots = message.group(2)
 
-        if len(dots) == 2:
-            
-            message = char[:-1] + dots[2:]
+        if len(dots) >= 2:
+            return char[:-1] + dots[2:]
 
         elif len(dots) == 1:
-
-            message = char + dots[1:]
-
-        return re.sub(pattern, remove_dots, message)
-
-
+            
+            return char + dots[1:] if char else ''
         
+        else: return message.group(0)
 
-    
-    
-    decrypted_message = re.sub(pattern, remove_dots, encryption)
 
-    return decrypted_message
+
+    while re.search(pattern, encryption):
+        encryption = re.sub(pattern, remove_dots, encryption)
+
+    return encryption
 
 
 if __name__ == '__main__':
