@@ -40,39 +40,33 @@ import sys
 
 
 # logical =============================================================
-# def decrypt(encryption: str) -> str:
-#     decrypted_message = ''
-#     flag = False
+def decrypt_1(encryption: str) -> str:
+    decrypted_message = ''
+    flag = False
 
-#     for char in encryption:
-#         if char != '.':
-#             if flag:
-#                decrypted_message = decrypted_message[:-1] + char
-#                flag = False
-#             else:
-#                 decrypted_message += char
-#         else:
-#             if flag:
-#                 decrypted_message = decrypted_message[:-2]
-#                 flag = False
-#             else:
-#                 decrypted_message += char
-#                 flag = True
+    for char in encryption:
+        if char != '.':
+            if flag:
+               decrypted_message = decrypted_message[:-1] + char
+               flag = False
+            else:
+                decrypted_message += char
+        else:
+            if flag:
+                decrypted_message = decrypted_message[:-2]
+                flag = False
+            else:
+                decrypted_message += char
+                flag = True
 
-#     if decrypted_message.endswith('.'):
-#          decrypted_message = decrypted_message[:-1]
+    if decrypted_message.endswith('.'):
+         decrypted_message = decrypted_message[:-1]
 
-#     return (decrypted_message)
-
-
-# if __name__ == '__main__':
-#     data: str = sys.stdin.read()
-#     decryption: str = decrypt(data)
-#     print(decryption)
+    return (decrypted_message)
 
 
 # regular ===========================================================
-def decrypt(encryption: str) -> str:
+def decrypt_2(encryption: str) -> str:
 
         def remove_dots(message):
             char = message.group(1)
@@ -98,5 +92,8 @@ def decrypt(encryption: str) -> str:
 
 if __name__ == '__main__':
     data: str = sys.stdin.read()
-    decryption: str = decrypt(data)
-    print(decryption)
+    decryption: str = decrypt_1(data)
+    print('LOGICAL:', decryption)
+    decryption: str = decrypt_2(data)
+    print('REGULAR:', decryption)
+
