@@ -37,10 +37,28 @@ $ echo  ‘абраа..-.кадабра’ | python3 decrypt.py
 
 import re
 import sys
+import time
+
+from functools import wraps
+from typing import Callable, Any
+
+
+def timer(func: Callable) -> Any:
+    """ Декоратор timer - 
+    выводит время работы функции и возвращает ее результат.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        start_at = time.time()
+        result = func(*args, **kwargs)
+        stop_at = time.time()
+        print(f'{func.__name__} - {round(start_at - stop_at, 3)} sec.')
+        return result
+    return wrapper
 
 
 # logical =============================================================
-def decrypt_1(encryption: str) -> str:
+def logical(encryption: str) -> str:
     decrypted_message = ''
     flag = False
 
@@ -66,7 +84,7 @@ def decrypt_1(encryption: str) -> str:
 
 
 # regular ===========================================================
-def decrypt_2(encryption: str) -> str:
+def regular(encryption: str) -> str:
 
         def remove_dots(message):
             char = message.group(1)
@@ -92,8 +110,8 @@ def decrypt_2(encryption: str) -> str:
 
 if __name__ == '__main__':
     data: str = sys.stdin.read()
-    decryption: str = decrypt_1(data)
+    decryption: str = logical(data)
     print('LOGICAL:', decryption)
-    decryption: str = decrypt_2(data)
+    decryption: str = regular(data)
     print('REGULAR:', decryption)
 
