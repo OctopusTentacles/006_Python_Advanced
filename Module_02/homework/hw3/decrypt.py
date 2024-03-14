@@ -44,20 +44,28 @@ from typing import Callable, Any
 
 
 def timer(func: Callable) -> Any:
-    """ Декоратор timer - 
-    выводит время работы функции и возвращает ее результат.
+    """
+    Декоратор timer.
+    Считает время работы функции и возвращает ее результат.
+
+    Args:
+        func (Callable): любая функция
+
+    Returns:
+        Any: _description_
     """
     @wraps(func)
     def wrapper(*args, **kwargs):
         start_at = time.time()
         result = func(*args, **kwargs)
         stop_at = time.time()
-        print(f'{func.__name__} - {round(start_at - stop_at, 3)} sec.')
+        print(f'time {func.__name__}: {stop_at - start_at} sec.')
         return result
     return wrapper
 
 
 # logical =============================================================
+@timer
 def logical(encryption: str) -> str:
     decrypted_message = ''
     flag = False
@@ -84,28 +92,28 @@ def logical(encryption: str) -> str:
 
 
 # regular ===========================================================
+@timer
 def regular(encryption: str) -> str:
 
-        def remove_dots(message):
-            char = message.group(1)
-            dots = message.group(2)
+    def remove_dots(message):
+        char = message.group(1)
+        dots = message.group(2)
 
-            if char and len(dots) >= 2:
-                return char[:-1] + dots[2:]
+        if char and len(dots) >= 2:
+            return char[:-1] + dots[2:]
 
-            elif char and len(dots) == 1:
-                return char + dots[1:] if char else ''
-            
-            else:
-                 return ''
-
-        pattern = r'([^.]?)(\.+)'
-
-        while re.search(pattern, encryption):
-             encryption = re.sub(pattern, remove_dots, encryption)
-
+        elif char and len(dots) == 1:
+            return char + dots[1:] if char else ''
         
-        return encryption
+        else:
+                return ''
+
+    pattern = r'([^.]?)(\.+)'
+
+    while re.search(pattern, encryption):
+            encryption = re.sub(pattern, remove_dots, encryption)
+
+    return encryption
 
 
 if __name__ == '__main__':
@@ -114,4 +122,3 @@ if __name__ == '__main__':
     print('LOGICAL:', decryption)
     decryption: str = regular(data)
     print('REGULAR:', decryption)
-
