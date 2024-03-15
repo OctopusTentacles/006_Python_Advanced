@@ -19,15 +19,23 @@ app = Flask(__name__)
 
 
 @app.route("/max_number/<path:numbers>")
-def max_number(numbers):
-    number = '0'
-    for num in numbers.split('/'):
-        if num > number:
-            number = num 
-    
-    
-    return f'Максимальное переданное число: <i>{number}</i>'
+def max_number(numbers: str) -> str:
+    numbers_list = numbers.split('/')
+    print(numbers_list)
 
+    numbers_list = [elem for elem in numbers_list if check_elem(elem) ]
+    print(numbers_list)
+
+    max_num = max(numbers_list)
+    
+    return f'Максимальное переданное число: <i>{max_num}</i>'
+
+def check_elem(elem: str) -> bool:
+    try:
+        float(elem)
+        return elem
+    except ValueError:
+        return False
 
 if __name__ == "__main__":
     app.run(debug=True)
