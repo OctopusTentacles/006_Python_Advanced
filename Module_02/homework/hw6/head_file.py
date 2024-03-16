@@ -51,8 +51,9 @@ def head_file(size: int, relative_path: str):
         relative_path (str): путь к файлу.
     """
     path_file = os.path.join(BASE_DIR, relative_path)
-    
-    ...
+    with open(path_file, 'r', encoding='utf8') as file:
+        read_size = file.read(size)
+    return f'{path_file} {len(read_size)}<br>{read_size}'
 
 
 if __name__ == "__main__":
