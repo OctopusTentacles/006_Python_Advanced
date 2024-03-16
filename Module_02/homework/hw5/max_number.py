@@ -1,5 +1,6 @@
 """
-Реализуйте endpoint, начинающийся с /max_number, в который можно передать список чисел, разделённых слешем /.
+Реализуйте endpoint, начинающийся с /max_number, 
+в который можно передать список чисел, разделённых слешем /.
 Endpoint должен вернуть текст «Максимальное переданное число {number}»,
 где number — выделенное курсивом наибольшее из переданных чисел.
 
@@ -13,7 +14,9 @@ Endpoint должен вернуть текст «Максимальное пе�
 
 """
 
+
 from flask import Flask
+
 
 app = Flask(__name__)
 
@@ -21,14 +24,16 @@ app = Flask(__name__)
 @app.route("/max_number/<path:numbers>")
 def max_number(numbers: str) -> str:
     numbers_list = numbers.split('/')
-    print(numbers_list)
 
     numbers_list = [float(elem) for elem in numbers_list if check_elem(elem) ]
     print(numbers_list)
 
+    if not numbers_list:
+        return f'Пожалуйста, введите <b>числа</b>!'
+
     max_num = max(numbers_list)
     
-    return f'Максимальное переданное число: <i>{max_num}</i>'
+    return f'Максимальное число: <i>{max_num}</i>'
 
 def check_elem(elem: str) -> bool:
     try:
