@@ -1,9 +1,11 @@
 """
-Реализуйте endpoint, который показывает превью файла, принимая на вход два параметра: SIZE (int) и RELATIVE_PATH —
+Реализуйте endpoint, который показывает превью файла, 
+принимая на вход два параметра: SIZE (int) и RELATIVE_PATH —
 и возвращая первые SIZE символов файла по указанному в RELATIVE_PATH пути.
 
 Endpoint должен вернуть страницу с двумя строками.
-В первой строке будет содержаться информация о файле: его абсолютный путь и размер файла в символах,
+В первой строке будет содержаться информация о файле: 
+его абсолютный путь и размер файла в символах,
 а во второй строке — первые SIZE символов из файла:
 
 <abs_path> <result_size><br>
@@ -29,13 +31,27 @@ hello wo
 hello world!
 """
 
+
+import os
+
 from flask import Flask
+
 
 app = Flask(__name__)
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/head_file/<int:size>/<path:relative_path>")
 def head_file(size: int, relative_path: str):
+    """
+    Превью файла,
+
+    Args:
+        size (int): кол-во символов.
+        relative_path (str): путь к файлу.
+    """
+    path_file = os.path.join(BASE_DIR, relative_path)
+    
     ...
 
 
