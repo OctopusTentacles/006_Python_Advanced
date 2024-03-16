@@ -23,7 +23,7 @@ def max_number(numbers: str) -> str:
     numbers_list = numbers.split('/')
     print(numbers_list)
 
-    numbers_list = [elem for elem in numbers_list if check_elem(elem) ]
+    numbers_list = [float(elem) for elem in numbers_list if check_elem(elem) ]
     print(numbers_list)
 
     max_num = max(numbers_list)
@@ -33,7 +33,7 @@ def max_number(numbers: str) -> str:
 def check_elem(elem: str) -> bool:
     try:
         float(elem)
-        return elem
+        return True
     except ValueError:
         return False
 
