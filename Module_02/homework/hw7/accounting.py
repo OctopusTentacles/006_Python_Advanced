@@ -37,9 +37,14 @@ def add(date: str, number: int):
     """
     year = int(date[:4])
     month = int(date[4:6])
-    day = int(date[5:])
+    day = int(date[6:])
 
-    storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, {})
+    storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
+    storage[year][month][day] += number
+
+    print(storage)
+
+    return f"{year} {month} {day} траты: {number}"
 
 
 @app.route("/calculate/<int:year>")
@@ -61,7 +66,8 @@ def calculate_month(year: int, month: int):
         year (int): год.
         month (int): месяц.
     """
-    ...
+    month_expenses = sum(storage[year][month].values())
+    return f'затраты за год {year} месяц {month}: {month_expenses}'
 
 
 if __name__ == "__main__":
