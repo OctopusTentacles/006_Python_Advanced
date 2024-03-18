@@ -42,8 +42,8 @@ def add(date: str, number: int):
     storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
     storage[year][month][day] += number
 
-    storage[year][month]['month_total'] = sum(storage[year][month].values())
-
+    storage[year][month].setdefault('month_total', 0) 
+    storage[year][month]['month_total'] += number
 
 
     print(storage)
