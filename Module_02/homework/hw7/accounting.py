@@ -35,7 +35,11 @@ def add(date: str, number: int):
         date (str): дата в формате YYYYMMDD.
         number (int): сумма в рублях.
     """
-    ...
+    year = int(date[:4])
+    month = int(date[4:6])
+    day = int(date[5:])
+
+    storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, {})
 
 
 @app.route("/calculate/<int:year>")
