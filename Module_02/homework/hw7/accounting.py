@@ -43,7 +43,10 @@ def add(date: str, number: int):
     storage[year][month][day] += number
 
     storage[year][month].setdefault('month_total', 0) 
+    storage[year].setdefault('year_total', 0)
+
     storage[year][month]['month_total'] += number
+    storage[year]['year_total'] += number
 
 
     print(storage)
@@ -58,7 +61,7 @@ def calculate_year(year: int):
     Args:
         year (int): год.
     """
-    year_expenses = sum()
+    year_expenses = storage[year]['year_total']
     return f'затраты за год {year}: {year_expenses}'
 
 
