@@ -37,7 +37,11 @@ def add(date: str, number: int):
         number (int): сумма в рублях.
     """
     try:
-        its_date = datetime.strptime(date, '%Y%m%d')
+        its_date = datetime.strptime(date, '%Y%m%d').date()
+        year = its_date.year
+        month = its_date.month
+        day = its_date.day
+        
         storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
         storage[year][month][day] += number
 
@@ -50,7 +54,7 @@ def add(date: str, number: int):
 
         print(storage)
 
-        return f"{year} {month} {day} траты: {number}"
+        return f"траты за {its_date}: {number} руб."
     except ValueError:
         return 'Введите корректную дату!'
 
