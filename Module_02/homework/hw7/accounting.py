@@ -18,6 +18,7 @@
 """
 
 
+from datetime import datetime
 from flask import Flask
 
 app = Flask(__name__)
@@ -35,23 +36,26 @@ def add(date: str, number: int):
         date (str): дата в формате YYYYMMDD.
         number (int): сумма в рублях.
     """
-    year = int(date[:4])
-    month = int(date[4:6])
-    day = int(date[6:])
+    try:
+        its_date = datetime.strptime(date, '%Y%m%d')
+        storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
+        storage[year][month][day] += number
 
-    storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
-    storage[year][month][day] += number
+        storage[year][month].setdefault('month_total', 0) 
+        storage[year].setdefault('year_total', 0)
 
-    storage[year][month].setdefault('month_total', 0) 
-    storage[year].setdefault('year_total', 0)
-
-    storage[year][month]['month_total'] += number
-    storage[year]['year_total'] += number
+        storage[year][month]['month_total'] += number
+        storage[year]['year_total'] += number
 
 
-    print(storage)
+        print(storage)
 
-    return f"{year} {month} {day} траты: {number}"
+        return f"{year} {month} {day} траты: {number}"
+    except ValueError:
+        return 'Введите корректную дату!'
+
+
+
 
 
 @app.route("/calculate/<int:year>")
