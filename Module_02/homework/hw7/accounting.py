@@ -48,18 +48,15 @@ def add(date: str, number: int):
         storage[year][month].setdefault('month_total', 0) 
         storage[year].setdefault('year_total', 0)
 
+        # сумма месячных трат:
         storage[year][month]['month_total'] += number
+        # сумма годовых трат:
         storage[year]['year_total'] += number
-
-
         print(storage)
 
         return f"траты за {its_date}: {number} руб."
     except ValueError:
         return 'Введите корректную дату!'
-
-
-
 
 
 @app.route("/calculate/<int:year>")
@@ -69,8 +66,11 @@ def calculate_year(year: int):
     Args:
         year (int): год.
     """
-    year_expenses = storage[year]['year_total']
-    return f'затраты за год {year}: {year_expenses}'
+    try:
+        year_expenses = storage[year]['year_total']
+        return f'затраты за год {year}: {year_expenses} руб.'
+    except KeyError:
+        return 'В эту дату нет трат!'
 
 
 @app.route("/calculate/<int:year>/<int:month>")
@@ -82,8 +82,11 @@ def calculate_month(year: int, month: int):
         year (int): год.
         month (int): месяц.
     """
-    month_expenses = storage[year][month]['month_total']
-    return f'затраты за год {year} месяц {month}: {month_expenses}'
+    try:
+        month_expenses = storage[year][month]['month_total']
+        return f'затраты за год {year} месяц {month}: {month_expenses} руб.'
+    except KeyError:
+        return 'В эту дату нет трат!'
 
 
 if __name__ == "__main__":
