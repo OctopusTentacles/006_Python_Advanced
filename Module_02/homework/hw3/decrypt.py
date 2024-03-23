@@ -116,9 +116,27 @@ def regular(encryption: str) -> str:
     return encryption
 
 
+# from_teacher=======================================================
+@timer
+def decrypt(s: str) -> str:
+    result = []
+    for ch in s:
+        result.append(ch)
+
+        if len(result) > 2 and (result[-1], result[-2]) == ('.', '.'):
+            result.pop()
+            result.pop()
+            if result:
+                result.pop()
+    return ''.join(ch for ch in result if ch != '.')
+
+
 if __name__ == '__main__':
     data: str = sys.stdin.read()
     decryption: str = logical(data)
     print('LOGICAL:', decryption)
     decryption: str = regular(data)
     print('REGULAR:', decryption)
+    decryption: str = decrypt(data)
+    print('DECRYPT:', decryption)
+
