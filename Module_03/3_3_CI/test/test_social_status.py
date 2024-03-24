@@ -12,3 +12,8 @@ class TestSocialStatus(unittest.TestCase):
         self.assertEqual(expected_res, function_res)
 
     
+    def test_cannot_pass_str_as_age(self):
+        age = 'old'
+        with self.assertRaises(ValueError):
+            get_social_status(age)
+            
