@@ -1,3 +1,6 @@
+""" Задача 1. Хорошего дня! """
+
+
 from datetime import datetime
 
 from flask import Flask
