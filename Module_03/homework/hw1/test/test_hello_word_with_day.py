@@ -4,7 +4,6 @@
 import unittest
 
 from hello_word_with_day import app
-from datetime import datetime
 from freezegun import freeze_time
 
 
@@ -13,7 +12,6 @@ class TestHelloWordWithDay(unittest.TestCase):
         app.config['TESTING'] = True
         app.config['DEBUG'] = False
         self.app = app.test_client()
-        self.base_url = '/'
         self.base_url = '/hello-world/'
 
     def test_has_username(self):
