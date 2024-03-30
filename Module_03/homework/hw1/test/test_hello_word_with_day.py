@@ -42,7 +42,13 @@ class TestHelloWordWithDay(unittest.TestCase):
         response_text = response.data.decode()
         self.assertTrue(username in response_text)
 
-    def test_
+    def test_custom_greeting(self):
+        username = 'Хорошей субботы'
+        response = self.app.get(self.base_url + username)
+        response_text = response.data.decode()
+        if self.assertIn(username, response_text):
+            print('Предупреждение: Не рекомендуется вводить пожелания в поле имени')
+
         
     # заморозим день 2024-04-01 - понедельник:
     @freeze_time('2024-04-01')
