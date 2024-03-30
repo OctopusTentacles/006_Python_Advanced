@@ -1,1 +1,0 @@
-from . import hello_word_with_day
