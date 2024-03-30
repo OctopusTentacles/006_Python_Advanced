@@ -4,7 +4,7 @@
 import unittest
 
 
-from Module_03.homework.hw1.hello_word_with_day import app
+from hello_word_with_day import app
 from freezegun import freeze_time
 
 
@@ -28,3 +28,11 @@ class TestHelloWordWithDay(unittest.TestCase):
         response_text = response.data.decode()
         expected_greeting = 'Хорошего понедельника'
         self.assertIn(expected_greeting, response_text)
+
+    @freeze_time('2024-04-07')
+    def test_weekday(self):
+        response = self.app.get(self.base_url + 'username')
+        response_text = response.data.decode()
+        expected_greeting = 'Хорошего воскресенья'
+        self.assertIn(expected_greeting, response_text)
+
