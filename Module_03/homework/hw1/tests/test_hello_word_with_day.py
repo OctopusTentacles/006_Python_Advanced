@@ -99,4 +99,3 @@ class TestHelloWordWithDay(unittest.TestCase):
         response_text = response.data.decode()
         expected_greeting = 'Хорошего воскресенья'
         self.assertIn(expected_greeting, response_text)
-
