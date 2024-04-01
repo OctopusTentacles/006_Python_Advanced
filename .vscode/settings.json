@@ -2,10 +2,13 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        ".",
+        "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced",
         "-p",
         "test_*.py"
     ],
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": true
 }
+
+
+// export PYTHONPATH=/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced:$PYTHONPATH

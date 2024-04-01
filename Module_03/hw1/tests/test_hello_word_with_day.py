@@ -20,7 +20,7 @@ setUp - для настройки тестового окружения пере
 import unittest
 
 
-from Module_03.homework.hw1.hello_word_with_day import app
+from hello_word_with_day import app
 from freezegun import freeze_time
 
 
@@ -46,8 +46,8 @@ class TestHelloWordWithDay(unittest.TestCase):
         username = 'Хорошей субботы'
         response = self.app.get(self.base_url + username)
         response_text = response.data.decode()
-        if username in response_text:
-            self.fail('Предупреждение: Не рекомендуется вводить пожелания в поле имени')
+        self.assertNotIn(username, response_text, 
+                         'Предупреждение: Не рекомендуется вводить пожелания в поле имени')
 
         
     # заморозим день 2024-04-01 - понедельник:
