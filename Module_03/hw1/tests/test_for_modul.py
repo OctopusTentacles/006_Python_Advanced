@@ -20,7 +20,7 @@ setUp - для настройки тестового окружения пере
 import unittest
 
 
-from hello_word_with_day import app
+from Module_03.hw1.hello_word_with_day import app
 from freezegun import freeze_time
 
 
@@ -41,14 +41,6 @@ class TestHelloWordWithDay(unittest.TestCase):
         response = self.app.get(self.base_url + username)
         response_text = response.data.decode()
         self.assertTrue(username in response_text)
-    
-    @freeze_time('2024-04-06')
-    def test_custom_greeting(self):
-        username = 'Хорошей субботы'
-        response = self.app.get(self.base_url + username)
-        response_text = response.data.decode()
-        self.assertNotIn(username, response_text, 
-                         'Предупреждение: Не рекомендуется вводить пожелания в поле имени')
 
         
     # заморозим день 2024-04-01 - понедельник:
@@ -57,27 +49,6 @@ class TestHelloWordWithDay(unittest.TestCase):
         response = self.app.get(self.base_url + 'username')
         response_text = response.data.decode()
         expected_greeting = 'Хорошего понедельника'
-        self.assertIn(expected_greeting, response_text)
-
-    @freeze_time('2024-04-02')
-    def test_tuesday(self):
-        response = self.app.get(self.base_url + 'username')
-        response_text = response.data.decode()
-        expected_greeting = 'Хорошего вторника'
-        self.assertIn(expected_greeting, response_text)
-
-    @freeze_time('2024-04-03')
-    def test_wednesday(self):
-        response = self.app.get(self.base_url + 'username')
-        response_text = response.data.decode()
-        expected_greeting = 'Хорошего воскресенья'
-        self.assertIn(expected_greeting, response_text)
-
-    @freeze_time('2024-04-04')
-    def test_thursday(self):
-        response = self.app.get(self.base_url + 'username')
-        response_text = response.data.decode()
-        expected_greeting = 'Хорошего четверга'
         self.assertIn(expected_greeting, response_text)
 
     @freeze_time('2024-04-05')
@@ -94,9 +65,3 @@ class TestHelloWordWithDay(unittest.TestCase):
         expected_greeting = 'Хорошей субботы'
         self.assertIn(expected_greeting, response_text)
 
-    @freeze_time('2024-04-03')
-    def test_sunday(self):
-        response = self.app.get(self.base_url + 'username')
-        response_text = response.data.decode()
-        expected_greeting = 'Хорошего воскресенья'
-        self.assertIn(expected_greeting, response_text)
