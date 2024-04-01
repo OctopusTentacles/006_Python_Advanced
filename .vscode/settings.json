@@ -2,7 +2,7 @@
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced",
+        "./Module_03",
         "-p",
         "test_*.py"
     ],
