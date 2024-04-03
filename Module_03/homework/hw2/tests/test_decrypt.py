@@ -16,7 +16,7 @@ class TestDecrypt(unittest.TestCase):
 
     def test_two_dots(self):
         encrypted_text = 'абраа..-кадабра'
-        expected_decrypted_text = 'абра-кадабраы'
+        expected_decrypted_text = 'абра-кадабра'
         self.assertEqual(decrypt(encrypted_text), expected_decrypted_text)
 
 
@@ -28,7 +28,8 @@ class TestDecrypt(unittest.TestCase):
             (' абраа..-.кадабра', ' абра-кадабра'),
             ('абра--..кадабра', 'абра-кадабра'),
             ('абрау...-кадабра', 'абра-кадабра'),
-            ('абра........', ''),
+            # сделаем ошибку:
+            ('абра-кадабра', ''),
             ('абр......a.', 'a'),
             ('1..2.3', '23'), 
             ('.', ''),
