@@ -3,10 +3,10 @@
 
 import unittest
 
-from accounting import app
-from accounting import storage
-# from Module_03.homework.hw3.accounting import app
-# from Module_03.homework.hw3.accounting import storage
+# from accounting import app
+# from accounting import storage
+from Module_03.homework.hw3.accounting import app
+from Module_03.homework.hw3.accounting import storage
 
 
 class TestAccounting(unittest.TestCase):
@@ -21,9 +21,14 @@ class TestAccounting(unittest.TestCase):
             2024: {4: {4: 200, 5: 300, 'month_total': 500}, 'year_total': 500}
         })
 
-    def test_add(self):
+    def test_add_1(self):
         responce = self.app.get('/add/20240506/200')
         self.assertEqual(responce.status_code, 200)
+    
+    def test_add_2(self):
+        responce = self.app.get('/add/20240232/200')
+        self.assertEqual(responce.status_code, 200)
+
 
     def test_calculate_year(self):
         responce = self.app.get('/calculate/2023')  #100
