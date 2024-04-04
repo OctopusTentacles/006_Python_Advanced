@@ -24,3 +24,9 @@ class TestAccounting(unittest.TestCase):
     def test_add(self):
         responce = self.app.get('/add/20240506/200')
         self.assertEqual(responce.status_code, 200)
+
+    def test_calculate_year(self):
+        responce = self.app.get('/calculate/2023')
+        self.assertEqual(responce.status_code, 200)
+
+    def 

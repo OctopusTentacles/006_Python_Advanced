@@ -62,6 +62,7 @@ def calculate_year(year: int):
     """
     try:
         year_expenses = storage[year]['year_total']
+        print(year_expenses)
         return f'затраты за год {year}: {year_expenses} руб.'
     except KeyError:
         return 'В эту дату нет трат!'
