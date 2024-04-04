@@ -79,6 +79,7 @@ def calculate_month(year: int, month: int):
     """
     try:
         month_expenses = storage[year][month]['month_total']
+        print(month_expenses)
         return f'затраты за год {year} месяц {month}: {month_expenses} руб.'
     except KeyError:
         return 'В эту дату нет трат!'
