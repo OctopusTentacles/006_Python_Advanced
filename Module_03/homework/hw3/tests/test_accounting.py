@@ -34,6 +34,7 @@ class TestAccounting(unittest.TestCase):
     # закомментируем блок try-ecxept
     def test_add_value_error(self):
         with self.assertRaises(ValueError):
+            # передадим не существующую дату
             add('20240232', 200)
 
 
@@ -42,13 +43,8 @@ class TestAccounting(unittest.TestCase):
         responce = self.app.get('/calculate/2023')  # 100
         self.assertEqual(responce.status_code, 200)
 
-    # если в `storage` ничего нет и блок try-ecxept закомментирован - ERROR.
+    # если в `storage` ничего нет: 
     def test_calculate_year_empty_storage(self):
-        storage.clear()
-        response = self.app.get('/calculate/2023')  
-        self.assertEqual(response.status_code, 500)
-    # если в `storage` ничего нет и блок try-ecxept в работе - 
-    def test_calculate_year_empty_storage_with_try(self):
         storage.clear()
         response = self.app.get('/calculate/2023')
         response_text = response.data.decode()
@@ -56,7 +52,16 @@ class TestAccounting(unittest.TestCase):
         self.assertIn('В эту дату нет трат!', response_text)
 
 
-
+# ===========================================================================
     def test_calculate_month(self):
-        responce = self.app.get('/calculate/2023/01')   #100
+        responce = self.app.get('/calculate/2024/04')   #500
         self.assertEqual(responce.status_code, 200)
+
+    # введем дату, которой нет в `storage`
+    
+
+    # если в `storage` ничего нет:
+    def test_calculate_month_empty(self):
+        storage.clear()
+        responce = self.app.get('/calculate/2024/04')
+        self.assertEqual(responce.status_code, 500)
