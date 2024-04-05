@@ -30,27 +30,27 @@ def add(date: str, number: int):
         date (str): дата в формате YYYYMMDD.
         number (int): сумма в рублях.
     """
-    try:
-        its_date = datetime.strptime(date, '%Y%m%d').date()
-        year = its_date.year
-        month = its_date.month
-        day = its_date.day
+    # try:
+    its_date = datetime.strptime(date, '%Y%m%d').date()
+    year = its_date.year
+    month = its_date.month
+    day = its_date.day
 
-        storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
-        storage[year][month][day] += number
+    storage.setdefault(year, {}).setdefault(month, {}).setdefault(day, 0)
+    storage[year][month][day] += number
 
-        storage[year][month].setdefault('month_total', 0)
-        storage[year].setdefault('year_total', 0)
+    storage[year][month].setdefault('month_total', 0)
+    storage[year].setdefault('year_total', 0)
 
-        # сумма месячных трат:
-        storage[year][month]['month_total'] += number
-        # сумма годовых трат:
-        storage[year]['year_total'] += number
-        print(storage)
+    # сумма месячных трат:
+    storage[year][month]['month_total'] += number
+    # сумма годовых трат:
+    storage[year]['year_total'] += number
+    print(storage)
 
-        return f"траты за {its_date}: {number} руб."
-    except ValueError:
-        return 'Введите корректную дату!'
+    return f"траты за {its_date}: {number} руб."
+    # except ValueError:
+    #     return 'Введите корректную дату!'
 
 
 @app.route("/calculate/<int:year>")

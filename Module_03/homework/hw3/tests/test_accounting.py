@@ -28,10 +28,11 @@ class TestAccounting(unittest.TestCase):
     
     def test_add_type_error(self):
         with self.assertRaises(TypeError):
-            add('20240232/200')
+            add('yymmdd')
 
     def test_add_value_error(self):
-        with self.assert
+        with self.assertRaises(ValueError):
+            add('20240232', 200)
 
 
 
