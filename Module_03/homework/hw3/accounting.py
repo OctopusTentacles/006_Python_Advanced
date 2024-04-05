@@ -60,12 +60,12 @@ def calculate_year(year: int):
     Args:
         year (int): год.
     """
-    try:
-        year_expenses = storage[year]['year_total']
-        print(year_expenses)
-        return f'затраты за год {year}: {year_expenses} руб.'
-    except KeyError:
-        return 'В эту дату нет трат!'
+    # try:
+    year_expenses = storage[year]['year_total']
+    print(year_expenses)
+    return f'затраты за год {year}: {year_expenses} руб.'
+    # except KeyError:
+        # return 'В эту дату нет трат!'
 
 
 @app.route("/calculate/<int:year>/<int:month>")
