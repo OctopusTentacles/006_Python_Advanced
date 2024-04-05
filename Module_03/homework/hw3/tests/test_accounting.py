@@ -30,6 +30,8 @@ class TestAccounting(unittest.TestCase):
         with self.assertRaises(TypeError):
             add('yymmdd')
 
+    # для этого теста в основном пролижении функции add()
+    # закомментируем блок try - ecxept
     def test_add_value_error(self):
         with self.assertRaises(ValueError):
             add('20240232', 200)
