@@ -58,6 +58,9 @@ class TestAccounting(unittest.TestCase):
         self.assertEqual(responce.status_code, 200)
 
     # введем дату, которой нет в `storage`
+    def test_calculate_month_value_error(self):
+        with self.assertRaises(KeyError):
+            add(1900, 300)
     
 
     # если в `storage` ничего нет:
