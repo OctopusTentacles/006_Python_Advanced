@@ -8,6 +8,7 @@ import unittest
 from Module_03.homework.hw3.accounting import app
 from Module_03.homework.hw3.accounting import storage
 from Module_03.homework.hw3.accounting import add
+from Module_03.homework.hw3.accounting import calculate_month
 
 
 class TestAccounting(unittest.TestCase):
@@ -58,11 +59,10 @@ class TestAccounting(unittest.TestCase):
         self.assertEqual(responce.status_code, 200)
 
     # введем дату, которой нет в `storage`
-    def test_calculate_month_value_error(self):
+    def test_calculate_month_key_error(self):
         with self.assertRaises(KeyError):
-            add(1900, 300)
+            calculate_month(1900, 300)
     
-
     # если в `storage` ничего нет:
     def test_calculate_month_empty(self):
         storage.clear()
