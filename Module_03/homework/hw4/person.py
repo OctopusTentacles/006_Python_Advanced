@@ -9,7 +9,7 @@ class Person:
 
     def get_age(self) -> int:
         now: datetime.datetime = datetime.datetime.now()
-        return self.yob - now.year
+        return now.year - self.yob
 
     def get_name(self) -> str:
         return self.name
