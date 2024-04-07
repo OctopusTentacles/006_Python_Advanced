@@ -5,7 +5,8 @@
 import datetime
 import unittest
 
-from person import Person
+# from person import Person
+from Module_03.homework.hw4.person import Person
 
 
 class TestPerson(unittest.TestCase):
