@@ -28,5 +28,8 @@ class TestPerson(unittest.TestCase):
         self.person.set_name(new_name)
         self.assertEqual(self.person.get_name(), new_name)
 
-    # def test_set_address(self):
+    def test_set_address(self):
+        new_address = '101 Miracle Ave.'
+        self.person.set_address(new_address)
+        self.assertEqual(self.person.address, new_address)
 
