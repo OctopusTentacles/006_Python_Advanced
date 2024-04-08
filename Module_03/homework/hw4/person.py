@@ -18,7 +18,7 @@ class Person:
         self.name = name
 
     def set_address(self, address: str) -> None:
-        self.address == address
+        self.address = address
 
     def get_address(self) -> str:
         return self.address
