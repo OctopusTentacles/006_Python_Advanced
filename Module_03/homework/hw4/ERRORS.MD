@@ -35,7 +35,9 @@
     ```
 - FIXED:
     ```python
-    self.name = name
+    def set_name(self, name: str) -> str:
+        self.name = name
+        return self.name
     ```
 ***
 ***
