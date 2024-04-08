@@ -4,7 +4,7 @@
 - ERROR:
     > NameError: name 'datetime' is not defined
 
-- FIX:
+- FIXED:
     ```python
     import datetime
     ```
@@ -15,10 +15,14 @@
     ```python
     return self.yob - now.year
     ```
-- FIX:
+- FIXED:
     ```python
     return now.year - self.yob
     ```
     ***
+
+## 2. def get_name
+- OK
+
 
 
