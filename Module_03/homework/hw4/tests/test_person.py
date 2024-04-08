@@ -33,3 +33,6 @@ class TestPerson(unittest.TestCase):
         self.person.set_address(new_address)
         self.assertEqual(self.person.address, new_address)
 
+    def test_get_address(self):
+        self.assertEqual(self.person.get_address(), self.address)
+
