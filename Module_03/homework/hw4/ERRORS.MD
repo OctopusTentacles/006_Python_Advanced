@@ -19,10 +19,23 @@
     ```python
     return now.year - self.yob
     ```
-    ***
+***
+***
 
 ## 2. def get_name
 - OK
+***
+***
 
-
-
+## 3. def set_name
+- FAIL:
+    > AssertionError: 'Boby' != None
+    ```python
+    self.name = self.name
+    ```
+- FIXED:
+    ```python
+    self.name = name
+    ```
+***
+***
