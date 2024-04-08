@@ -39,3 +39,17 @@
     ```
 ***
 ***
+
+## 4. def set_address
+- FAIL:
+    > AssertionError: '17 Baker str.' != '101 Miracle Ave.'
+    ```python
+    self.address == address
+    ```
+    > Используется оператор сравнения '==', а не присваивания '='
+- FIXED:
+    ```python
+    self.address = address
+    ```
+***
+***
