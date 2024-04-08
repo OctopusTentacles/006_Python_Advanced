@@ -20,4 +20,7 @@ class TestPerson(unittest.TestCase):
         expected_age = current_year - self.birth_year
         self.assertEqual(self.person.get_age(), expected_age)
 
+    def test_get_name(self):
+        self.assertEqual(self.person.get_name(), self.name)
+
 
