@@ -23,4 +23,6 @@ class TestPerson(unittest.TestCase):
     def test_get_name(self):
         self.assertEqual(self.person.get_name(), self.name)
 
-
+    def test_set_name(self):
+        self.name = self.person.set_name('Scooby')
+        self.assertEqual(self.person.get_name(), self.name)
