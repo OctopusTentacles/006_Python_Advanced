@@ -33,6 +33,7 @@
     ```python
     self.name = self.name
     ```
+    > Присваивается старое значение атрибута name, а не переданное значение name
 - FIXED:
     ```python
     self.name = name
