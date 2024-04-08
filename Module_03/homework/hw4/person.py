@@ -14,9 +14,8 @@ class Person:
     def get_name(self) -> str:
         return self.name
 
-    def set_name(self, name: str) -> str:
+    def set_name(self, name: str) -> None:
         self.name = name
-        return self.name
 
     def set_address(self, address: str) -> None:
         self.address == address
