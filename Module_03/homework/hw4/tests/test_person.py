@@ -36,3 +36,5 @@ class TestPerson(unittest.TestCase):
     def test_get_address(self):
         self.assertEqual(self.person.get_address(), self.address)
 
+    def test_is_homeless(self):
+        
