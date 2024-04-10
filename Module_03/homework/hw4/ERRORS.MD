@@ -60,6 +60,15 @@
 ***
 ***
 
+## 6. def is_homeless
+- ERROR:
+    > NameError: name 'address' is not defined
+    ```python
+    return address is None
+    ```
+    >Используется переменная address, но должен использоваться атрибут self.address
+- FIXED:
+    ```python
+    return self.address is None or self.address == ''
+    ```
 
-
-Используется переменная address, но должен использоваться атрибут self.address
