@@ -37,6 +37,7 @@ class TestPerson(unittest.TestCase):
         self.assertEqual(self.person.get_address(), self.address)
 
     def test_is_homeless(self):
+        home = Person(self.name, self.birth_year, self.address)
         homeless = Person(self.name, self.birth_year)
-        self.assertTrue(self.person.is_homeless())
-        self.assertFalse(homeless.is_homeless())
+        self.assertFalse(home.is_homeless())
+        self.assertTrue(homeless.is_homeless())
