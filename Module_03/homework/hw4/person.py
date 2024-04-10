@@ -27,4 +27,4 @@ class Person:
         '''
         returns True if address is not set, false in other case
         '''
-        return address is None
+        return self.address is None or self.address == ''
