@@ -1,10 +1,20 @@
+from datetime import datetime
+from flask import Flask, request
 from typing import List, Optional
 
-from flask import Flask, request
 
 app = Flask(__name__)
 
 
+def validate_date(date_str: str) -> bool:
+    try:
+        datetime.strptime(date_str, '%Y%m%d')
+        return True
+    except ValueError:
+        return False
+
+
+# /search/3/12/2/1/1/999*/2/2G/4G/1/-100
 @app.route(
     "/search/", methods=["GET"],
 )
@@ -30,5 +40,5 @@ def search():
     )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
