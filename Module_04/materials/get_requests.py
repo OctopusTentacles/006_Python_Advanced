@@ -33,7 +33,33 @@ def search():
     date_to: Optional[str] = request.args.get('date_to')
 
     # проверка параметров:
+    for tower_id in cell_tower_ids:
+        if tower_id <= 0:
+            return 'Invalid cell_tower_id value.', 400
+        
+    for prefix in phone_prefixes:
+        if not prefix[:-1].isdigit() or prefix[-1]!= '*':
+            return 'Invalid phone_prefix value.', 400
+        if len(prefix) > 11:
+            return 'Invalid phone_prefix value.', 400
     
+    for protocol in protocols:
+        if protocol not in ['2G', '3G', '4G']:
+            return 'Invalid protocol value.', 400
+        
+    if signal_level is not None and (-100 > signal_level > 0):
+        return 'Signal level should be between -100 and 0.', 400
+    
+    if date_from is not None and not validate_date(date_from):
+        return 'It should be in YYYYMMDD format.', 400
+    
+    if date_to is not None and not validate_date(date_to):
+        return 'It should be in YYYYMMDD format.', 400
+
+
+
+
+
 
     return (
         f"Search for {cell_tower_ids} cell towers. Search criteria: "
