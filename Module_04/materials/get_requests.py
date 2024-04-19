@@ -25,12 +25,15 @@ def search():
         return f"You must specify at least one cell_tower_id", 400
 
     phone_prefixes: List[str] = request.args.getlist("phone_prefix")
-
     protocols: List[str] = request.args.getlist("protocol")
-
     signal_level: Optional[float] = request.args.get(
         "signal_level", type=float, default=None
     )
+    date_from: Optional[str] = request.args.get('date_from')
+    date_to: Optional[str] = request.args.get('date_to')
+
+    # проверка параметров:
+    
 
     return (
         f"Search for {cell_tower_ids} cell towers. Search criteria: "
