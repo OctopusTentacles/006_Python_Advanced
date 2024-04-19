@@ -55,17 +55,20 @@ def search():
     
     if date_to is not None and not validate_date(date_to):
         return 'It should be in YYYYMMDD format.', 400
+    
+    if date_from and date_to:
+        if date_from > date_to:
+            return 'date_to should be greater than date_from.', 400
 
 
-
-
-
-
+    # Если все проверки пройдены, выполняем поиск
     return (
         f"Search for {cell_tower_ids} cell towers. Search criteria: "
         f"phone_prefixes={phone_prefixes}, "
         f"protocols={protocols}, "
-        f"signal_level={signal_level}"
+        f"signal_level={signal_level}, "
+        f"date_from={date_from}, "
+        f"date_to={date_to}"
     )
 
 
