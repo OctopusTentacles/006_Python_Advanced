@@ -14,8 +14,15 @@ def number():
     # Проверяем, что массив A и число X были предоставлены:
     if not A or X is None:
         return jsonify({'error': 'Please provide array A and a number X'}), 400
-    ...
+    
+    # Находим число из массива A, наиболее близкое к числу X:
+    closest_number = find_closest_number(A, X)
 
+    return jsonify({'closest number to {X}': closest_number})
+
+
+def find_closest_number(A: List[int], X: int) -> int:
+    ...
 
 
 if __name__ == '__main__':
