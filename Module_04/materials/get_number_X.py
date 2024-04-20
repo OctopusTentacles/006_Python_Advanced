@@ -22,7 +22,15 @@ def number():
 
 
 def find_closest_number(A: List[int], X: int) -> int:
-    ...
+    closest = A[0]
+    min_diff = abs(X - A[0])
+
+    for num in A:
+        diff = abs(X - num)
+        if diff < min_diff:
+            closest = num
+            min_diff = diff
+    return closest
 
 
 if __name__ == '__main__':
