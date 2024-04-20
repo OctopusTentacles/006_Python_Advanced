@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from typing import List
 from itertools import product
 
 
@@ -8,8 +9,8 @@ app = Flask(__name__)
 @app.route('/massive', methods=['GET'])
 def massive():
     # Получение массивов A и B из параметров GET-запроса:
-    A = request.args.getlist('A', type=int)
-    B = request.args.getlist('B', type=int)
+    A: List[int] = request.args.get('A')
+    B: List[int] = request.args.get('B')
 
     # Проверка наличия хотя бы одного элемента в каждом массиве:
     if not A or not B:
