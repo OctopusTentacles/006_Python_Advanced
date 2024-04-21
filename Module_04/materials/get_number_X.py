@@ -8,17 +8,18 @@ app = Flask(__name__)
 @app.route('/number', methods=['GET'])
 def number():
     # получаем отсортированный массив из чисел и число:
-    A: List[int] = sorted(request.args.get('A'))
+    A_str = request.args.get('A')
+    A: List[int] = sorted(map(int, A_str.split(',')))
     X: int = int(request.args.get('X'))
 
     # Проверяем, что массив A и число X были предоставлены:
     if not A or X is None:
-        return jsonify({'error': 'Please provide array A and a number X'}), 400
+        return jsonify({'error': f'Please provide array A and a number {X}'}), 400
     
     # Находим число из массива A, наиболее близкое к числу X:
     closest_number = find_closest_number(A, X)
 
-    return jsonify({'closest number to {X}': closest_number})
+    return jsonify({f'closest number to {X}': closest_number})
 
 
 def find_closest_number(A: List[int], X: int) -> int:
