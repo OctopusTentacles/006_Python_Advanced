@@ -44,6 +44,11 @@ def _sum3():
 
     data_object = json.loads(form_data)
 
+    result_str = ','.join(
+        str(a1 + a2) for (a1, a2) in zip(data_object['array1'], data_object['array2'])
+    )
+
+    return f'Your result is {result_str}'
 
 
 
