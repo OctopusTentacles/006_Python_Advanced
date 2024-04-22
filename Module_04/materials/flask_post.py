@@ -22,6 +22,12 @@ def _sum2():
     form_data = request.get_data(as_text=True)
     request_data = unquote_plus(form_data)
 
+    arrays = {}
+
+    for encoded_chunk in request_data.split('&'):
+        key, values = encoded_chunk.split('=')
+        arrays[key] = [int(value) for value in values.split(',')]
+
     print(f'form_data = {form_data}')
     print(f'request_data = {request_data}')
 
