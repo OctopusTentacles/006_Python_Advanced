@@ -7,6 +7,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 
+# form_data:
 @app.route('/sum', methods=['POST'])
 def _sum():
     array1 = request.form.getlist('array1', type=int)
@@ -17,6 +18,7 @@ def _sum():
     return f'Array of sums is: [{result}]'
 
 
+# urlencoded:
 @app.route('/sum2', methods=['POST'])
 def _sum2():
     form_data = request.get_data(as_text=True)
@@ -28,10 +30,21 @@ def _sum2():
         key, values = encoded_chunk.split('=')
         arrays[key] = [int(value) for value in values.split(',')]
 
-    print(f'form_data = {form_data}')
-    print(f'request_data = {request_data}')
+    result_str = ','.join(
+        str(a1 + a2) for (a1, a2) in zip(arrays['array1'], arrays['array2'])
+    )
 
-    return 'OK'
+    return f'Your result is {result_str}'
+
+
+# raw   json:
+@app.route('/sum3', methods=['POST'])
+def _sum3():
+    form_data = request.get_data(as_text=True)
+
+    data_object = json.loads(form_data)
+
+
 
 
 if __name__ == '__main__':
