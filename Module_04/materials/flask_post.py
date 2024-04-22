@@ -19,8 +19,11 @@ def _sum():
 
 @app.route('/sum2', methods=['POST'])
 def _sum2():
-    form_data = request.get.data(as_text=True)
+    form_data = request.get_data(as_text=True)
+    request_data = unquote_plus(form_data)
+
     print(f'form_data = {form_data}')
+    print(f'request_data = {request_data}')
 
     return 'OK'
 
