@@ -7,6 +7,7 @@
 """
 
 
+import json
 from flask import Flask, request
 
 
@@ -15,6 +16,19 @@ app = Flask(__name__)
 
 @app.route('/find_rotation_point', methods=['POST'])
 def find_rotation_point():
+
+    # Получаем данные из тела запроса:
+    form_data = request.get_data(as_text=True)
+    data_object = json.loads(form_data)
+
+    # Извлекаем массив цен на товар из данных:
+    prices = data_object.get('prices', [])
+
+    # Находим сдвиг, при котором массив вновь станет отсортированным:
+    ...
+
+def search_shift(nums):
+    left, right = 0, len(nums) - 1
     ...
 
 
