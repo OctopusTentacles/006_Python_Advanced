@@ -27,10 +27,25 @@ def find_rotation_point():
     # Находим сдвиг, при котором массив вновь станет отсортированным:
     ...
 
-def search_shift(nums):
-    left, right = 0, len(nums) - 1
-    ...
 
+def search_shift(nums):
+    """Двоичный поиск для нахождения сдвига массива.
+
+    Args:
+        nums (int): массив, который был подвергнут циклическому сдвигу.
+    """
+    left, right = 0, len(nums) - 1
+
+    while left < right:
+        # находим средний элемент массива:
+        mid = (left + right) // 2
+
+        if nums(mid) > nums[right]:
+            left = mid + 1
+        else:
+            right = mid
+            
+    return left
 
 
 if __name__ == '__main__':
