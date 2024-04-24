@@ -22,7 +22,7 @@ def find_rotation_point():
     data_object = json.loads(form_data)
 
     # Извлекаем массив цен на товар из данных:
-    prices = data_object.get('prices', [])
+    prices = data_object.get('nums', [])
 
     # Находим сдвиг, при котором массив вновь станет отсортированным:
     rotation_point = search_shift(prices)
@@ -42,7 +42,8 @@ def search_shift(nums):
         # находим средний элемент массива:
         mid = (left + right) // 2
 
-        if nums(mid) > nums[right]:
+        # сравниваем средний элемент с первым элементом:
+        if nums[mid] > nums[0]:
             left = mid + 1
         else:
             right = mid
