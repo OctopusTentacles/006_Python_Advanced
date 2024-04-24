@@ -27,7 +27,10 @@ def find_rotation_point():
     # Находим сдвиг, при котором массив вновь станет отсортированным:
     rotation_point = search_shift(prices)
 
-    return f'rotation point {rotation_point}'
+    # Отсортированный массив с учетом сдвига:
+    sorted_array = sorted(prices[rotation_point:] + prices[:rotation_point])
+
+    return f'rotation point = {rotation_point}, Sorted array = {sorted_array}'
 
 
 def search_shift(nums):
