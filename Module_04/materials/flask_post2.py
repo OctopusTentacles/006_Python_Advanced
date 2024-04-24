@@ -25,7 +25,9 @@ def find_rotation_point():
     prices = data_object.get('prices', [])
 
     # Находим сдвиг, при котором массив вновь станет отсортированным:
-    ...
+    rotation_point = search_shift(prices)
+
+    return f'rotation point {rotation_point}'
 
 
 def search_shift(nums):
@@ -44,7 +46,7 @@ def search_shift(nums):
             left = mid + 1
         else:
             right = mid
-            
+
     return left
 
 
