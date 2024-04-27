@@ -1,10 +1,12 @@
 import unittest
 from flask_testing import TestCase
 from flask_wtform import app
+
+from Module_04.materials.flask_wtform import RegistrationForm
 # from forms import RegistrationForm
 
 
-class BaseRegistrationTest(TestCase):
+class BaseRegistrationTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
