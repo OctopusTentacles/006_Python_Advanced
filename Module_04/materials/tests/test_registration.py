@@ -1,24 +1,17 @@
 import unittest
-from flask_testing import TestCase
-from flask_wtform import app
 
-from Module_04.materials.flask_wtform import RegistrationForm
-# from forms import RegistrationForm
+from Module_04.materials.flask_wt_form import app
+
+from Module_04.materials.flask_wt_form import RegistrationForm
 
 
 class BaseRegistrationTest(unittest.TestCase):
-
-    @classmethod
-    def setUpClass(cls):
-        # cls.valid_data = {
-        #     'email': 'test@example.com',
-        #     'phone': '1234567890',
-        #     'name': 'Ivanov Ivan',
-        #     'address': 'Village Ave. My Home',
-        #     'index': 001001,
-        #     'comment': 'Test comment'
-        # }
-        pass
+    email = 'test@example.com',
+    phone = '1234567890',
+    name = 'Ivanov Ivan',
+    address = 'Village Ave. My Home',
+    index = 001001,
+    comment = 'Test comment'
 
     def create_app(self):
         return app
@@ -36,3 +29,7 @@ class BaseRegistrationTest(unittest.TestCase):
 
     def test_phone_required(self):
         ...
+
+
+if __name__ == '__main__':
+    unittest.main()
