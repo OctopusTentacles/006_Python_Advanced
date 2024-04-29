@@ -10,14 +10,20 @@ class BaseRegistrationTest(unittest.TestCase):
     phone = '1234567890',
     name = 'Ivanov Ivan',
     address = 'Village Ave. My Home',
-    index = 001001,
+    index = 222111,
     comment = 'Test comment'
 
     def create_app(self):
+        app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False
         return app
     
+    def setUp(self):
+        pass
+    
     def test_email_required(self):
-        response = self.client.post('/registration', data = dict(
+        client = self.app.test_client()
+        response = client.post('/registration', data = dict(
             phone='1234567890',
             name='Ivanov Ivan',
             address='Village Ave. My Home',
