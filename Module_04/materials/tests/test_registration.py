@@ -1,8 +1,13 @@
 import unittest
+import logging
 
 from Module_04.materials.flask_wt_form import app
 
 from Module_04.materials.flask_wt_form import RegistrationForm
+
+
+# Настройка конфигурации логгирования
+logging.basicConfig(level=logging.DEBUG)
 
 
 class BaseRegistrationTest(unittest.TestCase):
@@ -31,7 +36,11 @@ class BaseRegistrationTest(unittest.TestCase):
             comment=self.comment
         ))
         self.assertEqual(response.status_code, 400)
+        logging.debug("Response status code: %s", response.status_code)
+
         self.assertIn('email', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
+
 
     def test_phone_required(self):
         client = self.app.test_client()
