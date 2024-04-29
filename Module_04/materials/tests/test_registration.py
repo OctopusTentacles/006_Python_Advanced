@@ -19,8 +19,8 @@ class BaseRegistrationTest(unittest.TestCase):
         return app
     
     def setUp(self):
-        pass
-    
+        self.app = self.create_app()    
+        
     def test_email_required(self):
         client = self.app.test_client()
         response = client.post('/registration', data = dict(
