@@ -15,7 +15,7 @@ class BaseRegistrationTest(unittest.TestCase):
     phone = 1234567890
     name = 'Ivanov Ivan'
     address = 'Village Ave. My Home'
-    index = 'A'
+    index = 'aaa'
     comment = 'Test comment'
 
     def create_app(self):
@@ -110,17 +110,20 @@ class BaseRegistrationTest(unittest.TestCase):
     def test_valid_index(self):
         client = self.app.test_client()
         response = client.post('/registration', data = dict(
-        email=self.email,
-        phone=self.phone,
-        name=self.name,
-        index=123456,  # Указываем валидный индекс
-        address=self.address,
-        comment=self.comment
-    ))
+            email = self.email,
+            phone = self.phone,
+            name = self.name,
+            index = 111222,
+            address = self.address,
+            comment = self.comment
+        ))
         # Ожидаем успешный статус код
         self.assertEqual(response.status_code, 200)
         logging.debug('Response status code: %s', response.status_code)
 
+        # Проверяем, что индекс не содержит сообщения об ошибке
+        self.assertNotIn('index', response.data.decode())
+        logging.debug('Response data: %s', response.data.decode())
 
 
 
