@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import InputRequired, Email, NumberRange, Optional
+from wtforms.validators import InputRequired, Email, NumberRange, Optional, Regexp
 
 
 
@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
     phone = IntegerField(validators=[InputRequired(), NumberRange(min=1000000000, max=9999999999, message='Invalid phone number')])
     name = StringField(validators=[InputRequired()])
     address = StringField(validators=[InputRequired()])
-    index = IntegerField(validators=[Optional()])
+    index = IntegerField(validators=[Optional(), Regexp('^[0-9]*$', message='Index must consist of digits only')])
     comment = StringField(validators=[Optional()])
 
 
