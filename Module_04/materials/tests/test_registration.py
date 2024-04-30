@@ -70,9 +70,24 @@ class BaseRegistrationTest(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         logging.debug('Response status code: %s', response.status_code)
 
-        self.assertIn('phone', response.data.decode())
+        self.assertIn('name', response.data.decode())
         logging.debug('Response data: %s', response.data.decode())
 
+
+    def test_address_required(self):
+        client = self.app.test_client()
+        response = client.post('/registration', data = dict(
+            email = self.email,
+            phone = self.phone,
+            name = self.name,
+            index = self.index,
+            comment = self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug('Response status code: %s', response.status_code)
+
+        self.assertIn('address', response.data.decode())
+        logging.debug('Response data: %s', response.data.decode())
 
 
 
