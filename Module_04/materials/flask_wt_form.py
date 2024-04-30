@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
     phone = IntegerField(validators=[InputRequired(), NumberRange(min=1000000000, max=9999999999, message='Invalid phone number')])
     name = StringField(validators=[InputRequired()])
     address = StringField(validators=[InputRequired()])
-    index = IntegerField(validators=[Optional(), Regexp('^[0-9]*$', message='Index must consist of digits only')])
+    index = IntegerField(validators=[Optional(), NumberRange(min=000000, max=999999, message='Index must be a positive integer')])
     comment = StringField(validators=[Optional()])
 
 
