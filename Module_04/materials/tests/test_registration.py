@@ -15,7 +15,7 @@ class BaseRegistrationTest(unittest.TestCase):
     phone = 1234567890
     name = 'Ivanov Ivan'
     address = 'Village Ave. My Home'
-    index = 'aaa'
+    index = '1111111'
     comment = 'Test comment'
 
     def create_app(self):
@@ -126,6 +126,20 @@ class BaseRegistrationTest(unittest.TestCase):
         logging.debug('Response data: %s', response.data.decode())
 
 
+    def test_comment_required(self):
+        client = self.app.test_client()
+        response = client.post('/registration', data = dict(
+            email = self.email,
+            phone = self.phone,
+            name = self.name,
+            index = 222333,
+            address = self.address,
+        ))
+        self.assertEqual(response.status_code, 200)
+        logging.debug('Response status code: %s', response.status_code)
+
+        self.assertNotIn('comment', response.data.decode())
+        logging.debug('Response data: %s', response.data.decode())
 
 
 if __name__ == '__main__':
