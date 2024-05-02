@@ -15,7 +15,10 @@ class RegistrationForm(FlaskForm):
         NumberRange(min=1000000000, max=9999999999, message='Invalid phone number'),
         Length(min=10, max=10, message='Phone number must be 10 digits long')
     ])
-    name = StringField(validators=[InputRequired()])
+    name = StringField(validators=[
+        InputRequired(),
+        Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\.[А-ЯЁ]\.$', message='Invalid name format. Example: Иванов И.И.')
+    ])
     address = StringField(validators=[InputRequired()])
     index = IntegerField(validators=[Optional(), NumberRange(min=000000, max=999999, message='Index must be a positive integer')])
     comment = StringField(validators=[Optional()])

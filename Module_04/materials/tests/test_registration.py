@@ -13,7 +13,7 @@ logging.basicConfig(level=logging.DEBUG)
 class BaseRegistrationTest(unittest.TestCase):
     email = 'test@example.com'
     phone = 1234567890
-    name = 'Ivanov Ivan'
+    name = 'Иванов И. И.'
     address = 'Village Ave. My Home'
     index = '1111111'
     comment = 'Test comment'
