@@ -20,7 +20,11 @@ class RegistrationForm(FlaskForm):
         Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\.[А-ЯЁ]\.$', message='Invalid name format. Example: Иванов И.И.')
     ])
     address = StringField(validators=[InputRequired()])
-    index = IntegerField(validators=[Optional(), NumberRange(min=000000, max=999999, message='Index must be a positive integer')])
+    index = IntegerField(validators=[
+        Optional(), 
+        NumberRange(min=000000, max=999999, message='Index must be a positive integer'),
+        Regexp('^[0-9]*$', message='Index must consist of digits only')
+    ])
     comment = StringField(validators=[Optional()])
 
 

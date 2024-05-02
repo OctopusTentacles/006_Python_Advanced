@@ -15,7 +15,7 @@ class BaseRegistrationTest(unittest.TestCase):
     phone = 1234567890
     name = 'Иванов И. И.'
     address = 'Village Ave. My Home'
-    index = '1111111'
+    index = 1111111
     comment = 'Test comment'
 
     def create_app(self):
@@ -58,6 +58,25 @@ class BaseRegistrationTest(unittest.TestCase):
         logging.debug('Response data: %s', response.data.decode())
 
 
+    def test_phone_lengh(self):
+        client = self.app.test_client()
+        response = client.post('/registration', data = dict(
+            email = self.email,
+            # неверная длина номера телефона:
+            phone = str(123456789),
+            name = self.name,
+            address = self.address,
+            index = self.index,
+            comment = self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug('Response status code: %s', response.status_code)
+
+        self.assertIn('phone', response.data.decode())
+        logging.debug('Response data: %s', response.data.decode())
+
+
+
     def test_name_required(self):
         client = self.app.test_client()
         response = client.post('/registration', data = dict(
@@ -96,7 +115,7 @@ class BaseRegistrationTest(unittest.TestCase):
             email = self.email,
             phone = self.phone,
             name = self.name,
-            index = self.index,
+            index = '111111',
             address = self.address,
             comment = self.comment
         ))
@@ -113,7 +132,7 @@ class BaseRegistrationTest(unittest.TestCase):
             email = self.email,
             phone = self.phone,
             name = self.name,
-            index = 111222,
+            index = self.index,
             address = self.address,
             comment = self.comment
         ))
