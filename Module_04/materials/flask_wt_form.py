@@ -1,19 +1,30 @@
 from flask import Flask, request
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
-from wtforms.validators import InputRequired, Email, NumberRange, Optional, Regexp, Length
+from wtforms.validators import InputRequired, Email, NumberRange, Optional, Regexp, ValidationError
 
 
 
 app = Flask(__name__)
 
 
+
+def validate_phone(form, field):
+    if not str(field.data).isdigit() or len(str(field.data)) != 10:
+        raise ValidationError('Invalid phone number')
+
+def validate_index(form, field):
+    if field.data is not None and not str(field.data).isdigit():
+        raise ValidationError('Index must consist of digits only')
+    
+
+
 class RegistrationForm(FlaskForm):
     email = StringField(validators=[InputRequired(), Email()])
     phone = IntegerField(validators=[
         InputRequired(), 
-        NumberRange(min=1000000000, max=9999999999, message='Invalid phone number'),
-        Length(min=10, max=10, message='Phone number must be 10 digits long')
+        validate_phone,
+        # NumberRange(min=1000000000, max=9999999999, message='Invalid phone number'),
     ])
     name = StringField(validators=[
         InputRequired(),
@@ -22,8 +33,9 @@ class RegistrationForm(FlaskForm):
     address = StringField(validators=[InputRequired()])
     index = IntegerField(validators=[
         Optional(), 
-        NumberRange(min=000000, max=999999, message='Index must be a positive integer'),
-        Regexp('^[0-9]*$', message='Index must consist of digits only')
+        validate_index
+        # NumberRange(min=000000, max=999999, message='Index must be a positive integer'),
+        # Regexp('^[0-9]*$', message='Index must consist of digits only')
     ])
     comment = StringField(validators=[Optional()])
 
