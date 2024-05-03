@@ -62,6 +62,7 @@ class BaseRegistrationTest(unittest.TestCase):
         client = self.app.test_client()
         response = client.post('/registration', data = dict(
             email = self.email,
+            name = self.name,
             # неверная длина номера телефона:
             phone = '123456789',
             address = self.address,

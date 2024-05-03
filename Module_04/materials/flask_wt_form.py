@@ -24,11 +24,11 @@ class RegistrationForm(FlaskForm):
     phone = IntegerField(validators=[
         InputRequired(), 
         validate_phone,
-        # NumberRange(min=1000000000, max=9999999999, message='Invalid phone number'),
+        NumberRange(min=1000000000, max=9999999999, message='Invalid phone number'),
     ])
     name = StringField(validators=[
         InputRequired(),
-        Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\.[А-ЯЁ]\.$', message='Invalid name format. Example: Иванов И.И.')
+        Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$', message='Invalid name format. Example: Иванов И.И.')
     ])
     address = StringField(validators=[InputRequired()])
     index = IntegerField(validators=[
