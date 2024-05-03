@@ -60,11 +60,10 @@ def is_lucky_ticket(ticket_number):
 
 @app.route('/check_ticket', methods=['POST'])
 def check_ticket():
-    data = request.json
-    name = data.get('name')
-    family_name = data.get('family_name')
-    ticket_number = data.get('ticket_number')
-
+    name = request.form.get('name')
+    family_name = request.form.get('family_name')
+    ticket_number = request.form.get('ticket_number')
+    
     if name is None or family_name is None or ticket_number is None:
         return 'All fields must be filled', 400
     
