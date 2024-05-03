@@ -15,7 +15,7 @@ class BaseRegistrationTest(unittest.TestCase):
     phone = 1234567890
     name = 'Иванов И. И.'
     address = 'Village Ave. My Home'
-    index = 1111111
+    index = 111111
     comment = 'Test comment'
 
     def create_app(self):
@@ -115,7 +115,7 @@ class BaseRegistrationTest(unittest.TestCase):
             email = self.email,
             phone = self.phone,
             name = self.name,
-            index = '111111',
+            index = 'sss',
             address = self.address,
             comment = self.comment
         ))

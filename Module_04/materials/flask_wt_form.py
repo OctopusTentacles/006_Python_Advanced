@@ -33,8 +33,8 @@ class RegistrationForm(FlaskForm):
     address = StringField(validators=[InputRequired()])
     index = IntegerField(validators=[
         Optional(), 
-        validate_index
-        # NumberRange(min=000000, max=999999, message='Index must be a positive integer'),
+        validate_index,
+        NumberRange(min=000000, max=999999, message='Index must be a positive integer'),
         # Regexp('^[0-9]*$', message='Index must consist of digits only')
     ])
     comment = StringField(validators=[Optional()])
