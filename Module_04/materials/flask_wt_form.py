@@ -53,12 +53,33 @@ def registration():
 
 
 
-def is_licky_ticket(ticket_number):
+def is_lucky_ticket(ticket_number):
     first_half = sum(int(digit) for digit in str(ticket_number // 1000))
     second_half = sum(int(digit) for digit in str(ticket_number % 1000))
     return first_half == second_half
 
-@app.route()
+@app.route('/check_ticket', methods=['POST'])
+def check_ticket():
+    data = request.json
+    name = data.get('name')
+    family_name = data.get('family_name')
+    ticket_number = data.get('ticket_number')
+
+    if name is None or family_name is None or ticket_number is None:
+        return 'All fields must be filled', 400
+    
+    try:
+        ticket_number = int(ticket_number)
+    except ValueError:
+        return 'Ticket number must be an integer', 400
+
+    if not (0 <= ticket_number < 1000000):
+        return 'Ticket number must be a six-digit number', 400
+    
+    if not is_lucky_ticket(ticket_number):
+        return 'Failure. Try again!', 200
+    
+    return f'Congratulations, {name} {family_name}!', 200
 
 
 if __name__ == '__main__':
