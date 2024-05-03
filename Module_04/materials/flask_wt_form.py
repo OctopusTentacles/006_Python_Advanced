@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, Email, NumberRange, Optional, Regexp, ValidationError
@@ -50,6 +50,15 @@ def registration():
     else:
         errors = form.errors
         return f'Invalid input, {errors}', 400
+
+
+
+def is_licky_ticket(ticket_number):
+    first_half = sum(int(digit) for digit in str(ticket_number // 1000))
+    second_half = sum(int(digit) for digit in str(ticket_number % 1000))
+    return first_half == second_half
+
+@app.route()
 
 
 if __name__ == '__main__':
