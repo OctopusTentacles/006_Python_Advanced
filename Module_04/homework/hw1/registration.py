@@ -18,10 +18,18 @@ class RegistrationForm(FlaskForm):
         Length(min=10, max=10, message='Phone number must be 10 digits long'),
         NumberRange(min=0, message='Phone number must be positive')
     ])
-    name = StringField()
-    address = StringField()
-    index = IntegerField()
-    comment = StringField()
+    name = StringField(validators=[
+        InputRequired(message='Name is required!')
+    ])
+    address = StringField(validators=[
+        InputRequired(message='Address is required!')
+    ])
+    index = IntegerField(validators=[
+        InputRequired(message='Index is required!')
+    ])
+    comment = StringField(validators=[
+        Optional()
+    ])
 
 
 @app.route('/registration_hw1', methods=['POST'])
