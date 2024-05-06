@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired, Email, NumberRange, Optional
 
+from Module_04.homework.hw2.my_validators import number_length, NumberLength
 
 
 app = Flask(__name__)
@@ -15,7 +16,8 @@ class RegistrationForm(FlaskForm):
     ])
     phone = IntegerField(validators=[
         InputRequired(),
-        NumberRange(min=1000000000, max=9999999999, message='Phone number must be 10 digits long')
+        # NumberRange(min=1000000000, max=9999999999, message='Phone number must be 10 digits long'),
+        number_length(min=10, max=10)
     ])
     name = StringField(validators=[
         InputRequired(message='Name is required!')
