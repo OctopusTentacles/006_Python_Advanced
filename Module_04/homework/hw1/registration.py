@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired, Email, NumberRange, Optional
 
-from Module_04.homework.hw2.my_validators import number_length, NumberLength
+from my_validators import number_length, NumberLength
 
 
 app = Flask(__name__)
