@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Optional
 
 from flask_wtf import FlaskForm
 from wtforms import Field
@@ -9,7 +9,7 @@ def number_length(min: int, max: int, message: Optional[str] = None):
     def _number_length(form: FlaskForm, field: Field):
         if field.data is None:
             return
-        msg = message or f'Number must be between {min} and {max} digits long.'
+        msg = message or f'Number must be 10 digits long.'
         if not (min <= len(str(field.data)) <= max):
             raise ValidationError(msg)
     return _number_length
@@ -25,5 +25,5 @@ class NumberLength:
             return
         if not (self.min <= len(str(field.data)) <= self.max):
             if self.message is None:
-                self.message = f'Number must be between {self.min} and {self.max} digits long.'
+                self.message = f'Number must be 10 digits long.'
             raise ValidationError(self.message)
