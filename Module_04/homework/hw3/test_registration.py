@@ -6,8 +6,27 @@
 """
 
 import unittest
-from hw1.hw1_registration import app
+from hw1.registration import app
 
+
+
+class TestRegistration(unittest.TestCase):
+    def setUP(self):
+        self.app = app.test_client()
+        self.app.testing = True
+    
+    def test_valid_registration(self):
+        # Создаем корректные данные для регистрации
+        data = {
+            'email': 'test@example.com',
+            'phone': 9876543210,
+            'name': 'Test User',
+            'address': 'Test address',
+            'index': 111999,
+            'comment': ''
+        }
+
+        
 
 
 
