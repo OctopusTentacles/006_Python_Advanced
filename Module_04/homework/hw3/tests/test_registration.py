@@ -84,9 +84,37 @@ class TestRegistration(unittest.TestCase):
         logging.debug("Response data: %s", response.data.decode())
 
 # ===================================================================
+    def test_valid_phone(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=self.phone,
+            name=self.name,
+            address=self.address,
+            index=self.index,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 200)
+        logging.debug("Response status code: %s", response.status_code)
 
+        self.assertIn('Successfully registered user', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
 
+    def test_length_phone(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=999999999,
+            name=self.name,
+            address=self.address,
+            index=self.index,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug("Response status code: %s", response.status_code)
 
+        self.assertIn('phone', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
 
 
 
