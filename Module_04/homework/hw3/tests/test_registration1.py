@@ -10,6 +10,8 @@ import logging
 import unittest
 from Module_04.homework.hw1.registration import app
 from Module_04.homework.hw1.registration import RegistrationForm
+# from Module_04.homework.hw1 import my_validators
+
 
 
 # Настройка конфигурации логгирования
@@ -18,7 +20,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class TestRegistration(unittest.TestCase):
     email = 'test@example.com'
-    phone = 1234567890
+    phone = 7774442288
     name = 'Тест Т. Т.'
     address = 'Тест Тест Тест'
     index = 111111
@@ -35,13 +37,20 @@ class TestRegistration(unittest.TestCase):
 
 
     def test_valid_email(self):
-        email = 'test@example.com'
-        # Отправляем POST-запрос с корректными данными
-        response = self.app.post('/registration_hw1', email)
-        # Проверяем, что статус код равен 200
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=self.phone,
+            name=self.name,
+            address=self.address,
+            index=self.index,
+            comment=self.comment
+        ))
         self.assertEqual(response.status_code, 200)
-        # Проверяем, что ответ содержит сообщение об успешной регистрации
+        logging.debug("Response status code: %s", response.status_code)
+
         self.assertIn('Successfully registered user', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
 
 
 
