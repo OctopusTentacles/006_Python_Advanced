@@ -8,6 +8,7 @@
 
 import logging
 import unittest
+
 from Module_04.homework.hw1.registration import app
 from Module_04.homework.hw1.registration import RegistrationForm
 # from Module_04.homework.hw1 import my_validators
@@ -67,15 +68,23 @@ class TestRegistration(unittest.TestCase):
         self.assertIn('email', response.data.decode())
         logging.debug("Response data: %s", response.data.decode())
 
+    def test_no_email(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            phone=self.phone,
+            name=self.name,
+            address=self.address,
+            index=self.index,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug("Response status code: %s", response.status_code)
 
-        # data = {
-        #     'email': 'test@example.com',
-        #     'phone': 9876543210,
-        #     'name': 'Test User',
-        #     'address': 'Test address',
-        #     'index': 111999,
-        #     'comment': ''
-        # }
+        self.assertIn('email', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
+
+# ===================================================================
+
 
 
 
