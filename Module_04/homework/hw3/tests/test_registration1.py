@@ -5,16 +5,35 @@
 которые проходят валидацию, и такие, которые валидацию не проходят.
 """
 
+
+import logging
 import unittest
 from Module_04.homework.hw1.registration import app
+from Module_04.homework.hw1.registration import RegistrationForm
 
+
+# Настройка конфигурации логгирования
+logging.basicConfig(level=logging.DEBUG)
 
 
 class TestRegistration(unittest.TestCase):
-    def setUP(self):
-        self.app = app.test_client()
-        self.app.testing = True
+    email = 'test@example.com'
+    phone = 1234567890
+    name = 'Тест Т. Т.'
+    address = 'Тест Тест Тест'
+    index = 111111
+    comment = 'Test comment'
+
+
+    def create_app(self):
+        app.config['TESTING'] = True
+        app.config['WTF_CSRF_ENABLED'] = False
+        return app
     
+    def setUp(self):
+        self.app = self.create_app()    
+
+
     def test_valid_email(self):
         email = 'test@example.com'
         # Отправляем POST-запрос с корректными данными
