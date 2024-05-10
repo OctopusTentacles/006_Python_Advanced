@@ -19,7 +19,8 @@ def name_valid(name: str, message: Optional[str] = None):
         if field.data is None:
             return
         msg = message or f'Invalid name format. Example: Иванов И.И.'
-        if name != (Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$')):
+        pattern = f'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$'
+        if not Regexp(pattern).match(field.data):
             raise ValidationError(msg)
     return _name_valid
 
