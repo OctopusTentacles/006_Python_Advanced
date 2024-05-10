@@ -9,8 +9,8 @@
 import logging
 import unittest
 
-from Module_04.homework.hw1.registration import app
-from Module_04.homework.hw1.registration import RegistrationForm
+from homework.hw1.registration import app
+from homework.hw1.registration import RegistrationForm
 # from Module_04.homework.hw1 import my_validators
 
 

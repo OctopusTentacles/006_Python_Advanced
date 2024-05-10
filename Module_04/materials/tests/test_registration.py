@@ -1,9 +1,8 @@
 import unittest
 import logging
 
-from Module_04.materials.flask_wt_form import app
-
-from Module_04.materials.flask_wt_form import RegistrationForm
+from materials.flask_wt_form import app
+from materials.flask_wt_form import RegistrationForm
 
 
 # Настройка конфигурации логгирования
