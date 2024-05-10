@@ -2,7 +2,7 @@ from typing import Any, Optional
 
 from flask_wtf import FlaskForm
 from wtforms import Field
-from wtforms.validators import ValidationError
+from wtforms.validators import ValidationError, Regexp
 
 
 def number_length(min: int, max: int, message: Optional[str] = None):
@@ -13,6 +13,16 @@ def number_length(min: int, max: int, message: Optional[str] = None):
         if not (min <= len(str(field.data)) <= max):
             raise ValidationError(msg)
     return _number_length
+
+def name_valid(name: str, message: Optional[str] = None):
+    def _name_valid(form: FlaskForm, field: Field):
+        if field.data is None:
+            return
+        msg = message or f'Invalid name format. Example: Иванов И.И.'
+        if name != (Regexp(r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$')):
+            raise ValidationError(msg)
+    return _name_valid
+
 
 class NumberLength:
     def __init__(self, min: int, max: int, message: Optional[str] = None):
