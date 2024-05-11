@@ -43,13 +43,12 @@ def name_valid(message: Optional[str] = None):
     return _name_valid
 
 # ===================================================================
-def index_valid(index: int, message: Optional[str] = None):
+def index_valid(index_length: int, message: Optional[str] = None):
     def _index_valid(form: FlaskForm, field: Field):
         if field.data is None:
             return
-        msg = message or f'Index must be {index} digits long.'
-        if not (min <= len(str(field.data)) <= max):
+        msg = message or f'Index must be {index_length} digits long.'
+        if not (index_length == len(str(field.data))):
             raise ValidationError(msg)
-    return _number_length
+    return _index_valid
 
-    ...
