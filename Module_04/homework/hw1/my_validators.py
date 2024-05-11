@@ -14,7 +14,7 @@ def number_length(min: int, max: int, message: Optional[str] = None):
             raise ValidationError(msg)
     return _number_length
 
-def name_valid(name: str, message: Optional[str] = None):
+def name_valid(message: Optional[str] = None):
     def _name_valid(form: FlaskForm, field: Field):
         if field.data is None:
             return
