@@ -47,7 +47,7 @@ def index_valid(index_length: int, message: Optional[str] = None):
     def _index_valid(form: FlaskForm, field: Field):
         if field.data is None:
             return
-        msg = message or f'Index must be {index_length} digits long.'
+        msg = message or f'Index must be {index_length} digits long!'
         if not (index_length == len(str(field.data))):
             raise ValidationError(msg)
     return _index_valid

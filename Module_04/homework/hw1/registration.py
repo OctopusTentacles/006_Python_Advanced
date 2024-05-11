@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField
 from wtforms.validators import InputRequired, Email, NumberRange, Optional
 
-from .my_validators import number_length, NumberLength, name_valid
+from .my_validators import number_length, NumberLength, name_valid, index_valid
 
 
 app = Flask(__name__)
@@ -28,7 +28,8 @@ class RegistrationForm(FlaskForm):
         InputRequired(message='Address is required!')
     ])
     index = IntegerField(validators=[
-        InputRequired(message='Index is required!')
+        InputRequired(message='Index is required!'),
+        index_valid(index_length=6)
     ])
     comment = StringField(validators=[
         Optional()
