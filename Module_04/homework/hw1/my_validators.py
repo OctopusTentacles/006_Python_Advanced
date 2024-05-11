@@ -16,16 +16,6 @@ def number_length(min: int, max: int, message: Optional[str] = None):
             raise ValidationError(msg)
     return _number_length
 
-def name_valid(message: Optional[str] = None):
-    def _name_valid(form: FlaskForm, field: Field):
-        if field.data is None:
-            return
-        msg = message or f'Invalid name format. Example: Иванов И.И.'
-        pattern = r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$'
-        if not re.match(pattern, field.data):
-            raise ValidationError(msg)
-    return _name_valid
-
 
 class NumberLength:
     def __init__(self, min: int, max: int, message: Optional[str] = None):
@@ -40,3 +30,26 @@ class NumberLength:
             if self.message is None:
                 self.message = f'Number must be 10 digits long.'
             raise ValidationError(self.message)
+
+# ===================================================================
+def name_valid(message: Optional[str] = None):
+    def _name_valid(form: FlaskForm, field: Field):
+        if field.data is None:
+            return
+        msg = message or f'Invalid name format. Example: Иванов И.И.'
+        pattern = r'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$'
+        if not re.match(pattern, field.data):
+            raise ValidationError(msg)
+    return _name_valid
+
+# ===================================================================
+def index_valid(index: int, message: Optional[str] = None):
+    def _index_valid(form: FlaskForm, field: Field):
+        if field.data is None:
+            return
+        msg = message or f'Index must be {index} digits long.'
+        if not (min <= len(str(field.data)) <= max):
+            raise ValidationError(msg)
+    return _number_length
+
+    ...
