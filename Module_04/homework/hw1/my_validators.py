@@ -18,7 +18,6 @@ def number_length(min: int, max: int, message: Optional[str] = None):
 
 def name_valid(message: Optional[str] = None):
     def _name_valid(form: FlaskForm, field: Field):
-        print("\nValidating name...")
         if field.data is None:
             return
         msg = message or f'Invalid name format. Example: Иванов И.И.'
