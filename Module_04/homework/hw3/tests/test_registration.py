@@ -11,8 +11,7 @@ import unittest
 
 from homework.hw1.registration import app
 from homework.hw1.registration import RegistrationForm
-# from Module_04.homework.hw1 import my_validators
-
+# from Module_04.homework.hw1.registration import app
 
 
 # Настройка конфигурации логгирования
@@ -179,6 +178,37 @@ class TestRegistration(unittest.TestCase):
         self.assertIn('name', response.data.decode())
         logging.debug("Response data: %s", response.data.decode())
 
+# ===================================================================
+    def test_valid_address(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=self.phone,
+            name=self.name,
+            address=self.address,
+            index=self.index,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 200)
+        logging.debug("Response status code: %s", response.status_code)
+
+        self.assertIn('Successfully registered user', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
+        
+    def test_no_address(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=self.phone,
+            name=self.name,
+            index=self.index,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug("Response status code: %s", response.status_code)
+
+        self.assertIn('address', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
 
 
 if __name__ == '__main__':
