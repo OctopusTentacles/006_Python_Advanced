@@ -20,7 +20,7 @@ def name_valid(message: Optional[str] = None):
             return
         msg = message or f'Invalid name format. Example: Иванов И.И.'
         pattern = f'^[А-ЯЁ][а-яё]+\s[А-ЯЁ]\. [А-ЯЁ]\.$'
-        if not Regexp(pattern).match(field.data):
+        if not Regexp(pattern)(form, field):
             raise ValidationError(msg)
     return _name_valid
 
