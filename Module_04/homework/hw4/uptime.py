@@ -9,6 +9,7 @@ f"Current uptime is {UPTIME}",
 """
 
 
+import subprocess
 from flask import Flask
 
 
@@ -17,6 +18,9 @@ app = Flask(__name__)
 
 @app.route("/uptime", methods=['GET'])
 def uptime() -> str:
+
+    # Выполнить команду uptime:
+    result = subprocess.run(['uptime'], capture_output=True, text=True)
     ...
 
 
