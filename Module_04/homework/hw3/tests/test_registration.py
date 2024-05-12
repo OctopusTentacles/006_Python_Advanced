@@ -243,6 +243,22 @@ class TestRegistration(unittest.TestCase):
         self.assertIn('index', response.data.decode())
         logging.debug("Response data: %s", response.data.decode())
 
+    def test_no_index(self):
+        client = self.app.test_client()
+        response = client.post('/registration_hw1', data = dict(
+            email=self.email,
+            phone=self.phone,
+            name=self.name,
+            address=self.address,
+            comment=self.comment
+        ))
+        self.assertEqual(response.status_code, 400)
+        logging.debug("Response status code: %s", response.status_code)
+
+        self.assertIn('index', response.data.decode())
+        logging.debug("Response data: %s", response.data.decode())
+
+
         
 
 
