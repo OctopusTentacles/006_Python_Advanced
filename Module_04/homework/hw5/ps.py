@@ -24,14 +24,20 @@ def ps() -> str:
     # Получаем аргументы из запроса:
     args: List[str] = request.args.getlist('arg')
 
-    # Преобразуем аргументы в строку, разделяя их пробелами
+    # Преобразуем аргументы в строку, разделяя их пробелами:
     args_str = ' '.join(args)
 
+    # Применяем shlex.quote:
+    quote_args = shlex.quote(args_str)
 
-    command = ['ps'] + args
-    clean_command = [shlex.quote(arg) for arg in command]
+    # Строим команду ps с применением аргументов:
+    command = f'ps {quote_args}'
 
-    result = subprocess.run(clean_command, capture_output=True)
+    # Вызываем команду:
+    result = subprocess.run(command, capture_output=True)
+
+    return f'<pre>{result}</pre>'
+
 
 if __name__ == "__main__":
     app.run(debug=True)
