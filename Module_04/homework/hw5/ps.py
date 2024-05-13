@@ -10,7 +10,7 @@
 """
 
 
-import subprocess
+import shlex, subprocess
 
 from flask import Flask, request
 from typing import List
@@ -24,9 +24,14 @@ def ps() -> str:
     # Получаем аргументы из запроса:
     args: List[str] = request.args.getlist('arg')
 
-    command = ['ps'] + args
-    ...
+    # Преобразуем аргументы в строку, разделяя их пробелами
+    args_str = ' '.join(args)
 
+
+    command = ['ps'] + args
+    clean_command = [shlex.quote(arg) for arg in command]
+
+    result = subprocess.run(clean_command, capture_output=True)
 
 if __name__ == "__main__":
     app.run(debug=True)
