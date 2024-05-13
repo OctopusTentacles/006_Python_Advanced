@@ -21,8 +21,11 @@ def uptime() -> str:
 
     # Выполнить команду uptime:
     result = subprocess.run(['uptime'], capture_output=True, text=True)
-    ...
+    uptime_info = result.stdout.strip()
 
+    pattern = 
+
+    return uptime_info
 
 if __name__ == '__main__':
     app.run(debug=True)
