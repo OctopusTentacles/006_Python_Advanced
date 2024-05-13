@@ -9,13 +9,22 @@
 /ps?arg=a&arg=u&arg=x
 """
 
-from flask import Flask
+
+import subprocess
+
+from flask import Flask, request
+from typing import List
+
 
 app = Flask(__name__)
 
 
 @app.route("/ps", methods=["GET"])
 def ps() -> str:
+    # Получаем аргументы из запроса:
+    args: List[str] = request.args.getlist('arg')
+
+    command = ['ps'] + args
     ...
 
 
