@@ -24,11 +24,9 @@ def ps() -> str:
     # Получаем аргументы из запроса:
     args: List[str] = request.args.getlist('arg')
     print(args)
-    # # Преобразуем аргументы в строку, разделяя их пробелами:
-    # args_str = ' '.join(args)
 
     # # Применяем shlex.quote:
-    quote_args = ''.join(shlex.quote(arg) for arg in args)
+    quote_args = [shlex.quote(arg) for arg in args]
     print(quote_args)
 
     # Строим команду ps с применением аргументов:
