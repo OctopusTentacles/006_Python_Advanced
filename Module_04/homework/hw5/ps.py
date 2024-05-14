@@ -23,15 +23,17 @@ app = Flask(__name__)
 def ps() -> str:
     # Получаем аргументы из запроса:
     args: List[str] = request.args.getlist('arg')
-
+    print(args)
     # # Преобразуем аргументы в строку, разделяя их пробелами:
     # args_str = ' '.join(args)
 
     # # Применяем shlex.quote:
     quote_args = shlex.quote(args)
+    print(quote_args)
 
     # Строим команду ps с применением аргументов:
-    command = f'ps {quit}'
+    command = f'ps {quote_args}'
+    print(command)
     # clean_command = [shlex.quote(arg) for arg in command]
 
     # Вызываем команду:
