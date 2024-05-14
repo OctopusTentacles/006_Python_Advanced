@@ -28,7 +28,7 @@ def ps() -> str:
     # args_str = ' '.join(args)
 
     # # Применяем shlex.quote:
-    quote_args = shlex.quote(args)
+    quote_args = ''.join(shlex.quote(arg) for arg in args)
     print(quote_args)
 
     # Строим команду ps с применением аргументов:
