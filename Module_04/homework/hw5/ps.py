@@ -29,16 +29,16 @@ def ps() -> str:
     quote_args = [shlex.quote(arg) for arg in args]
     print('2', quote_args)
 
-    clean_quote_args = ' '.join(quote_args)
-    print('3', clean_quote_args)
+    # clean_quote_args = ''.join(quote_args)
+    # print('3', clean_quote_args)
 
     # Строим команду ps с применением аргументов:
-    command = f'ps {clean_quote_args}'
+    command = ['ps'] + quote_args
     print('4', command)
     # clean_command = [shlex.quote(arg) for arg in command]
 
     # Вызываем команду:
-    result = subprocess.run(command, capture_output=True)
+    result = subprocess.run(command, capture_output=True, text=True)
 
     return f'<pre>{result.stdout}</pre>'
 
