@@ -25,8 +25,9 @@ def ps() -> str:
     args: List[str] = request.args.getlist('arg')
     print('1', args)
 
-    # # Применяем shlex.quote:
-    quote_args = [shlex.quote(arg) for arg in args]
+    # Применяем shlex.quote, 
+    # что важно для безопасного формирования командной строки:
+    quote_args = [''.join(shlex.quote(arg) for arg in args)]
     print('2', quote_args)
 
     # clean_quote_args = ''.join(quote_args)
@@ -40,7 +41,9 @@ def ps() -> str:
     # Вызываем команду:
     result = subprocess.run(command, capture_output=True, text=True)
 
-    return f'<pre>{result.stdout}</pre>'
+    ps_info = result.stdout.strip()
+        
+    return f'<pre>{ps_info}</pre>'
 
 
 if __name__ == "__main__":
