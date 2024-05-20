@@ -32,3 +32,9 @@ if __name__ == '__main__':
 # 2 - stderr - вывод диагностических сообщений
 
 # > /dev/null & перенаправляет в никуда только stdout
+
+# python simple_app.py 2>&1 > /dev/null &
+# поток 2 перенаправляем в поток 1 (stderr -> stdout)
+
+# приостановка задания (stop) - ctr+z
+# для продолжения работы (front ground) - fg
