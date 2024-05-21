@@ -41,4 +41,8 @@ if __name__ == '__main__':
 
 
 
-# 
+# Перенаправить выходные данные Flask-сервера в файл stdout.txt, 
+# а ошибки в stderr.txt: python simple_app.py > stdout.txt 2> stderr.txt &
+
+# Запуск Flask-сервера в фоновом режиме и сохранение PID
+# echo $! > flask_pid.txt
