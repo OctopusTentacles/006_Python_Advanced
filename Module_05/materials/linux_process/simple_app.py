@@ -55,3 +55,7 @@ if __name__ == '__main__':
 
 # Перезапуск Flask-сервера
 # kill $(cat flask_pid.txt) && python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
+
+# Команда для проверки и создания директории:
+# test -d test || mkdir test
+
