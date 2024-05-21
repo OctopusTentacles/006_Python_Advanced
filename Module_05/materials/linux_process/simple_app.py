@@ -46,3 +46,12 @@ if __name__ == '__main__':
 
 # Запуск Flask-сервера в фоновом режиме и сохранение PID
 # echo $! > flask_pid.txt
+
+# Завершает процесс с указанным PID
+# kill $(cat flask_pid.txt)
+
+# Запуск Flask-сервера и сохранение его PID
+# python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
+
+# Перезапуск Flask-сервера
+# kill $(cat flask_pid.txt) && python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
