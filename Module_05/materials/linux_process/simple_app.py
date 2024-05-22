@@ -59,3 +59,16 @@ if __name__ == '__main__':
 # Команда для проверки и создания директории:
 # test -d test || mkdir test
 
+# Объединение с запуском Flask-сервера
+# test -d my_directory || mkdir my_directory: 
+# Проверяет существование директории и создает её, если не существует.
+# &&: Если директория существует или была успешно создана, выполняет следующую команду.
+# python your_flask_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt: 
+# Запускает Flask-сервер, перенаправляет вывод и ошибки в соответствующие файлы 
+# и сохраняет PID процесса в файл flask_pid.txt
+
+
+# (test -d test || mkdir test) && (python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt)
+
+# Пример полного сценария с перезапуском сервера
+# test -d test || mkdir test && kill $(cat flask_pid.txt) && python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
