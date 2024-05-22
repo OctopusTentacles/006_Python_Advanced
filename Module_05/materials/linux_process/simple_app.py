@@ -70,5 +70,13 @@ if __name__ == '__main__':
 
 # (test -d test || mkdir test) && (python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt)
 
+
+# проверка процессов на порте
+# lsof -i :5000
+
+# убиить процесс
+# kill -9 pid
+
+
 # Пример полного сценария с перезапуском сервера
-# test -d test || mkdir test && kill $(cat flask_pid.txt) && python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
+# (test -d test || mkdir test) && (kill $(cat flask_pid.txt)) && (python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt)

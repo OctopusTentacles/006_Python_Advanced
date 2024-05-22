@@ -1,4 +1,3 @@
-  File "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_05/materials/linux_process/simple_app.py", line 71
-    test -d test || mkdir test && kill $(cat flask_pid.txt) && python simple_app.py > stdout.txt 2> stderr.txt & echo $! > flask_pid.txt
-            ^^^^
-SyntaxError: invalid syntax
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+[33mPress CTRL+C to quit[0m
