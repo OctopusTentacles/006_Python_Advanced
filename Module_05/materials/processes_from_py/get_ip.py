@@ -20,13 +20,14 @@ def get_ip_address():
     args = shlex.split(command)
 
     # выполнение команды:
-    result = subprocess.run(args, )
+    result = subprocess.run(args)
+    
+    # Вывод команды
+    output = result.stdout
 
 
 
-
-
-    print(result)
+    print(output)
 
 if __name__ == '__main__':
     get_ip_address()
