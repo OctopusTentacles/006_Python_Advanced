@@ -18,3 +18,15 @@ def get_ip_address():
 
     # токенизация команды:
     args = shlex.split(command)
+
+    # выполнение команды:
+    result = subprocess.run(args, )
+
+
+
+
+
+    print(result)
+
+if __name__ == '__main__':
+    get_ip_address()
