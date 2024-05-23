@@ -2,13 +2,13 @@ import subprocess, sys
 
 
 def run_program():
-    res = subprocess.run(['python', 'test_program.py'], 
-                         input=b'some input\notherinput',
-                         # захват потоков:
-                         stdout=subprocess.PIPE,
-                         stderr=subprocess.PIPE,
-                         text=True
-                        )
+    res = subprocess.run(
+        ['python', 'test_program.py'], 
+        input=b'some input\notherinput',
+        # захват потоков:
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+    )
     # Объединяем stdout и stderr и выводим в stderr:
     output = res.stdout + res.stderr
 
