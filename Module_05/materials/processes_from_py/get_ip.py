@@ -8,6 +8,7 @@ $ curl -i -H "Accept: application/json" -X GET https://api.ipify.org?format=json
 """
 
 
+import json
 import shlex
 import subprocess
 import sys
@@ -29,7 +30,7 @@ def get_ip_address():
     
     # Вывод команды
     output = result.stdout
-    print(output)
+    # print(output)
 
     # Проверка наличия заголовков и тела
     if '\n\n' not in output:
@@ -62,13 +63,26 @@ def get_ip_address():
     # вы говорите Python, что хотите разделить строку на две части:
     # Первая часть будет содержать все заголовки.
     # Вторая часть будет содержать тело ответа.
+
+    # Разделение заголовков и тела:
     headers, body = output.split('\n\n', 1)
-    print('\nЗАГОЛОВКИ\n',headers)
-    print('\nТЕЛО\n',body)
+    # print('\nЗАГОЛОВКИ\n',headers)
+    # print('\nТЕЛО\n',body)
+
+    # Парсим JSON:
+    try:
+        data = json.loads(body)
+        return data['ip']
+    except(ValueError, KeyboardInterrupt, json.JSONDecodeError) as exc:
+        raise Exception('Failed to parse JSON') from exc
 
 
 
 if __name__ == '__main__':
-    get_ip_address()
+    try:
+        ip = get_ip_address()
+        print(f'IP Address: {ip}')
+    except Exception as exc:
+        print(f'ERROR as {exc}')
 
 
