@@ -31,8 +31,18 @@ def count_processes():
 
     # вывод команды:
     output = result.stdout
-    print(output)
+    # print(output)
 
+    # разбиваем вывод на список строк:
+    lines = output.splitlines()
+
+    # Первая строка вывода ps -A — это заголовок таблицы 
+    # (например, PID TTY TIME CMD).
+    # Поэтому количество процессов равно общему количеству строк 
+    # минус одна строка заголовка.
+    process_count = len(lines) - 1
+
+    print(f'Total number of processes: {process_count}')
 
 
 if __name__ == '__main__':
