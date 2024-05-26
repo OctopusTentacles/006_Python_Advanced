@@ -21,7 +21,26 @@ def all_sleep():
     sleep_token_command = token_command[:2]
     echo_token_command = token_command[3:]
 
-    # 
+    # запуск 10 sleep:
+    sleep_processes = [
+        subprocess.Popen(
+            sleep_token_command,
+            stdout=subprocess.PIPE,
+            text=True
+        )
+        for _ in range(10)
+    ]
+    # ожидание завершения всех sleep:
+    for process in sleep_processes:
+        process.wait()
+    
+
+
+
+
+
+
+
     
     # запуск 10 процессов:
     # result = [
