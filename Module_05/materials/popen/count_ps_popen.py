@@ -23,8 +23,8 @@ def count_processes():
         text=True
     )
 
-    # вывод команды:
-    output = result.stdout
+    # чтение вывода команды:
+    output, _ = result.communicate()
     lines = output.splitlines()
     process_count = len(lines) - 1
 
