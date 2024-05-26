@@ -16,21 +16,28 @@ def all_sleep():
 
     # токенизация команды:
     token_command = shlex.split(command)
+    # print(token_command) ['sleep', '15', '&&', 'echo', 'My mission is done here!']
 
+    sleep_token_command = token_command[:2]
+    echo_token_command = token_command[3:]
+
+    # 
+    
     # запуск 10 процессов:
-    result = [
-        subprocess.Popen(
-            token_command,
-            stdout=subprocess.PIPE,
-            text=True
-        )
-        for _ in range(10)
-    ]
+    # result = [
+    #     subprocess.Popen(
+    #         command,
+    #         shell=True,
+    #         stdout=subprocess.PIPE,
+    #         text=True
+    #     )
+    #     for _ in range(10)
+    # ]
 
     # ожидание завершения всех процессов:
     for process in result:
         stdout, _ = process.communicate()
-        print(stdout)
+        print(stdout) 
 
 
 if __name__ == '__main__':
