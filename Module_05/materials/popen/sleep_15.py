@@ -8,25 +8,33 @@ $ sleep 15 && echo "My mission is done here!"
 
 import shlex
 import subprocess
+import time
 
 
 def all_sleep():
-    command = 'sleep 15 && echo "My mission is done here!"'
+    command = "sleep 15 && echo 'My mission is done here!'"
 
     # токенизация команды:
     token_command = shlex.split(command)
 
-    # выполнение команды:
-    result = subprocess.Popen(
-        token_command,
-        stdout=subprocess.PIPE,
-        text=True
-    )
-    stdout, _ = result.communicate()
+    # запуск 10 процессов:
+    result = [
+        subprocess.Popen(
+            token_command,
+            stdout=subprocess.PIPE,
+            text=True
+        )
+        for _ in range(10)
+    ]
 
-    return stdout
+    # ожидание завершения всех процессов:
+    for process in result:
+        stdout, _ = process.communicate()
+        print(stdout)
 
 
 if __name__ == '__main__':
-    print('Start!')
-    res = all_sleep()
+    start_time = time.time()
+    all_sleep()
+    end_time = time.time()
+    print(f'Total time taken: {end_time - start_time} sec.')
