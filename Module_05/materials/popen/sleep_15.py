@@ -34,6 +34,18 @@ def all_sleep():
     for process in sleep_processes:
         process.wait()
     
+    # запуск 10 echo:
+    echo_processes = [
+        subprocess.Popen(
+            echo_token_command,
+            stdout=subprocess.PIPE,
+            text=True
+        )
+    ]
+    # завершение и вывод:
+    for process in echo_processes:
+        process.wait()
+        print(process.stdout())
 
 
 
@@ -41,7 +53,6 @@ def all_sleep():
 
 
 
-    
     # запуск 10 процессов:
     # result = [
     #     subprocess.Popen(
@@ -53,10 +64,6 @@ def all_sleep():
     #     for _ in range(10)
     # ]
 
-    # ожидание завершения всех процессов:
-    for process in result:
-        stdout, _ = process.communicate()
-        print(stdout) 
 
 
 if __name__ == '__main__':
