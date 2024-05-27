@@ -28,11 +28,21 @@ def sleep_exit():
     # exit_command = token_command[3:]
 
     # запуск sleep:
-    process = subprocess.Popen(token_command, shell=True)
+    process = subprocess.Popen(command, shell=True)
+
+    # ожидание завершения процесса с тайм-аутом в 9 секунд:
+    try:
+        process.wait(timeout=9)
+        print('Process is still running after 9 seconds.')
+    except subprocess.TimeoutExpired:
+        print('Process did not finish within 9 seconds.')
+
+
+
+
     # ожидание завершения sleep:
     process.wait()
 
-    exit_process = 1
 
     return_code = process.returncode
 
