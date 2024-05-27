@@ -41,17 +41,12 @@ def all_sleep():
             stdout=subprocess.PIPE,
             text=True
         )
+        for _ in range(10)
     ]
     # завершение и вывод:
     for process in echo_processes:
-        process.wait()
-        print(process.stdout())
-
-
-
-
-
-
+        stdout, _ = process.communicate()
+        print(stdout)
 
     # запуск 10 процессов:
     # result = [
@@ -63,7 +58,6 @@ def all_sleep():
     #     )
     #     for _ in range(10)
     # ]
-
 
 
 if __name__ == '__main__':
