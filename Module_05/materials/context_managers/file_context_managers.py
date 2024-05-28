@@ -17,4 +17,4 @@ class SavedFile():
 
 if __name__ == '__mane__':
     with SavedFile('some', 'w') as f:
-        f.undefined('hello')
+        f.write('hello')
