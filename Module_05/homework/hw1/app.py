@@ -12,6 +12,9 @@
 """
 
 
+import shlex
+import subprocess
+
 from typing import List
 from flask import Flask
 
@@ -29,6 +32,23 @@ def get_pids(port: int) -> List[int]:
         raise ValueError
 
     pids: List[int] = []
+
+    command = f'lsof -i :{port}'
+    token_command = shlex.split(command)
+    print(token_command)
+
+    process = subprocess.run(
+        token_command,
+        stdout=subprocess.PIPE,
+        text=True
+    )
+
+    output = process.stdout
+    print(output)
+
+    lines = output.splitlines()
+    print(lines)
+
     ...
     return pids
 
