@@ -33,23 +33,38 @@ def get_pids(port: int) -> List[int]:
 
     pids: List[int] = []
 
+    # команда процесса:
     command = f'lsof -i :{port}'
+
+    # токенизация команды:
     token_command = shlex.split(command)
     print(token_command)
 
+    # выполнение команды:
     process = subprocess.run(
         token_command,
         stdout=subprocess.PIPE,
         text=True
     )
 
+    # чтение вывода команды:
     output = process.stdout
     print(output)
 
+    # помещаем каждую строку в список:
     lines = output.splitlines()
     print(lines)
 
-    ...
+    # срезаем строку 0 (заголовки) и каждую следующую строку разделяем на элементы:
+    for line in lines[1:]:
+        columns = line.split()
+        print(columns)
+
+        # извлекаем PID и ложим в список:
+        pid = int(columns[1])
+        pids.append(pid)
+
+    print(pids)
     return pids
 
 
