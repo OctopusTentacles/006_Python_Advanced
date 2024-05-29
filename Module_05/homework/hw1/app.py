@@ -73,8 +73,13 @@ def free_port(port: int) -> None:
     Завершает процессы, занимающие переданный порт
     @param port: порт
     """
+    # получаем список PID нашего порта:
     pids: List[int] = get_pids(port)
-    ...
+
+    for pid in pids:
+        subprocess.run(['kill', '-9', pid])
+subprocess.run(['lsof', '-i', ':5000'])
+
 
 
 def run(port: int) -> None:
