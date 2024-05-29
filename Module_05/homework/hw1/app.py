@@ -12,6 +12,8 @@
 """
 
 
+import os
+import signal
 import shlex
 import subprocess
 
@@ -76,15 +78,14 @@ def free_port(port: int) -> None:
     # получаем список PID нашего порта:
     pids: List[int] = get_pids(port)
 
+    # убиваем процессы порта:
     for pid in pids:
         try:
-            subprocess.run(['kill', '-9', str(pid)])
+            # subprocess.run(['kill', '-9', str(pid)])
+            os.kill(pid, signal.SIGKILL)
             print(f'PID {pid} successfully killed!')
         except Exception as exc:
             print(f'ERROR kill PID {pid}: {exc}')
-
-
-
 
 
 def run(port: int) -> None:
