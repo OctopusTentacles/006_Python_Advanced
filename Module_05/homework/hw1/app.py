@@ -77,8 +77,13 @@ def free_port(port: int) -> None:
     pids: List[int] = get_pids(port)
 
     for pid in pids:
-        subprocess.run(['kill', '-9', pid])
-subprocess.run(['lsof', '-i', ':5000'])
+        try:
+            subprocess.run(['kill', '-9', str(pid)])
+            print(f'PID {pid} successfully killed!')
+        except Exception as exc:
+            print(f'ERROR kill PID {pid}: {exc}')
+
+
 
 
 
