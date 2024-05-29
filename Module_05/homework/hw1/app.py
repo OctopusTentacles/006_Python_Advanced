@@ -38,7 +38,7 @@ def get_pids(port: int) -> List[int]:
 
     # токенизация команды:
     token_command = shlex.split(command)
-    print(token_command)
+    # print(token_command)
 
     # выполнение команды:
     process = subprocess.run(
@@ -49,22 +49,22 @@ def get_pids(port: int) -> List[int]:
 
     # чтение вывода команды:
     output = process.stdout
-    print(output)
+    # print(output)
 
     # помещаем каждую строку в список:
     lines = output.splitlines()
-    print(lines)
+    # print(lines)
 
     # срезаем строку 0 (заголовки) и каждую следующую строку разделяем на элементы:
     for line in lines[1:]:
         columns = line.split()
-        print(columns)
+        # print(columns)
 
         # извлекаем PID и ложим в список:
         pid = int(columns[1])
         pids.append(pid)
 
-    print(pids)
+    print(f'Port {port}: PID = {pids}')
     return pids
 
 
