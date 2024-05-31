@@ -37,12 +37,15 @@ def run_python_code_in_subproccess(code: str, timeout: int):
 @app.route('/run_code', methods=['POST'])
 def run_code():
     form = CodeForm()
-    if form.validate_on_submit():
+
+    # проверяем данные формы:
+    if form.validate():
         code = form.code.data
         timeout = form.timeout.data
         result = run_python_code_in_subproccess(code, timeout)
 
-        return
+        return result
+    return 'Error! Invalid input!'
 
 
 if __name__ == '__main__':
