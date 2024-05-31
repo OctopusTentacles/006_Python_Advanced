@@ -10,6 +10,7 @@
 
 
 import subprocess
+import shlex
 
 
 from flask import Flask
@@ -27,8 +28,17 @@ class CodeForm(FlaskForm):
 
 
 def run_python_code_in_subproccess(code: str, timeout: int):
+    command = f'python -c "{code}"'
+
+    # токенизация команды:
+    token_command = shlex.split(command)
+
     try:
-        process = subprocess.Popen()
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE(),
+            stderr=subprocess.PIPE()
+        )
 
 
     ...
