@@ -34,11 +34,19 @@ def run_python_code_in_subproccess(code: str, timeout: int):
     token_command = shlex.split(command)
 
     try:
+        # запуск процесса с перенаправлением вывода и ошибок:
         process = subprocess.Popen(
             command,
             stdout=subprocess.PIPE(),
             stderr=subprocess.PIPE()
         )
+
+        # ожидание завершения процесса по timeout:
+        stdout, stderr = process.communicate(timeout=timeout)
+
+        # получение кода завершения процесса:
+        code_process = process.returncode
+
 
 
     ...
