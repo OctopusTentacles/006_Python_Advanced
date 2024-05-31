@@ -30,9 +30,20 @@ def run_python_code_in_subproccess(code: str, timeout: int):
     try:
         process = subprocess.Popen()
 
+
+    ...
+
+
 @app.route('/run_code', methods=['POST'])
 def run_code():
     form = CodeForm()
+    if form.validate_on_submit():
+        code = form.code.data
+        timeout = form.timeout.data
+        result = run_python_code_in_subproccess(code, timeout)
+
+        return
+
 
 if __name__ == '__main__':
     app.run(debug=True)
