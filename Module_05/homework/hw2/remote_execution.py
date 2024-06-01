@@ -36,7 +36,7 @@ def run_python_code_in_subproccess(code: str, timeout: int):
     try:
         # запуск процесса с перенаправлением вывода и ошибок:
         process = subprocess.Popen(
-            command,
+            token_command,
             stdout=subprocess.PIPE(),
             stderr=subprocess.PIPE()
         )
@@ -72,4 +72,4 @@ def run_code():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
