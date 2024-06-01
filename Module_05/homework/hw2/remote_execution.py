@@ -47,9 +47,14 @@ def run_python_code_in_subproccess(code: str, timeout: int):
         # получение кода завершения процесса:
         code_process = process.returncode
 
-
-
-    ...
+        if code_process == 0:
+            return f'output: {stdout}, error: {None}'
+        else:
+            return f'output: {None}, error: {stderr}'
+        
+    except subprocess.TimeoutExpired:
+        process.kill()
+        return f'outut: {None}, error: Execution time out!'
 
 
 @app.route('/run_code', methods=['POST'])
