@@ -49,9 +49,10 @@ def run_python_code_in_subproccess(code: str, timeout: int):
         code_process = process.returncode
 
         if code_process == 0:
-            return f'output: {stdout}, error: {None}'
+            stdout = stdout.decode('utf-8').strip()
+            return f'output: {stdout}\n error: {None}'
         else:
-            return f'output: {None}, error: {stderr}'
+            return f'output: {None}\n error: {stderr}'
         
     except subprocess.TimeoutExpired:
         process.kill()
