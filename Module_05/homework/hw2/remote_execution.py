@@ -20,6 +20,7 @@ from wtforms.validators import InputRequired, NumberRange
 
 
 app = Flask(__name__)
+app.config['WTF_CSRF_ENABLED'] = False
 
 
 class CodeForm(FlaskForm):
@@ -37,8 +38,8 @@ def run_python_code_in_subproccess(code: str, timeout: int):
         # запуск процесса с перенаправлением вывода и ошибок:
         process = subprocess.Popen(
             token_command,
-            stdout=subprocess.PIPE(),
-            stderr=subprocess.PIPE()
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
         )
 
         # ожидание завершения процесса по timeout:
