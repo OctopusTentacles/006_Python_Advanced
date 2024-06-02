@@ -11,10 +11,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 class RemoteExecution(unittest.TestCase):
-    code = print('Hello, World!')
-    timeout = 3
 
-    def create_app(self):
+    def setUp(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
         self.client = app.test_client()
@@ -27,6 +25,9 @@ class RemoteExecution(unittest.TestCase):
                 timeout = 3
             )
         )
+        self.assertEqual(response.status_code, 200)
+        logging.debug("Response status code: %s", response.status_code)
+        
         data = json.loads(response.data)
         self.assertIsNone(data['output'])
         self.assertEqual(data['error'], 'Execution timed out')
