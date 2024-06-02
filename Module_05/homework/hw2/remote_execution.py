@@ -13,7 +13,7 @@ import subprocess
 import shlex
 
 
-from flask import Flask
+from flask import Flask, jsonify
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import InputRequired, NumberRange
@@ -50,9 +50,10 @@ def run_python_code_in_subproccess(code: str, timeout: int):
 
         if code_process == 0:
             stdout = stdout.decode('utf-8').strip()
-            return f'output: {stdout}\n error: {None}'
+            return {'output': stdout, 'error': None}
         else:
-            return f'output: {None}\n error: {stderr}'
+            stderr = stderr.decode('utf-8').strip()
+            return {'output': None, 'error': stderr}
         
     except subprocess.TimeoutExpired:
         process.kill()
@@ -69,8 +70,8 @@ def run_code():
         timeout = form.timeout.data
         result = run_python_code_in_subproccess(code, timeout)
 
-        return result
-    return 'Error! Invalid input!'
+        return jsonify(result)
+    return jsonify('error! Invalid input!')
 
 
 if __name__ == '__main__':
