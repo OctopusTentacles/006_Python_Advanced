@@ -12,7 +12,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 class RemoteExecution(unittest.TestCase):
     code = ''
-    timeout = 0
+    timeout = None
 
     def create_app(self):
         app.config['TESTING'] = True
@@ -23,19 +23,19 @@ class RemoteExecution(unittest.TestCase):
         self.app = self.create_app()
 
     def test_timeout(self):
+        """Тайм-аут ниже, чем время исполнения."""
+
         client = self.app.test_client()
         response = client.post('/run_code', data = dict(
-                code = 'print("Start")',
-                timeout = 3
+                code = 'print("Hello, World!")',
+                timeout = 0.0001
             )
         )
         self.assertEqual(response.status_code, 200)
         logging.debug("Response status code: %s", response.status_code)
         
-        self.assertIn('Start', response.data.decode())
+        self.assertIn('error: Execution time out!', json.loads(response.data))
         logging.debug('Response data: %s', response.data.decode())
-
-
 
 
 
