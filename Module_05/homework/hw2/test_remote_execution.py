@@ -1,5 +1,8 @@
-import unittest
+
+import json
 import logging
+import unittest
+
 from remote_execution import app
 
 
@@ -14,10 +17,23 @@ class RemoteExecution(unittest.TestCase):
     def create_app(self):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
-        return app
-
+        self.client = app.test_client()
 
     def test_timeout(self):
+        response = self.client.post(
+            '/run_code', 
+            data = dict(
+                code = 'import time; print("Start"); time.sleep(5), print("Stop")',
+                timeout = 3
+            )
+        )
+        data = json.loads(response.data)
+        self.assertIsNone(data['output'])
+        self.assertEqual(data['error'], 'Execution timed out')
+        
+
+
+
 
 
 if __name__ == '__main__':
