@@ -11,11 +11,12 @@
 
 import subprocess
 import shlex
+import time
 
 
 from flask import Flask, jsonify
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField
+from wtforms import StringField, FloatField
 from wtforms.validators import InputRequired, NumberRange
 
 
@@ -25,10 +26,10 @@ app.config['WTF_CSRF_ENABLED'] = False
 
 class CodeForm(FlaskForm):
     code = StringField(validators=[InputRequired()])
-    timeout = IntegerField(validators=[NumberRange(min=1, max=30)])
+    timeout = FloatField(validators=[NumberRange(min=0, max=30)])
 
 
-def run_python_code_in_subproccess(code: str, timeout: int):
+def run_python_code_in_subproccess(code: str, timeout: float):
     command = f'python -c "{code}"'
 
     # токенизация команды:
@@ -68,6 +69,7 @@ def run_code():
     if form.validate():
         code = form.code.data
         timeout = form.timeout.data
+
         result = run_python_code_in_subproccess(code, timeout)
 
         return jsonify(result)
