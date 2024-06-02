@@ -58,7 +58,7 @@ def run_python_code_in_subproccess(code: str, timeout: float):
         
     except subprocess.TimeoutExpired:
         process.kill()
-        return f'outut: {None}, error: Execution time out!'
+        return f'output: {None}, error: Execution time out!'
 
 
 @app.route('/run_code', methods=['POST'])
