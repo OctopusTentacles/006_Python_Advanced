@@ -32,7 +32,7 @@ class RemoteExecution(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         logging.debug("Response status code: %s", response.status_code)
         
-        self.assertIn('output', response.data.decode())
+        self.assertIn('Start', response.data.decode())
         logging.debug('Response data: %s', response.data.decode())
 
 
