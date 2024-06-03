@@ -11,7 +11,6 @@
 
 import subprocess
 import shlex
-import time
 
 
 from flask import Flask, jsonify
@@ -58,7 +57,7 @@ def run_python_code_in_subproccess(code: str, timeout: float):
         
     except subprocess.TimeoutExpired:
         process.kill()
-        return f'output: {None}, error: Время вышло!'
+        return {'output': None, 'error': 'Время вышло!'}
     finally:
         if process.stdout:
             process.stdout.close()
