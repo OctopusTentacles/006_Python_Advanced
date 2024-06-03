@@ -58,7 +58,13 @@ def run_python_code_in_subproccess(code: str, timeout: float):
         
     except subprocess.TimeoutExpired:
         process.kill()
-        return f'output: {None}, error: Execution time out!'
+        return f'output: {None}, error: Время вышло!'
+    finally:
+        if process.stdout:
+            process.stdout.close()
+        if process.stderr:
+            process.stderr.close()
+
 
 
 @app.route('/run_code', methods=['POST'])
@@ -73,7 +79,8 @@ def run_code():
         result = run_python_code_in_subproccess(code, timeout)
 
         return jsonify(result)
-    return jsonify('error! Invalid input!')
+    else:
+        return jsonify({'error': 'Некорректный ввод данных!'}), 400
 
 
 if __name__ == '__main__':

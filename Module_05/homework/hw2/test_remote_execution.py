@@ -28,13 +28,13 @@ class RemoteExecution(unittest.TestCase):
         client = self.app.test_client()
         response = client.post('/run_code', data = dict(
                 code = 'print("Hello, World!")',
-                timeout = 0.0001
+                timeout = 0.001
             )
         )
         self.assertEqual(response.status_code, 200)
         logging.debug("Response status code: %s", response.status_code)
         
-        self.assertIn('error: Execution time out!', json.loads(response.data))
+        self.assertIn('Execution time out!', response.data.decode())
         logging.debug('Response data: %s', response.data.decode())
 
 
