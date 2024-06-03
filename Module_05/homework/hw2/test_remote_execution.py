@@ -14,22 +14,18 @@ class RemoteExecution(unittest.TestCase):
     code = ''
     timeout = None
 
-    def create_app(self):
-        app.config['TESTING'] = True
-        app.config['WTF_CSRF_ENABLED'] = False
-        return app
-
     def setUp(self):
-        self.app = self.create_app()
+        self.app = app.test_client()
+        self.app.testing = True
 
     def test_timeout(self):
         """Тайм-аут ниже, чем время исполнения."""
 
-        client = self.app.test_client()
-        response = client.post('/run_code', data = dict(
-                code = 'print("Hello, World!")',
-                timeout = 0.0002
-            )
+        client = self.app
+        response = client.post('/run_code', json = {
+                'code': 'print("Hello, World!")',
+                'timeout': 0.0002
+            }
         )
         self.assertEqual(response.status_code, 200)
         logging.debug("Response status code: %s", response.status_code)
