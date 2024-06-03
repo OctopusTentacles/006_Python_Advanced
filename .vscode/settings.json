@@ -1,8 +1,13 @@
 {
     "python.testing.unittestArgs": [
         "-v",
+
         "-s",
         "./Module_04/",
+
+        "-s",
+        "./Module_05/",
+
         "-p",
         "test_*.py"
     ],
