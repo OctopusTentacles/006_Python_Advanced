@@ -57,6 +57,7 @@ def run_python_code_in_subproccess(code: str, timeout: float):
         
     except subprocess.TimeoutExpired:
         process.kill()
+        # считываем данные для очистки процесса:
         stdout, stderr = process.communicate()
         return {'output': None, 'error': 'Время вышло!'}
     
