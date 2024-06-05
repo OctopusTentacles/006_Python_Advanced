@@ -56,8 +56,16 @@ class RemoteExecution(unittest.TestCase):
         self.assertEqual(data['error'], 'Некорректный ввод данных!')
         logging.debug('Response data: %s', data)
 
+    def test_unsafe_input(self):
+        """Небезопасный ввод в поле с кодом."""
 
-
+        client = self.app
+        response = client.post(
+            '/run_code', json = {
+                'code': 'import os; os.system("echo unsafe")'
+                'timeout': 3
+            }
+        )
 
 
 
