@@ -62,11 +62,20 @@ class RemoteExecution(unittest.TestCase):
         client = self.app
         response = client.post(
             '/run_code', json = {
-                'code': 'import os; os.system("echo unsafe")'
+                'code': 'import os; os.system("echo unsafe")',
                 'timeout': 3
             }
         )
+        self.assertEqual(response.status_code, 200)
+        logging.debug('Response status code %s', response.status_code)
 
+        data = json.loads(response.data)
+        self.assertIn('output', data)
+        self.assertIsNotNone(data['output'])
+        self.assertNotIn('unsafe', data['output'])
+        
+        self.assertIn('error', data)
+        logging.debug('Response data %s', data)
 
 
 if __name__ == '__main__':
