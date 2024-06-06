@@ -40,7 +40,7 @@ def run_python_code_in_subproccess(code: str, timeout: float):
             token_command,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            shall = False
+            # shall = False
         )
 
         # ожидание завершения процесса по timeout:
@@ -76,6 +76,9 @@ def run_code():
     if form.validate():
         code = form.code.data
         timeout = form.timeout.data
+
+        if 'os.system' in code or 'subprocess' in code:
+            return jsonify({'output': None, 'error': 'Небезопасный код!'}), 400
 
         result = run_python_code_in_subproccess(code, timeout)
 
