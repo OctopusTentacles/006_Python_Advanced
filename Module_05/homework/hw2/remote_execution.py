@@ -39,7 +39,8 @@ def run_python_code_in_subproccess(code: str, timeout: float):
         process = subprocess.Popen(
             token_command,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stderr=subprocess.PIPE,
+            shall = False
         )
 
         # ожидание завершения процесса по timeout:
