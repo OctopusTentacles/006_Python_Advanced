@@ -62,7 +62,7 @@ class RemoteExecution(unittest.TestCase):
         client = self.app
         response = client.post(
             '/run_code', json = {
-                'code': 'os.system("echo unsafe")',
+                'code': 'import os; os.system("echo unsafe")',
                 'timeout': 3
             }
         )
