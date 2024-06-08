@@ -16,7 +16,8 @@ class BlockErrors:
     Если возникает неожидаемый тип исключения, он прокидывается выше.
     """
     def __init__(self, errors: Collection) -> None:
-        self.errors = errors
+        # Для issubclass нужен кортеж:
+        self.errors = tuple(errors)
 
     def __enter__(self) -> None:
         """
