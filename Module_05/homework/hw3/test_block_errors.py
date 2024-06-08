@@ -13,9 +13,10 @@ class TestBlockErrors(unittest.TestCase):
         """Ошибка игнорируется."""
         err_types = {ZeroDivisionError, TypeError}
         with BlockErrors(err_types):
-            a = 1 / 0
-        print('Выполнено без ошибок')
+                a = 1 / 0
+        logging.debug('Ignor error: ZeroDivisionError')
 
+    def test_
 
 
 
