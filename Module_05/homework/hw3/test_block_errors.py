@@ -12,6 +12,7 @@ class TestBlockErrors(unittest.TestCase):
     def test_ignor_error(self):
         """Ошибка игнорируется."""
         ignor_errors = {ZeroDivisionError, TypeError}
+        
         with BlockErrors(ignor_errors):
                 a = 1 / 0
         logging.debug('Игнорируется: ZeroDivisionError')
@@ -19,12 +20,14 @@ class TestBlockErrors(unittest.TestCase):
     def test_above_error(self):
         """Ошибка прокидывается выше."""
         ignor_errors = {ZeroDivisionError}
-        with self.assertRaises(TypeError):
+        with self.assertRaises(TypeError) as exc:
             with BlockErrors(ignor_errors):
                 a = 1 / '0'
                 # вызывается TypeError, которого нет в игноре,
                 # поэтому TypeError переходит выше где его ловит assertRaises
-        logging.debug('Ошибка TypeError прокидывается выше!')
+        logging.debug(
+            f'Ошибка прокидывается выше: {type(exc.exception).__name__}'
+        )
 
 
 
