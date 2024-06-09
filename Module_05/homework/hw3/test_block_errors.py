@@ -42,7 +42,15 @@ class TestBlockErrors(unittest.TestCase):
                 a = 1 / '0'
         logging.debug('3. Внешний блок: выполнено без ошибок.')
             
-
+    def test_generic_error(self):
+        """Дочерние ошибки игнорируются."""
+        ignor_errors = {Exception}
+        with self.assertRaises(Exception) as exc:
+            with BlockErrors(ignor_errors):
+                a = 1 / '0'
+        logging.debug(
+            f'4. Игнорируется ошибка: {type(exc).__name__}'
+        )
 
 
 
