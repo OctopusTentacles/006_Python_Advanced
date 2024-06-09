@@ -13,9 +13,9 @@ class TestBlockErrors(unittest.TestCase):
         """Ошибка игнорируется."""
         ignor_errors = {ZeroDivisionError, TypeError}
         with BlockErrors(ignor_errors):
-            a = 1 / '0'
+            a = 1 / 0
         logging.debug(
-            f'Ошибка игнорируется'
+            f'Выполнено без ошибок (ошибка игнорируется)!'
         )
 
     def test_above_error(self):
@@ -29,6 +29,23 @@ class TestBlockErrors(unittest.TestCase):
         logging.debug(
             f'Ошибка прокидывается выше: {type(exc.exception).__name__}'
         )
+    
+    def test_external_error(self):
+        """
+        Ошибка прокидывается выше во внутреннем блоке и 
+        игнорируется во внешнем.
+        """
+        try:
+            external_ignor = {TypeError}
+            with BlockErrors(external_ignor):
+                internal_ignor = {ZeroDivisionError}
+                with BlockErrors(internal_ignor):
+                    a = 1 / '0'
+                logging.debug('Ошибка прокидывается во внешний блок')
+        except Exception as exc:
+            self.fail(f'Ошибка не игнорируется во внешнем блоке: {type(exc).__name__}')
+        logging.debug('Внешний блок: выполнено без ошибок.')
+            
 
 
 
