@@ -51,9 +51,8 @@ class TestBlockErrors(unittest.TestCase):
         except Exception as exc:
             self.fail(f'4. Ошибка не игнорируется: {type(exc).__name__}')
         logging.debug(
-            f'4. Игнорируется ошибка: {type(exc).__name__}'
+            f'4. Игнорируется дочерняя ошибка Exception!'
         )
-
 
 
 if __name__ == '__main__':
