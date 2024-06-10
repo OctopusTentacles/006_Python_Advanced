@@ -18,7 +18,10 @@ from typing import Type, Literal, IO
 
 class Redirect:
     def __init__(self, stdout: IO = None, stderr: IO = None) -> None:
-        self.stdout
+        self.stdout = stdout
+        self.stderr = stderr
+        self._original_stdout = None
+        self._original_stderr = None
         ...
 
     def __enter__(self):
