@@ -9,12 +9,16 @@
 чтобы можно было ещё перенаправить только stdout или только stderr.
 """
 
+
+import sys
+
 from types import TracebackType
 from typing import Type, Literal, IO
 
 
 class Redirect:
     def __init__(self, stdout: IO = None, stderr: IO = None) -> None:
+        self.stdout
         ...
 
     def __enter__(self):
