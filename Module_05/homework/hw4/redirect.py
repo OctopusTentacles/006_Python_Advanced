@@ -17,12 +17,15 @@ from typing import Type, Literal, IO
 
 
 class Redirect:
+    """
+    контекстный менеджер Redirect,
+    перенаправляет stdout и stderr в указанные IO-объекты
+    """
     def __init__(self, stdout: IO = None, stderr: IO = None) -> None:
         self.stdout = stdout
         self.stderr = stderr
         self._original_stdout = None
         self._original_stderr = None
-        ...
 
     def __enter__(self):
         if self.stdout:
