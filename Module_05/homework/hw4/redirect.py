@@ -42,4 +42,9 @@ class Redirect:
             exc_val: BaseException | None,
             exc_tb: TracebackType | None
     ) -> Literal[True] | None:
-        ...
+        if self.stdout:
+            # восстанавливаем исходные значения:
+            sys.stdout = self._original_stdout
+        if self.stderr:
+            # восстанавливаем исходные значения:
+            sys.stderr = self._original_stderr
