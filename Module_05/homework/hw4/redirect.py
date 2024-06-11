@@ -25,7 +25,16 @@ class Redirect:
         ...
 
     def __enter__(self):
-        ...
+        if self.stdout:
+            # сохраняем текущие значения:
+            self._original_stdout = sys.stdout
+            # устанавливаем новые:
+            sys.stdout = self.stdout
+        if self.stderr:
+            # сохраняем текущие значения:
+            self._original_stderr = sys.stderr
+            # устанавливаем новые:
+            sys.stderr = self.stderr
 
     def __exit__(
             self,
