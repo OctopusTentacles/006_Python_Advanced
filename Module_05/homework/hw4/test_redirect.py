@@ -11,7 +11,8 @@ class TestRedirect(unittest.TestCase):
         with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out,\
             open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
             with Redirect(stdout=f_out, stderr=f_err):
-                
+                print('Это стандартный поток вывода')
+
 
 
 
