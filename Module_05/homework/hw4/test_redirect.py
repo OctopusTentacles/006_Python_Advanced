@@ -1,11 +1,17 @@
 import os
+import logging
 import sys
 import unittest
 
 from redirect import Redirect
 
 
+# Настройка конфигурации логгирования
+logging.basicConfig(level=logging.DEBUG)
+
+# текущая дирректория для файлов:
 cur_dir = os.path.dirname(__file__)
+
 
 class TestRedirect(unittest.TestCase):
 
@@ -22,7 +28,18 @@ class TestRedirect(unittest.TestCase):
                 # проверяем, что sys.stdout и sys.stderr были перенаправлены:
                 self.assertNotEqual(sys.stdout, self.original_stdout)
                 self.assertNotEqual(sys.stderr, self.original_stderr)
-
+                logging.debug(
+                    f'\nCurrent stdout: {sys.stdout}\n'
+                    f'Original stdout: {self.original_stdout}'
+                )
+        # выход из контекст-менеджера,
+        # проверяем что sys.stdout и sys.stderr восстановлены:
+        self.assertEqual(sys.stdout, self.original_stdout)
+        self.assertEqual(sys.stderr, self.original_stderr)
+        logging.debug(
+            f'\nstdout: {sys.stdout}\n'
+            f'Original stdout: {self.original_stdout}'
+        )
     
     def test_redirect_stderr(self):
         ...
