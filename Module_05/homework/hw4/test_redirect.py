@@ -40,9 +40,13 @@ class TestRedirect(unittest.TestCase):
     
     def test_redirect_stderr(self):
         with open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
-            try:
-                with Redirect(stderr=f_err):
+            with Redirect(stderr=f_err):
+                try: 
                     raise Exception('Это стандартный поток ошибок')
+                except Exception:
+                    # Записываем трассировку стека в stderr:
+                    import traceback
+                    traceback.print_exc(file=sys.stderr)
                     # проверяем, что sys.stderr был перенаправлен:
                     self.assertNotEqual(sys.stderr, self.original_stderr)
                     logging.debug(
