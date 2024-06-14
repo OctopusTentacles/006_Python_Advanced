@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_05/homework/hw4/test_redirect.py", line 71, in test_redirect
+    raise Exception('Второй стандартный поток ошибок')
+Exception: Второй стандартный поток ошибок
+Traceback (most recent call last):
+  File "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_05/homework/hw4/test_redirect.py", line 47, in test_redirect_stderr
+    raise Exception('Это стандартный поток ошибок')
+Exception: Это стандартный поток ошибок

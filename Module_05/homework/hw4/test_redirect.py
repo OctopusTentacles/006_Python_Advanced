@@ -19,34 +19,30 @@ class TestRedirect(unittest.TestCase):
         """Сохраняем оригинальные значения потоков."""
         self.original_stdout = sys.stdout
         self.original_stderr = sys.stderr
+        # путь к файлам:
         self.stdout_path = os.path.join(cur_dir, 'stdout.txt')
         self.stderr_path = os.path.join(cur_dir, 'stderr.txt')
-        # очистка файлов перед началом тестов:
-        with open(self.stdout_path, 'w') as f_out,\
-             open(self.stderr_path, 'w') as f_err:
-            f_out.write('')
-            f_err.write('')
 
     def test_redirect_stdout(self):
-        with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out:
+        with open(self.stdout_path, 'a') as f_out:
             with Redirect(stdout=f_out):
                 print('Это стандартный поток вывода')
                 # проверяем, что sys.stdout был перенаправлен:
                 self.assertNotEqual(sys.stdout, self.original_stdout)
-                logging.debug(
-                    f'\nCurrent stdout: {sys.stdout}\n'
-                    f'Original stdout: {self.original_stdout}'
-                )
+                # logging.debug(
+                #     f'\nCurrent stdout: {sys.stdout}\n'
+                #     f'Original stdout: {self.original_stdout}'
+                # )
         # выход из контекст-менеджера,
         # проверяем что sys.stdout восстановлен:
         self.assertEqual(sys.stdout, self.original_stdout)
-        logging.debug(
-            f'\nstdout: {sys.stdout}\n'
-            f'Original stdout: {self.original_stdout}'
-        )
+        # logging.debug(
+        #     f'\nstdout: {sys.stdout}\n'
+        #     f'Original stdout: {self.original_stdout}'
+        # )
     
     def test_redirect_stderr(self):
-        with open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
+        with open(self.stderr_path, 'a') as f_err:
             with Redirect(stderr=f_err):
                 try: 
                     raise Exception('Это стандартный поток ошибок')
@@ -56,17 +52,17 @@ class TestRedirect(unittest.TestCase):
                     traceback.print_exc(file=sys.stderr)
                     # проверяем, что sys.stderr был перенаправлен:
                     self.assertNotEqual(sys.stderr, self.original_stderr)
-                    logging.debug(
-                        f'\nCurrent stderr: {sys.stderr}\n'
-                        f'Original stderr: {self.original_stderr}'
-                    )
+                    # logging.debug(
+                    #     f'\nCurrent stderr: {sys.stderr}\n'
+                    #     f'Original stderr: {self.original_stderr}'
+                    # )
         # выход из контекст-менеджера,
         # проверяем что sys.stderr восстановлен:
         self.assertEqual(sys.stderr, self.original_stderr)
-        logging.debug(
-            f'\nstderr: {sys.stderr}\n'
-            f'Original stderr: {self.original_stderr}'
-        )
+        # logging.debug(
+        #     f'\nstderr: {sys.stderr}\n'
+        #     f'Original stderr: {self.original_stderr}'
+        # )
 
     def test_redirect(self):
         with open(os.path.join(cur_dir, 'stdout.txt'), 'a') as f_out, open(os.path.join(cur_dir, 'stderr.txt'), 'a') as f_err:
