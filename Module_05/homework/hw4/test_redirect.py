@@ -53,11 +53,8 @@ class TestRedirect(unittest.TestCase):
                         f'\nCurrent stderr: {sys.stderr}\n'
                         f'Original stderr: {self.original_stderr}'
                     )
-
-                
-
         # выход из контекст-менеджера,
-        # проверяем что sys.stdout восстановлен:
+        # проверяем что sys.stderr восстановлен:
         self.assertEqual(sys.stderr, self.original_stderr)
         logging.debug(
             f'\nstderr: {sys.stderr}\n'
