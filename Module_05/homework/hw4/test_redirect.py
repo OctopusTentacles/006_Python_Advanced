@@ -24,24 +24,41 @@ class TestRedirect(unittest.TestCase):
         with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out:
             with Redirect(stdout=f_out):
                 print('Это стандартный поток вывода')
-                # проверяем, что sys.stdout и sys.stderr были перенаправлены:
+                # проверяем, что sys.stdout был перенаправлен:
                 self.assertNotEqual(sys.stdout, self.original_stdout)
                 logging.debug(
                     f'\nCurrent stdout: {sys.stdout}\n'
                     f'Original stdout: {self.original_stdout}'
                 )
         # выход из контекст-менеджера,
-        # проверяем что sys.stdout и sys.stderr восстановлены:
+        # проверяем что sys.stdout восстановлен:
         self.assertEqual(sys.stdout, self.original_stdout)
         logging.debug(
             f'\nstdout: {sys.stdout}\n'
             f'Original stdout: {self.original_stdout}'
         )
     
-    # def test_redirect_stderr(self):
-    #     with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out,\
-    #         open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
-    #         with Redirect(stdout=f_out, stderr=f_err):
+    def test_redirect_stderr(self):
+        with open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
+            try:
+                with Redirect(stderr=f_err):
+                    raise Exception('Это стандартный поток ошибок')
+                    # проверяем, что sys.stderr был перенаправлен:
+                    self.assertNotEqual(sys.stderr, self.original_stderr)
+                    logging.debug(
+                        f'\nCurrent stderr: {sys.stderr}\n'
+                        f'Original stderr: {self.original_stderr}'
+                    )
+
+                
+
+        # выход из контекст-менеджера,
+        # проверяем что sys.stdout восстановлен:
+        self.assertEqual(sys.stderr, self.original_stderr)
+        logging.debug(
+            f'\nstderr: {sys.stderr}\n'
+            f'Original stderr: {self.original_stderr}'
+        )
 
 
 
