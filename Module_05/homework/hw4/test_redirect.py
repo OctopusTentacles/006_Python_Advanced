@@ -61,7 +61,23 @@ class TestRedirect(unittest.TestCase):
             f'Original stderr: {self.original_stderr}'
         )
 
+    def test_redirect(self):
+        with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out,\
+             open(os.path.join(cur_dir, 'stderr.txt'), 'w') as f_err:
+            with Redirect(stdout=f_out, stderr=f_err):
+                print('Второй стандартный поток вывода')
+                try:
+                    raise Exception('Второй стандартный поток ошибок')
+                except Exception:
+                    import traceback
+                    traceback.print_exc(file=sys.stderr)
 
+                    self.assertNotEqual(sys.stdout, self.original_stdout)
+                    self.assertNotEqual(sys.stderr, self.original_stderr)
+
+        self.assertEqual(sys.stdout, self.original_stdout)
+        self.assertEqual(sys.stderr, self.original_stderr)
+        
 
 if __name__ == '__main__':
     unittest.main()
