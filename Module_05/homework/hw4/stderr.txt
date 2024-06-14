@@ -1,4 +1,0 @@
-Traceback (most recent call last):
-  File "/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_05/homework/hw4/test_redirect.py", line 45, in test_redirect_stderr
-    raise Exception('Это стандартный поток ошибок')
-Exception: Это стандартный поток ошибок
