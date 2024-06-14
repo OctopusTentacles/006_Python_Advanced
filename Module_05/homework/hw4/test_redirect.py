@@ -19,6 +19,13 @@ class TestRedirect(unittest.TestCase):
         """Сохраняем оригинальные значения потоков."""
         self.original_stdout = sys.stdout
         self.original_stderr = sys.stderr
+        self.stdout_path = os.path.join(cur_dir, 'stdout.txt')
+        self.stderr_path = os.path.join(cur_dir, 'stderr.txt')
+        # очистка файлов перед началом тестов:
+        with open(self.stdout_path, 'w') as f_out,\
+             open(self.stderr_path, 'w') as f_err:
+            f_out.write('')
+            f_err.write('')
 
     def test_redirect_stdout(self):
         with open(os.path.join(cur_dir, 'stdout.txt'), 'w') as f_out:
