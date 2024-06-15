@@ -65,7 +65,8 @@ class TestRedirect(unittest.TestCase):
         # )
 
     def test_redirect(self):
-        with open(os.path.join(cur_dir, 'stdout.txt'), 'a') as f_out, open(os.path.join(cur_dir, 'stderr.txt'), 'a') as f_err:
+        with open(os.path.join(cur_dir, 'stdout.txt'), 'a') as f_out,\
+             open(os.path.join(cur_dir, 'stderr.txt'), 'a') as f_err:
             with Redirect(stdout=f_out, stderr=f_err):
                 print('Второй стандартный поток вывода')
                 try:
@@ -77,6 +78,13 @@ class TestRedirect(unittest.TestCase):
                     self.assertNotEqual(sys.stdout, self.original_stdout)
                     self.assertNotEqual(sys.stderr, self.original_stderr)
 
+        self.assertEqual(sys.stdout, self.original_stdout)
+        self.assertEqual(sys.stderr, self.original_stderr)
+
+    def test_no_args(self):
+        with Redirect():
+            self.assertEqual(sys.stdout, self.original_stdout)
+            self.assertEqual(sys.stderr, self.original_stderr)
         self.assertEqual(sys.stdout, self.original_stdout)
         self.assertEqual(sys.stderr, self.original_stderr)
         
