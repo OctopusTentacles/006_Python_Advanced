@@ -28,3 +28,6 @@ def log_execution(line: str):
     with open(os.path.join(cur_dir, 'log.txt'), 'a') as log_file:
         log_file.write(f'{line}\n')
 
+@app.route('bank_api/<branch>/<init:person_id>')
+def bank_api(branch: str, person_id: int):
+    log_execution('Entered bank_api function')
