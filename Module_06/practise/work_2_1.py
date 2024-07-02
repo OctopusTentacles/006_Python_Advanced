@@ -10,3 +10,21 @@
 """
 
 
+import csv
+import os
+
+from flask import Flask
+from typing import Optional
+from werkzeug.exceptions import InternalServerError
+
+
+# текущая дирректория для файлов:
+cur_dir = os.path.dirname(__file__)
+
+
+app = Flask(__name__)
+
+def log_execution(line: str):
+    with open(os.path.join(cur_dir, 'log.txt'), 'a') as log_file:
+        log_file.write(f'{line}\n')
+
