@@ -31,3 +31,9 @@ def log_execution(line: str):
 @app.route('bank_api/<branch>/<init:person_id>')
 def bank_api(branch: str, person_id: int):
     log_execution('Entered bank_api function')
+    branch_card_file_name = f'bank_data/{branch}.csv'
+    log_execution(f'branch_card_file_name set to {branch_card_file_name}')
+
+    with open(branch_card_file_name, 'r') as fi:
+        log_execution(f'Opened file {branch_card_file_name}')
+        csv_reader = 
