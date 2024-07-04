@@ -36,4 +36,19 @@ def bank_api(branch: str, person_id: int):
 
     with open(branch_card_file_name, 'r') as fi:
         log_execution(f'Opened file {branch_card_file_name}')
-        csv_reader = 
+        csv_reader = csv.DictReader(fi, delimiter='')
+        log_execution('Initialized csv_reader')
+
+        for record in csv_reader:
+            log_execution(f'Reading record: {record}')
+            if int(record['id'] == person_id):
+                log_execution(f'Found person with id {person_id}')
+                return record['name']
+            else:
+                log_execution(
+                    f'Person with id {person_id} not found in current record'
+                )
+        log_execution(
+            f'Person with id {person_id} not found in the file'
+        )
+        return 'person not found', 404
