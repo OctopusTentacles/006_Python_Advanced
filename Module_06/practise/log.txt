@@ -1,0 +1,4 @@
+Starting Flask application
+Starting Flask application
+Entered bank_api function
+branch_card_file_name set to bank_data/branch1.csv
