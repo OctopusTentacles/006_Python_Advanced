@@ -52,3 +52,28 @@ def bank_api(branch: str, person_id: int):
             f'Person with id {person_id} not found in the file'
         )
         return 'person not found', 404
+
+@app.errorhandler(InternalServerError)
+def handle_exception(e: InternalServerError):
+    log_execution('Entered handle_exception function')
+    original: Optional[Exception] = getattr(e, 'original_exception', None)
+    log_execution(f'Original exception: {original}')
+
+    if isinstance(original, FileNotFoundError):
+        log_execution(f'FileNotFoundError: {original.filename}')
+        with open(os.path.join(cur_dir, 'invalid_error.log'), 'a') as fo:
+            fo.write(
+                f'Tried to access {original.filename}. Exception info: {original.strerror}\n'
+            )
+    elif isinstance(original, OSError):
+        log_execution(f'OSError: {original.strerror}')
+        with open(os.path.join(cur_dir, 'invalid_error.log'), 'a') as fo:
+            fo.write(
+                f'Unable to access a card. Exception info: {original.strerror}\n'
+            )
+    return 'Internal server error', 500
+
+
+if __name__ == '__main__':
+    log_execution('Starting Flask application')
+    app.run(debug=True)
