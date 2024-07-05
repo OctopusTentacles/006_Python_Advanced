@@ -2,3 +2,13 @@ Starting Flask application
 Starting Flask application
 Entered bank_api function
 branch_card_file_name set to bank_data/branch1.csv
+Starting Flask application
+Starting Flask application
+Entered bank_api function
+branch_card_file_name set to bank_data/branch1.csv
+Starting Flask application
+Starting Flask application
+Starting Flask application
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
+Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
