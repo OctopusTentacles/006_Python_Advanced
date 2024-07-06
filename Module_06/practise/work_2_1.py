@@ -36,7 +36,7 @@ def bank_api(branch: str, person_id: int):
 
     with open(branch_card_file_name, 'r') as fi:
         log_execution(f'Opened file {branch_card_file_name}')
-        csv_reader = csv.DictReader(fi, delimiter='')
+        csv_reader = csv.DictReader(fi, delimiter=',')
         log_execution('Initialized csv_reader')
 
         for record in csv_reader:
