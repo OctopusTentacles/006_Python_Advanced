@@ -5,9 +5,43 @@ branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Pyt
 Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
 Initialized csv_reader
 Reading record: {'id': '1', 'name': 'Иванов Иван Иванович'}
-Person with id 1 not found in current record
+Found person with id 1
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
+Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
+Initialized csv_reader
+Reading record: {'id': '1', 'name': 'Иванов Иван Иванович'}
+Person with id 3 not found in current record
 Reading record: {'id': '2', 'name': 'Петров Василий Петрович'}
-Person with id 1 not found in current record
+Person with id 3 not found in current record
 Reading record: {'id': '3', 'name': 'Пушкин Александр Сергеевич'}
-Person with id 1 not found in current record
-Person with id 1 not found in the file
+Found person with id 3
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
+Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch1.csv
+Initialized csv_reader
+Reading record: {'id': '1', 'name': 'Иванов Иван Иванович'}
+Person with id 5 not found in current record
+Reading record: {'id': '2', 'name': 'Петров Василий Петрович'}
+Person with id 5 not found in current record
+Reading record: {'id': '3', 'name': 'Пушкин Александр Сергеевич'}
+Person with id 5 not found in current record
+Person with id 5 not found in the file
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch2.csv
+Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch2.csv
+Initialized csv_reader
+Reading record: {'id': '4', 'name': 'Григорьев Григорий Афанасьевич'}
+Person with id 5 not found in current record
+Reading record: {'id': '5', 'name': 'Долгополов Иван Евграфович'}
+Found person with id 5
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch3.csv
+Entered bank_api function
+branch_card_file_name set to /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch2.csv
+Opened file /Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_06/practise/bank_data/branch2.csv
+Initialized csv_reader
+Reading record: {'id': '4', 'name': 'Григорьев Григорий Афанасьевич'}
+Person with id 5 not found in current record
+Reading record: {'id': '5', 'name': 'Долгополов Иван Евграфович'}
+Found person with id 5

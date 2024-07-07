@@ -41,7 +41,7 @@ def bank_api(branch: str, person_id: int):
 
         for record in csv_reader:
             log_execution(f'Reading record: {record}')
-            if int(record['id'] == person_id):
+            if int(record['id']) == person_id:
                 log_execution(f'Found person with id {person_id}')
                 return record['name']
             else:
