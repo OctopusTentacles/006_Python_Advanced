@@ -53,7 +53,10 @@ def handle_arithmetic_error(exc):
 
 
 # Обработчик ошибок для ZeroDivisionError:
-
+@app.errorhandler(ZeroDivisionError)
+def handle_zero_division_error(exc):
+    response = jsonify(error='Zero Division Error: ' + str(exc))
+    return response, 400
 
 # Обработчик ошибок для FloatingPointError:
 
