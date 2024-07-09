@@ -46,6 +46,10 @@ def calculate():
         raise ArithmeticError(str(exc))
     
 # Обработчик ошибок для ArithmeticError:
+@app.errorhandler(ArithmeticError)
+def handle_arithmetic_error(exc):
+    response = jsonify(error='Arithmetic Error: ' + str(exc))
+    return response, 500
 
 
 # Обработчик ошибок для ZeroDivisionError:
