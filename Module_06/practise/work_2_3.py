@@ -51,7 +51,6 @@ def handle_arithmetic_error(exc):
     response = jsonify(error='Arithmetic Error: ' + str(exc))
     return response, 500
 
-
 # Обработчик ошибок для ZeroDivisionError:
 @app.errorhandler(ZeroDivisionError)
 def handle_zero_division_error(exc):
@@ -59,10 +58,16 @@ def handle_zero_division_error(exc):
     return response, 400
 
 # Обработчик ошибок для FloatingPointError:
-
+@app.errorhandler(FloatingPointError)
+def handle_floating_point_error(exc):
+    response = jsonify(error='Floating Point Error: ' + str(exc))
+    return response, 400
 
 # Обработчик ошибок для OverflowError:
-
+@app.errorhandler(OverflowError)
+def handle_overflow_error(exc):
+    response = jsonify(error='Overflow Error: ' + str(exc))
+    return response, 400
 
 
 if __name__ == '__main__':
