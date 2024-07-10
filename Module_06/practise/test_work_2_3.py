@@ -30,6 +30,11 @@ class FlaskTestCase(unittest.TestCase):
 
     
     def test_floating_point_error(self):
+        response = self.client.post(
+            '/calculate', json={'expression': 'float("inf") * float("inf")'}
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Floating Point Error', response.json['error'])
 
 
     def test_overflow_error(self):
