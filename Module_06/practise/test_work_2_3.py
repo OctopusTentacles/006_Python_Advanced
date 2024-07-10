@@ -38,9 +38,12 @@ class FlaskTestCase(unittest.TestCase):
 
 
     def test_overflow_error(self):
+        response = self.client.post(
+            '/calculate', json{'excpression': '1e308 * 1e308'}
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Overflow Error', response.json['error'])
     
-
-
 
 if __name__ == '__main__':
     unittest.main()
