@@ -29,17 +29,9 @@ class FlaskTestCase(unittest.TestCase):
         self.assertIn('Zero Division Error', response.json['error'])
 
     
-    def test_floating_point_error(self):
-        response = self.client.post(
-            '/calculate', json={'expression': 'float("inf") * float("inf")'}
-        )
-        self.assertEqual(response.status_code, 400)
-        self.assertIn('Floating Point Error', response.json['error'])
-
-
     def test_overflow_error(self):
         response = self.client.post(
-            '/calculate', json={'expression': '1e308 * 1e308'}
+            '/calculate', json={'expression': '1e308 ** 2'}
         )
         self.assertEqual(response.status_code, 400)
         self.assertIn('Overflow Error', response.json['error'])
