@@ -23,7 +23,7 @@ class FlaskTestCase(unittest.TestCase):
 
     def test_zero_division_error(self):
         response = self.client.post(
-            '/calculate', json={'expression': '1/0'}
+            '/calculate', json={'expression': '1 / 0'}
         )
         self.assertEqual(response.status_code, 400)
         self.assertIn('Zero Division Error', response.json['error'])
@@ -39,7 +39,7 @@ class FlaskTestCase(unittest.TestCase):
 
     def test_overflow_error(self):
         response = self.client.post(
-            '/calculate', json{'excpression': '1e308 * 1e308'}
+            '/calculate', json={'expression': '1e308 * 1e308'}
         )
         self.assertEqual(response.status_code, 400)
         self.assertIn('Overflow Error', response.json['error'])
