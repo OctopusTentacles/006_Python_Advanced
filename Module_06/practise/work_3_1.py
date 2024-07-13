@@ -27,7 +27,27 @@ def input_and_check_password():
         logger.warning('Вы не ввели пароль')
         return False
     
+    try:
+        hasher = hashlib.md5()
+        logger.debug(f'Мы создали объект hasher {hasher!r}')
 
+        hasher.update(password.encode('latin-1'))
+        logger.debug(f'Пароль закодирован и обновлён в hasher: {password.encode('latin-1')!r}')
+    
+        hashed_password = hasher.hexdigest()
+        logger.debug(f'Полученный хэш пароля: {hashed_password}')
+
+        if hashed_password == '098f6bcd4621d373cade4e832627b4f6':
+            logger.debug('Пароль совпадает с ожидаемым значением хэша.')
+            return True
+        else:
+            logger.debug('Пароль не совпадает с ожидаемым значением хэша.')
+
+    except ValueError as exc:
+        logger.exception('Вы ввели некорректный символ ', exc_info=exc)
+    
+    logger.debug('Конец input_and_check_password с результатом False')
+    return False
 
 
 if __name__ == '__main__':
