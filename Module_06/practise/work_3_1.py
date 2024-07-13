@@ -21,7 +21,7 @@ def input_and_check_password():
     logger.debug('Начало input_and_check_password')
 
     password: str = getpass.getpass()
-    logger.info('Ввели пароль')
+    logger.info('Ввод пароля')
 
     if not password:
         logger.warning('Вы не ввели пароль')
@@ -32,7 +32,7 @@ def input_and_check_password():
         logger.debug(f'Мы создали объект hasher {hasher!r}')
 
         hasher.update(password.encode('latin-1'))
-        logger.debug(f'Пароль закодирован и обновлён в hasher: {password.encode('latin-1')!r}')
+        logger.debug(f'Пароль закодирован и обновлён в hasher: {password.encode("latin-1")!r}')
     
         hashed_password = hasher.hexdigest()
         logger.debug(f'Полученный хэш пароля: {hashed_password}')
