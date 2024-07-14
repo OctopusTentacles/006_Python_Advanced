@@ -45,7 +45,16 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG)
     logger.debug('Вы пытаетесь авторизоваться\n')
     
-    count_number: int = 3
+    while True:
+        try:
+            count_number = int(input('Сколько попыток ввода?: '))
+            if 2 <= count_number <= 10:
+                break
+            else:
+                logger.warning('Количество попыток должно быть от 2 до 10')
+        except ValueError:
+            logger.exception('Ошибка ввода, введите целое число')
+
     logger.info(f'У вас {count_number} попыток\n')
 
     while count_number > 0:
