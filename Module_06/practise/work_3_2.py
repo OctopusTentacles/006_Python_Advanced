@@ -23,7 +23,13 @@ def input_and_check_password():
     logger.debug('Нчало функции ввода пароля\n')
     password: str = getpass.getpass()
 
-
+    if not password:
+        logger.warning('Вы не ввели пароль')
+        return False
+    
+    try:
+        hasher = hashlib.md5()
+        
 
 
 
