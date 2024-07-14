@@ -29,8 +29,16 @@ def input_and_check_password():
     
     try:
         hasher = hashlib.md5()
-        
+        hasher.update(password.encode('latin-1'))
 
+        if hasher.hexdigest() == '098f6bcd4621d373cade4e832627b4f6':
+            return True
+        else:
+            logger.info('Неверный пароль!')
+    except ValueError as exc:
+        logger.exception('Вы ввели некорректный символ ', exc_info=exc)
+
+    return False
 
 
 if __name__ == '__main__':
