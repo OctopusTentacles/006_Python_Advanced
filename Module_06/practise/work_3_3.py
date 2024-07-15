@@ -15,15 +15,36 @@
 import getpass
 import hashlib
 import logging
+import re
 
 
 logger = logging.getLogger('password_checker')
 
-def is_good_password(password):
-    
-    
-    ...
 
+def is_good_password(password):
+    if len(password) < 8:
+        logger.warning('Пароль слишком короткий. Минимальная длина пароля — 8 символов.')
+        return False
+    
+    if not re.search(r'[A-Z]', password):
+        logger.warning('Пароль должен содержать хотя бы одну заглавную букву.')
+        return False
+    
+    if not re.search(r'[a-z]', password):
+        logger.warning('Пароль должен содержать хотя бы одну строчную букву.')
+        return False
+    
+    if not re.search(r'\d', password):
+        logger.warning('Пароль должен содержать хотя бы одну цифру.')
+        return False
+
+
+    if not re.search(r'[!@#$%^&*()-+=_]', password):
+        logger.warning('Пароль должен содержать хотя бы один специальный символ (!@#$%^&*()-+=_).')
+        return False
+    
+    return True
+    
 
 def input_and_check_password():
     logger.debug('Начало функции ввода пароля')
