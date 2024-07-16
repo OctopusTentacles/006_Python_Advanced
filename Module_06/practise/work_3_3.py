@@ -43,6 +43,9 @@ def is_good_password(password):
         logger.warning('Пароль должен содержать хотя бы один специальный символ (!@#$%^&*()-+=_).')
         return False
     
+    if not re.fullmatch(r'[A-Za-z0-9!@#$%^&*()-+=_]+', password):
+        logger.warning('')
+    
     return True
     
 
@@ -54,7 +57,7 @@ def input_and_check_password():
         logger.warning('Вы не ввели пароль!')
         return False
     
-    if is_good_password(password):
+    if not is_good_password(password):
         logger.warning('Введённый пароль слабый')
         return False
     
