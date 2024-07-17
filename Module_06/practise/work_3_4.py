@@ -72,6 +72,16 @@ def input_and_check_password():
         hashed_password = hasher.hexdigest()
         logger.info(f'Полученный хэш пароля: {hashed_password}')
 
+        if hashed_password == '098f6bcd4621d373cade4e832627b4f6':
+            logger.debug("Пароль совпадает с ожидаемым значением хэша.")
+            return True
+        else:
+            logger.debug("Пароль не совпадает с ожидаемым значением хэша.")
+    except ValueError as exc:
+        logger.exception('Ошибка при обработке пароля', exc_info=exc)
+
+    logger.debug("Конец input_and_check_password с результатом False")
+    return False
 
 
 if __name__ == '__main__':
