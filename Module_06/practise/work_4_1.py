@@ -29,14 +29,14 @@ def bank_api(branch: str, person_id: int):
 
     with open(branch_card_file_name, 'r') as fi:
         csv_reader = csv.DictReader(fi, delimiter=',')
+        logger.debug(f'читаем файл: {branch_card_file_name}')
 
         for record in csv_reader:
             if int(record['id']) == person_id:
                 logger.info(f'Найден пользователь с ID {person_id}')
                 return record['name']
-            else:
-                logger.info(f'Пользователь с ID {person_id} не найден')
-                return 'Person not found', 404
+        logger.info(f'Пользователь с ID {person_id} не найден')
+        return 'Person not found', 404
 
 @app.errorhandler(InternalServerError)
 def handle_ecxeption(e: InternalServerError):
