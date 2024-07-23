@@ -17,6 +17,7 @@ timsort (стандартная сортировка python) и сортиров
 import heapq
 import json
 import logging
+import time
 
 from typing import List
 from flask import Flask
@@ -30,17 +31,31 @@ logger = logging.getLogger('sort')
 
 def bubble_sort(array: List[int]) -> List[int]:
     array_len = len(array)
+
+    logger.debug(f'Начало выполнения bubble_sort:')
+    start_time = time.time()
+
     # Внешний цикл по всем элементам массива:
     for i in range(array_len):
         # Внутренний цикл, который проходит по неотсортированной части массива:
-        for j in range()
+        for j in range(0, array_len-i-1):
             # Если текущий элемент больше следующего, меняем их местами:
-    ...
+            if array[j] > array[j+1]:
+                array[j], array[j+1] = array[j+1], array[j]
+    
+    end_time = time.time()
+    logger.debug(f'Время выполнения bubble_sort: {start_time - end_time:.3f} сек.')
+    return array
 
 
+def tim_sort(array: List[int]) -> List[int]:
+    logger.debug(f'Начало выполнения tim_sort:')
+    start_time = time.time()
 
-def tim_sort():
-    ...
+    sorted_array = sorted(array)
+
+    end_time = time.time()
+    logger.debug(f'Время выполнения tim_sort {start_time - end_time:.3f} сек.')
 
 
 
