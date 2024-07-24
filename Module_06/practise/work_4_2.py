@@ -32,7 +32,7 @@ logger = logging.getLogger('sort')
 def bubble_sort(array: List[int]) -> List[int]:
     array_len = len(array)
 
-    logger.debug(f'Начало выполнения bubble_sort:')
+    logger.debug('Начало выполнения bubble_sort:')
     start_time = time.time()
 
     # Внешний цикл по всем элементам массива:
@@ -49,7 +49,7 @@ def bubble_sort(array: List[int]) -> List[int]:
 
 
 def tim_sort(array: List[int]) -> List[int]:
-    logger.debug(f'Начало выполнения tim_sort:')
+    logger.debug('Начало выполнения tim_sort:')
     start_time = time.time()
 
     sorted_array = sorted(array)
@@ -57,10 +57,20 @@ def tim_sort(array: List[int]) -> List[int]:
     end_time = time.time()
     logger.debug(f'Время выполнения tim_sort {start_time - end_time:.3f} сек.')
 
+    return sorted_array
 
 
-def heap_sort():
-    ...
+def heap_sort(array: List[int]) -> List[int]:
+    logger.debug('Начало выполнения heap_sort')
+    start_time = time.time()
+
+    heapq.heapify(array)
+    sorted_array = [heapq.heappop(array) for _ in range(len(array))]
+
+    end_time = time.time()
+    logger.debug(f'Время выполнения heap_sort {start_time - end_time:.3f} сек.')
+
+    return sorted_array
 
 
 algorithms = {
@@ -72,7 +82,19 @@ algorithms = {
 
 @app.route('/<algorithm_name>/', methods=['POST'])
 def sort_endpoint(algorithm_name: str):
+    if algorithm_name not in algorithms:
+        return 'Algorithm not supported', 400
+    
+    data = request.get_json()
+    if not isinstance(data, list):
+        return 'Invalid input data', 400
+    
+    array = data
+    sort_function = algorithms[algorithm_name]
 
+    logger.debug(f'Начало сортировки {sort_function}')
+    sorted_array = sort_function(array)
+    logger.debug(f'Завершение сортировки {sort_function}')
 
 
 if __name__ == '__main__':
