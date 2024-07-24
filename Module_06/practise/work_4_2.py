@@ -44,7 +44,7 @@ def bubble_sort(array: List[int]) -> List[int]:
                 array[j], array[j+1] = array[j+1], array[j]
     
     end_time = time.time()
-    logger.debug(f'Время выполнения bubble_sort: {start_time - end_time:.3f} сек.')
+    logger.debug(f'Время выполнения bubble_sort: {end_time - start_time:.6f} сек.')
     return array
 
 
@@ -55,7 +55,7 @@ def tim_sort(array: List[int]) -> List[int]:
     sorted_array = sorted(array)
 
     end_time = time.time()
-    logger.debug(f'Время выполнения tim_sort {start_time - end_time:.3f} сек.')
+    logger.debug(f'Время выполнения tim_sort {end_time - start_time:.6f} сек.')
 
     return sorted_array
 
@@ -68,7 +68,7 @@ def heap_sort(array: List[int]) -> List[int]:
     sorted_array = [heapq.heappop(array) for _ in range(len(array))]
 
     end_time = time.time()
-    logger.debug(f'Время выполнения heap_sort {start_time - end_time:.3f} сек.')
+    logger.debug(f'Время выполнения heap_sort {end_time - start_time:.6f} сек.')
 
     return sorted_array
 
@@ -95,6 +95,8 @@ def sort_endpoint(algorithm_name: str):
     logger.debug(f'Начало сортировки {sort_function}')
     sorted_array = sort_function(array)
     logger.debug(f'Завершение сортировки {sort_function}')
+
+    return json.dumps(sorted_array), 200
 
 
 if __name__ == '__main__':
