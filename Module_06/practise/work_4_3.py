@@ -56,6 +56,10 @@ def account(department: str, account_number: int):
     try:
         account_data_json = json.loads(account_data_txt)
         name, birth_date = account_data_json['name'], account_data_json['birth_date']
+        if not name:
+            logger.error(f'Отсутствует имя сотрудника')
+            return 'No name !', 404
+        
     except json.JSONDecodeError as exc:
         logger.exception(f'\tОшибка декодирования JSON из файла {account_data_file}: {exc}')
         return 'Error decoding account data', 500
