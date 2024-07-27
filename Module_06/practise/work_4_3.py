@@ -63,7 +63,12 @@ def account(department: str, account_number: int):
         logger.exception(f'\tОшибка ключа в данных аккаунта: {e}')
         return 'Error in account data', 500
 
-    day, month, _ = map(int, birth_date.split('.'))
+    birth_date_parts = birth_date.split('.')
+    if len(birth_date_parts) != 3:
+        logger.error(f'\tНеверный формат даты рождения: {birth_date_parts}')
+        return 'Wrong Date format', 404
+
+    day, month, _ = map(int, birth_date_parts)
     if not (1 <= day <= 31):
         logger.error(f'\tНеверный день {day}')
         return 'Wrong day', 404
