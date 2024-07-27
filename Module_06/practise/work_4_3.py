@@ -53,12 +53,16 @@ def account(department: str, account_number: int):
         logger.exception(f'\tОшибка чтения файла {account_data_file}: {exc}')
         return 'Error reading account data', 500
     
+
     try:
         account_data_json = json.loads(account_data_txt)
         name, birth_date = account_data_json['name'], account_data_json['birth_date']
         if not name:
-            logger.error(f'Отсутствует имя сотрудника')
+            logger.error(f'\tОтсутствует имя сотрудника')
             return 'No name !', 404
+        if not birth_date:
+            logger.error('Отсутствует дата рождения сотрудника')
+            return 'No birth date!', 404
         
     except json.JSONDecodeError as exc:
         logger.exception(f'\tОшибка декодирования JSON из файла {account_data_file}: {exc}')
@@ -67,18 +71,22 @@ def account(department: str, account_number: int):
         logger.exception(f'\tОшибка ключа в данных аккаунта: {e}')
         return 'Error in account data', 500
 
+
     birth_date_parts = birth_date.split('.')
     if len(birth_date_parts) != 3:
         logger.error(f'\tНеверный формат даты рождения: {birth_date_parts}')
         return 'Wrong Date format', 404
 
-    day, month, _ = map(int, birth_date_parts)
+    day, month, year = map(int, birth_date_parts)
     if not (1 <= day <= 31):
         logger.error(f'\tНеверный день {day}')
         return 'Wrong day', 404
     elif not (1 <= month <= 12):
         logger.error(f'\tНеверный месяц {month}')
         return 'Wrong month', 404
+    elif not (1950 <= year <= 2024):
+        logger.error(f'\tНеверный год рождения {year}')
+        return 'Wrong year', 404
     else:
         logger.info(
             f'\tИнформация о сотруднике {name} с идентификационным номером {account_number} получена успешно.'
