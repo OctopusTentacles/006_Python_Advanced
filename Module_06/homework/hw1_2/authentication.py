@@ -31,11 +31,28 @@ logger = logging.getLogger('password_checker')
 def is_strong_password(password: str) -> bool:
     return True
 
-def input_and_check_password():
-    ...
+def input_and_check_password() -> bool:
+    logger.info('Начало input_and_check_password')
+    
+    password:  str = getpass.getpass()
+    if not password:
+        logger.warning('Вы не ввели пароль')
+        return False
+    elif is_strong_password(password):
+        logger.warning("Вы ввели слишком слабый пароль")
+        return False
+    
+    try:
+        hasher = hashlib.md5()
 
+        hasher.update(password.encode("latin-1"))
 
+        if hasher.hexdigest() == "098f6bcd4621d373cade4e832627b4f6":
+            return True
+    except ValueError as ex:
+        logger.exception("Вы ввели некорректный символ ", exc_info=ex)
 
+    return False
 
 
 if __name__ == '__main__':
