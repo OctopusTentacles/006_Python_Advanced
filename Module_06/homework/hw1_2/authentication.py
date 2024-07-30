@@ -7,24 +7,15 @@
   Например, 16:00:09;
 * выводил логи уровня INFO и выше.
 
-2. К нам пришли сотрудники отдела безопасности и сказали, что, 
-согласно новым стандартам безопасности,
-хорошим паролем считается такой пароль, 
-который не содержит в себе слов английского языка,
-так что нужно доработать программу из предыдущей задачи.
-
-Напишите функцию is_strong_password, 
-которая принимает на вход пароль в виде строки,
-а возвращает булево значение, которое показывает, 
-является ли пароль хорошим по новым стандартам безопасности.
-
 """
 
 import getpass
 import hashlib
 import logging
+import os
 
 
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger('password_checker')
 
 
@@ -56,7 +47,11 @@ def input_and_check_password() -> bool:
 
 
 if __name__ == '__main__':
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(
+        level=logging.DEBUG,
+        filename=os.path.join(cur_dir, 'stderr.txt'),
+        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s'
+        )
     logger.info('Вы пытаетесь аутентифицироваться в Skillbox')
 
     count_number: int = 3
