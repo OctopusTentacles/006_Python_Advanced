@@ -7,3 +7,12 @@
 2024-07-29 16:41:01,107 | password_checker | INFO | Начало input_and_check_password
 2024-07-29 16:41:04,115 | password_checker | WARNING | Вы ввели слишком слабый пароль
 2024-07-29 16:41:04,115 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
+23H:09M:14S | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+23H:09M:14S | password_checker | INFO | У вас есть 3 попыток
+23H:09M:14S | password_checker | INFO | Начало input_and_check_password
+23H:09M:17S | password_checker | WARNING | Вы ввели слишком слабый пароль
+23H:09M:17S | password_checker | INFO | Начало input_and_check_password
+23H:09M:18S | password_checker | WARNING | Вы ввели слишком слабый пароль
+23H:09M:18S | password_checker | INFO | Начало input_and_check_password
+23H:09M:20S | password_checker | WARNING | Вы ввели слишком слабый пароль
+23H:09M:20S | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!

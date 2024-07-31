@@ -50,7 +50,8 @@ if __name__ == '__main__':
     logging.basicConfig(
         level=logging.DEBUG,
         filename=os.path.join(cur_dir, 'stderr.txt'),
-        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s'
+        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+        datefmt='%HH:%MM:%SS'
         )
     logger.info('Вы пытаетесь аутентифицироваться в Skillbox')
 
