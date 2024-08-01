@@ -16,3 +16,12 @@
 23H:09M:18S | password_checker | INFO | Начало input_and_check_password
 23H:09M:20S | password_checker | WARNING | Вы ввели слишком слабый пароль
 23H:09M:20S | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
+23:32:23 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+23:32:23 | password_checker | INFO | У вас есть 3 попыток
+23:32:23 | password_checker | INFO | Начало input_and_check_password
+23:32:25 | password_checker | WARNING | Вы ввели слишком слабый пароль
+23:32:25 | password_checker | INFO | Начало input_and_check_password
+23:32:27 | password_checker | WARNING | Вы ввели слишком слабый пароль
+23:32:27 | password_checker | INFO | Начало input_and_check_password
+23:32:28 | password_checker | WARNING | Вы ввели слишком слабый пароль
+23:32:28 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
