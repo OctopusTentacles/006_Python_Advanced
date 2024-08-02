@@ -28,3 +28,12 @@
 22:09:25 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
 22:09:25 | password_checker | INFO | У вас есть 3 попыток
 22:09:25 | password_checker | INFO | Начало input_and_check_password
+22:26:57 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+22:26:57 | password_checker | INFO | У вас есть 3 попыток
+22:26:57 | password_checker | INFO | Начало input_and_check_password
+22:30:59 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+22:30:59 | password_checker | INFO | У вас есть 3 попыток
+22:30:59 | password_checker | INFO | Начало input_and_check_password
+22:32:35 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+22:32:35 | password_checker | INFO | У вас есть 3 попыток
+22:32:35 | password_checker | INFO | Начало input_and_check_password

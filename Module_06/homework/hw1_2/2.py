@@ -16,14 +16,28 @@
 import getpass
 import hashlib
 import logging
+import nltk
 import os
 
+from nltk.corpus import words
+
+
+# Загрузка словаря английских слов:
+nltk.download('words')
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger('password_checker')
 
 
 def is_strong_password(password: str) -> bool:
+    # Преобразуем список слов в множество для быстрого поиска:
+    data_words = set(words.words())
+    # Нижний регистр для пароля:
+    password_lower = password.lower()
+    for word in data_words:
+        if word in password_lower:
+            logger.debug(f'Пароль содержит английское слово: {word}')
+            return False
     return True
 
 def input_and_check_password() -> bool:
