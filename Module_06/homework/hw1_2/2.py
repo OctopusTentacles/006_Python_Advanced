@@ -22,11 +22,16 @@ import os
 from nltk.corpus import words
 
 
-# Загрузка словаря английских слов:
-nltk.download('words')
-
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger('password_checker')
+
+# Создать папку nltk_data:
+nltk_dir = os.path.join(cur_dir, 'nltk_data')
+os.makedirs(nltk_dir, exist_ok=True)
+
+# Загрузка словаря английских слов:
+# nltk.download('words', download_dir=os.path.join(cur_dir, '/nltk_data'))
+
 
 
 def is_strong_password(password: str) -> bool:
@@ -47,7 +52,7 @@ def input_and_check_password() -> bool:
     if not password:
         logger.warning('Вы не ввели пароль')
         return False
-    elif is_strong_password(password):
+    elif not is_strong_password(password):
         logger.warning("Вы ввели слишком слабый пароль")
         return False
     

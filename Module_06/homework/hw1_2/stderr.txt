@@ -37,3 +37,12 @@
 22:32:35 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
 22:32:35 | password_checker | INFO | У вас есть 3 попыток
 22:32:35 | password_checker | INFO | Начало input_and_check_password
+22:54:43 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+22:54:43 | password_checker | INFO | У вас есть 3 попыток
+22:54:43 | password_checker | INFO | Начало input_and_check_password
+23:02:16 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+23:02:16 | password_checker | INFO | У вас есть 3 попыток
+23:02:16 | password_checker | INFO | Начало input_and_check_password
+23:04:04 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+23:04:04 | password_checker | INFO | У вас есть 3 попыток
+23:04:04 | password_checker | INFO | Начало input_and_check_password
