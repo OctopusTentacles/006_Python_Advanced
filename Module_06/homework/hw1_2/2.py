@@ -29,9 +29,11 @@ logger = logging.getLogger('password_checker')
 nltk_dir = os.path.join(cur_dir, 'nltk_data')
 os.makedirs(nltk_dir, exist_ok=True)
 
-# Загрузка словаря английских слов:
-# nltk.download('words', download_dir=os.path.join(cur_dir, '/nltk_data'))
+# Указать путь к данным NLTK:
+nltk.data.path.append(nltk_dir)
 
+# Загрузка словаря английских слов:
+nltk.download('words', download_dir=nltk_dir)
 
 
 def is_strong_password(password: str) -> bool:
