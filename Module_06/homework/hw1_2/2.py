@@ -21,6 +21,12 @@ import os
 
 from nltk.corpus import words
 
+#====================================================================
+import ssl
+import certifi
+
+# Настройка SSL контекста для использования certifi
+ssl._create_default_https_context = ssl._create_unverified_context
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger('password_checker')
@@ -35,6 +41,7 @@ nltk.data.path.append(nltk_dir)
 # Загрузка словаря английских слов:
 nltk.download('words', download_dir=nltk_dir)
 
+#====================================================================
 
 def is_strong_password(password: str) -> bool:
     # Преобразуем список слов в множество для быстрого поиска:
