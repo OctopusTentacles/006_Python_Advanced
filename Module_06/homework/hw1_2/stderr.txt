@@ -52,3 +52,35 @@
 23:11:12 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
 23:11:12 | password_checker | INFO | У вас есть 3 попыток
 23:11:12 | password_checker | INFO | Начало input_and_check_password
+10:38:59 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+10:38:59 | password_checker | INFO | У вас есть 3 попыток
+10:38:59 | password_checker | INFO | Начало input_and_check_password
+10:39:34 | password_checker | DEBUG | Пароль содержит английское слово: e
+10:39:34 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:39:34 | password_checker | INFO | Начало input_and_check_password
+10:39:36 | password_checker | DEBUG | Пароль содержит английское слово: sad
+10:39:36 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:39:36 | password_checker | INFO | Начало input_and_check_password
+10:39:37 | password_checker | DEBUG | Пароль содержит английское слово: a
+10:39:37 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:39:37 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
+10:41:51 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+10:41:51 | password_checker | INFO | У вас есть 3 попыток
+10:41:51 | password_checker | INFO | Начало input_and_check_password
+10:42:04 | password_checker | DEBUG | Пароль содержит английское слово: d
+10:42:04 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:42:04 | password_checker | INFO | Начало input_and_check_password
+10:42:12 | password_checker | DEBUG | Пароль содержит английское слово: hi
+10:42:12 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:42:12 | password_checker | INFO | Начало input_and_check_password
+10:42:15 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
+10:44:05 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+10:44:05 | password_checker | INFO | У вас есть 3 попыток
+10:44:05 | password_checker | INFO | Начало input_and_check_password
+10:44:36 | password_checker | DEBUG | Пароль содержит английское слово: a
+10:44:36 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:44:36 | password_checker | INFO | Начало input_and_check_password
+10:44:49 | password_checker | DEBUG | Пароль содержит английское слово: r
+10:44:49 | password_checker | WARNING | Вы ввели слишком слабый пароль
+10:44:49 | password_checker | INFO | Начало input_and_check_password
+10:44:55 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
