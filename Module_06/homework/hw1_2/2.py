@@ -23,9 +23,9 @@ from nltk.corpus import words
 
 #====================================================================
 import ssl
-import certifi
+# import certifi
 
-# Настройка SSL контекста для использования certifi
+# # Настройка SSL контекста для использования certifi
 ssl._create_default_https_context = ssl._create_unverified_context
 
 cur_dir = os.path.dirname(os.path.abspath(__file__))
