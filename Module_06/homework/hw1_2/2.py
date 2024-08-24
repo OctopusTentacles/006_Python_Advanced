@@ -49,7 +49,7 @@ def is_strong_password(password: str) -> bool:
     # Нижний регистр для пароля:
     password_lower = password.lower()
     for word in data_words:
-        if word in password_lower:
+        if len(word) > 1 and word in password_lower:
             logger.debug(f'Пароль содержит английское слово: {word}')
             return False
     return True
