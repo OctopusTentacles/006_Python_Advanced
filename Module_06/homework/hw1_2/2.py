@@ -85,6 +85,28 @@ if __name__ == '__main__':
         format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
         datefmt='%H:%M:%S'
         )
+    
+    # сейчас логи пишутся в буфер и только после завершения скрипта
+    # скидываются в файл. мне это не нравится...
+    # Настроим обработчик файла:
+    handler = FlushFileHandler(
+        os.path.join(cur_dir, 'stderr.txt'),
+        mode='w',
+        delay=False
+    )
+    handler.setLevel(logging.DEBUG)
+    # Форматирование:
+    handler.setFormatter(
+        logging.Formatter(
+            '%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+            datefmt='%H:%M:%S'
+        )
+    )
+    # Добавим обработчик к логеру:
+    logger.addHandler(handler)
+    logger.propagate = False
+
+
     logger.info('Вы пытаетесь аутентифицироваться в Skillbox')
 
     count_number: int = 3
