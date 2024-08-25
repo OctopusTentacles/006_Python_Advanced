@@ -108,7 +108,10 @@ if __name__ == '__main__':
     )
     # Добавим обработчик к логеру:
     logger.addHandler(handler)
-    logger.propagate = False
+    logger.setLevel(logging.DEBUG)
+
+    # Немедленный вывод в лог:
+    handler.flush()
 
 
     logger.info('Вы пытаетесь аутентифицироваться в Skillbox')
@@ -120,5 +123,7 @@ if __name__ == '__main__':
         if input_and_check_password():
             exit(0)
         count_number -= 1
+        handler.flush()  # Немедленный сброс после каждой итерации
     logger.error('Пользователь трижды ввёл не правильный пароль!')
+    handler.flush()  # Финальный сброс перед завершением
     exit(1)
