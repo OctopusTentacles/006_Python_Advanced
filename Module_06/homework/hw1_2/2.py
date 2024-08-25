@@ -48,8 +48,17 @@ data_words = set(words.words())
 def is_strong_password(password: str) -> bool:
     # Нижний регистр для пароля:
     password_lower = password.lower()
+
+    if password.isdigit():
+        logger.debug('Пароль содержит только цифры')
+        return False
+    
+    if password.isalpha():
+        logger.debug('Пароль содержит только буквы')
+        return False
+    
     for word in data_words:
-        if len(word) > 1 and word in password_lower:
+        if len(word) > 4 and word in password_lower:
             logger.debug(f'Пароль содержит английское слово: {word}')
             return False
     return True
@@ -72,48 +81,21 @@ def input_and_check_password() -> bool:
 
         if hasher.hexdigest() == "098f6bcd4621d373cade4e832627b4f6":
             return True
-    except ValueError as ex:
+        logger.warning("НЕВЕРНЫЙ ПАРОЛЬ!")
+    except Exception as ex:
         logger.exception("Вы ввели некорректный символ ", exc_info=ex)
 
     return False
 
 
-class FlushFileHandler(logging.FileHandler):
-    def emit(self, record: logging.LogRecord) -> None:
-        super().emit(record)
-        self.flush()
-
-
 if __name__ == '__main__':
-    # logging.basicConfig(
-    #     level=logging.DEBUG,
-    #     filename=os.path.join(cur_dir, 'stderr.txt'),
-    #     format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-    #     datefmt='%H:%M:%S'
-    #     )
-    
-    # Настроим обработчик файла:
-    handler = FlushFileHandler(
-        os.path.join(cur_dir, 'stderr.txt'),
-        mode='w',
-        delay=False
-    )
-    handler.setLevel(logging.DEBUG)
-    # Форматирование:
-    handler.setFormatter(
-        logging.Formatter(
-            '%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-            datefmt='%H:%M:%S'
+    logging.basicConfig(
+        level=logging.DEBUG,
+        filename=os.path.join(cur_dir, 'stderr.txt'),
+        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+        datefmt='%H:%M:%S'
         )
-    )
-    # Добавим обработчик к логеру:
-    logger.addHandler(handler)
-    logger.setLevel(logging.DEBUG)
-
-    # Немедленный вывод в лог:
-    handler.flush()
-
-
+    
     logger.info('Вы пытаетесь аутентифицироваться в Skillbox')
 
     count_number: int = 3
@@ -123,7 +105,5 @@ if __name__ == '__main__':
         if input_and_check_password():
             exit(0)
         count_number -= 1
-        handler.flush()  # Немедленный сброс после каждой итерации
     logger.error('Пользователь трижды ввёл не правильный пароль!')
-    handler.flush()  # Финальный сброс перед завершением
     exit(1)
