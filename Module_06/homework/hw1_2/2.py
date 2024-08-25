@@ -23,7 +23,6 @@ from nltk.corpus import words
 
 #====================================================================
 import ssl
-# import certifi
 
 # # Настройка SSL контекста для использования certifi
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -41,11 +40,12 @@ nltk.data.path.append(nltk_dir)
 # Загрузка словаря английских слов:
 nltk.download('words', download_dir=nltk_dir)
 
+# Преобразуем список слов в множество для быстрого поиска:
+data_words = set(words.words())
+
 #====================================================================
 
 def is_strong_password(password: str) -> bool:
-    # Преобразуем список слов в множество для быстрого поиска:
-    data_words = set(words.words())
     # Нижний регистр для пароля:
     password_lower = password.lower()
     for word in data_words:
@@ -78,16 +78,20 @@ def input_and_check_password() -> bool:
     return False
 
 
+class FlushFileHandler(logging.FileHandler):
+    def emit(self, record: logging.LogRecord) -> None:
+        super().emit(record)
+        self.flush()
+
+
 if __name__ == '__main__':
-    logging.basicConfig(
-        level=logging.DEBUG,
-        filename=os.path.join(cur_dir, 'stderr.txt'),
-        format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-        datefmt='%H:%M:%S'
-        )
+    # logging.basicConfig(
+    #     level=logging.DEBUG,
+    #     filename=os.path.join(cur_dir, 'stderr.txt'),
+    #     format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+    #     datefmt='%H:%M:%S'
+    #     )
     
-    # сейчас логи пишутся в буфер и только после завершения скрипта
-    # скидываются в файл. мне это не нравится...
     # Настроим обработчик файла:
     handler = FlushFileHandler(
         os.path.join(cur_dir, 'stderr.txt'),

@@ -1,0 +1,3 @@
+11:32:49 | password_checker | WARNING | Вы ввели слишком слабый пароль
+11:32:52 | password_checker | WARNING | Вы ввели слишком слабый пароль
+11:32:52 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
