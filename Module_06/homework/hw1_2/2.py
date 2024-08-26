@@ -56,19 +56,11 @@ def is_strong_password(password: str) -> bool:
         return False
     
     # Проверка на цифры:
-    contains_digit = any(char.isdgit() for char in password)
+    contains_digit = any(char.isdigit() for char in password)
     if not contains_digit:
         logger.debug('Пароль не содержит цифры')
         return False
 
-
-    if password.isdigit():
-        logger.debug('Пароль содержит только цифры')
-        return False
-    
-    if password.isalpha():
-        logger.debug('Пароль содержит только буквы')
-        return False
     
     for word in data_words:
         if len(word) > 4 and word in password_lower:
