@@ -16,33 +16,34 @@
 import getpass
 import hashlib
 import logging
-import nltk
 import os
+import re
 
-from nltk.corpus import words
 
 #====================================================================
-import ssl
 
-# # Настройка SSL контекста для использования certifi
-ssl._create_default_https_context = ssl._create_unverified_context
-
-cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger('password_checker')
 
-# Создать папку nltk_data:
-nltk_dir = os.path.join(cur_dir, 'nltk_data')
-os.makedirs(nltk_dir, exist_ok=True)
+# текущая директория:
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Указать путь к данным NLTK:
-nltk.data.path.append(nltk_dir)
+# путь к файлу со словами:
+words_file_path = os.path.join(cur_dir, 'words.txt')
 
-# Загрузка словаря английских слов:
-nltk.download('words', download_dir=nltk_dir)
+#====================================================================
 
-# Преобразуем список слов в множество для быстрого поиска:
-data_words = set(words.words())
-
+# предобработка файла слов:
+def load_words(file_path: str) -> set:
+    words_set = set()
+    with open(file_path, 'r') as file:
+        for line in file:
+            # убираем пробелы и приводим к нижнему регистру:
+            word = line.strip().lower()
+            # берем слова длиной больше 4 символов:
+            if len(word) > 4 and word.isalpha():
+                words_set.add(word)
+    return words_set
+                
 #====================================================================
 
 def is_strong_password(password: str) -> bool:
