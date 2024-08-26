@@ -43,12 +43,19 @@ def load_words(file_path: str) -> set:
             if len(word) > 4 and word.isalpha():
                 words_set.add(word)
     return words_set
-                
+
+# загрузка слов в множество:
+english_words = load_words(words_file_path)
+
 #====================================================================
 
 def is_strong_password(password: str) -> bool:
-    # Нижний регистр для пароля:
+    # нижний регистр для пароля:
     password_lower = password.lower()
+    # находим слова в пароле через re:
+    found_words = re.findall(r'\b[a-z]+\b', password_lower)
+    # проверяем слово:
+    
 
     # Проверка на буквы:
     contains_letter = any(char.isalpha() for char in password)
