@@ -49,6 +49,19 @@ def is_strong_password(password: str) -> bool:
     # Нижний регистр для пароля:
     password_lower = password.lower()
 
+    # Проверка на буквы:
+    contains_letter = any(char.isalpha() for char in password)
+    if not contains_letter:
+        logger.debug('Пароль не содержит букв')
+        return False
+    
+    # Проверка на цифры:
+    contains_digit = any(char.isdgit() for char in password)
+    if not contains_digit:
+        logger.debug('Пароль не содержит цифры')
+        return False
+
+
     if password.isdigit():
         logger.debug('Пароль содержит только цифры')
         return False
@@ -64,7 +77,7 @@ def is_strong_password(password: str) -> bool:
     return True
 
 def input_and_check_password() -> bool:
-    logger.info('Начало input_and_check_password')
+    logger.info('===== START input_and_check_password =====')
     
     password:  str = getpass.getpass()
     if not password:
