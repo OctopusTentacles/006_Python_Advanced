@@ -52,10 +52,6 @@ english_words = load_words(words_file_path)
 def is_strong_password(password: str) -> bool:
     # нижний регистр для пароля:
     password_lower = password.lower()
-    # находим слова в пароле через re:
-    found_words = re.findall(r'\b[a-z]+\b', password_lower)
-    # проверяем слово:
-    
 
     # Проверка на буквы:
     contains_letter = any(char.isalpha() for char in password)
@@ -69,12 +65,18 @@ def is_strong_password(password: str) -> bool:
         logger.debug('Пароль не содержит цифры')
         return False
 
-    
-    for word in data_words:
-        if len(word) > 4 and word in password_lower:
+
+    # находим слова в пароле через re:
+    found_words = re.findall(r'\b[a-z]+\b', password_lower)
+    # проверяем слово:
+    for word in found_words:
+        if word in english_words:
             logger.debug(f'Пароль содержит английское слово: {word}')
             return False
+
     return True
+
+#====================================================================
 
 def input_and_check_password() -> bool:
     logger.info('===== START input_and_check_password =====')
@@ -100,6 +102,7 @@ def input_and_check_password() -> bool:
 
     return False
 
+#====================================================================
 
 if __name__ == '__main__':
     logging.basicConfig(
