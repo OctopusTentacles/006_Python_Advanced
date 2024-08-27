@@ -1,0 +1,10 @@
+19:11:48 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+19:11:48 | password_checker | INFO | У вас есть 3 попыток
+19:11:48 | password_checker | INFO | ===== START input_and_check_password =====
+19:13:01 | password_checker | WARNING | Вы не ввели пароль
+19:13:01 | password_checker | INFO | ===== START input_and_check_password =====
+19:13:07 | password_checker | DEBUG | Пароль содержит английское слово: hello
+19:13:07 | password_checker | WARNING | Вы ввели слишком слабый пароль
+19:13:07 | password_checker | INFO | ===== START input_and_check_password =====
+19:13:11 | password_checker | WARNING | НЕВЕРНЫЙ ПАРОЛЬ!
+19:13:11 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!

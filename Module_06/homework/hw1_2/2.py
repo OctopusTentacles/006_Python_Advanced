@@ -67,7 +67,7 @@ def is_strong_password(password: str) -> bool:
 
 
     # находим слова в пароле через re:
-    found_words = re.findall(r'\b[a-z]+\b', password_lower)
+    found_words = re.findall(r'[a-z]+', password_lower)
     # проверяем слово:
     for word in found_words:
         if word in english_words:
@@ -107,7 +107,7 @@ def input_and_check_password() -> bool:
 if __name__ == '__main__':
     logging.basicConfig(
         level=logging.DEBUG,
-        filename=os.path.join(cur_dir, 'stderr.txt'),
+        filename=os.path.join(cur_dir, 'stderr.log'),
         format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
         datefmt='%H:%M:%S'
         )
