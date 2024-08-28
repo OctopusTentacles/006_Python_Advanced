@@ -31,17 +31,38 @@ logger.info('Сообщение')
 всегда JSON-валидная строка.
 """
 
+
+import json
 import logging
+import os
+
+
+# текущая директория:
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
-        new_message = msg
+        new_message = json.dumps(
+          {
+              'time': self.forma
+          }  
+        )
         return new_message, kwargs
 
 
 if __name__ == '__main__':
+    # logging.basicConfig(
+    #     level=logging.DEBUG,
+    #     filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
+    #     format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+    #     datefmt='%H:%M:%S'
+
+    # )
+
     logger = JsonAdapter(logging.getLogger(__name__))
+
+
     logger.setLevel(logging.DEBUG)
     logger.info('Сообщение')
     logger.error('Кавычка)"')
