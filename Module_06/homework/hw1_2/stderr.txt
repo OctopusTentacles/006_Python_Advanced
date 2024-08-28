@@ -8,3 +8,15 @@
 19:13:07 | password_checker | INFO | ===== START input_and_check_password =====
 19:13:11 | password_checker | WARNING | НЕВЕРНЫЙ ПАРОЛЬ!
 19:13:11 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!
+19:36:56 | password_checker | INFO | Вы пытаетесь аутентифицироваться в Skillbox
+19:36:56 | password_checker | INFO | У вас есть 3 попыток
+19:36:56 | password_checker | INFO | ===== START input_and_check_password =====
+19:36:59 | password_checker | DEBUG | Пароль не содержит цифры
+19:36:59 | password_checker | WARNING | Вы ввели слишком слабый пароль
+19:36:59 | password_checker | INFO | ===== START input_and_check_password =====
+19:37:00 | password_checker | DEBUG | Пароль не содержит цифры
+19:37:00 | password_checker | WARNING | Вы ввели слишком слабый пароль
+19:37:00 | password_checker | INFO | ===== START input_and_check_password =====
+19:37:11 | password_checker | DEBUG | Пароль не содержит цифры
+19:37:11 | password_checker | WARNING | Вы ввели слишком слабый пароль
+19:37:11 | password_checker | ERROR | Пользователь трижды ввёл не правильный пароль!

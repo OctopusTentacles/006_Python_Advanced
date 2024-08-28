@@ -107,7 +107,7 @@ def input_and_check_password() -> bool:
 if __name__ == '__main__':
     logging.basicConfig(
         level=logging.DEBUG,
-        filename=os.path.join(cur_dir, 'stderr.log'),
+        filename=os.path.join(cur_dir, 'stderr.txt'),
         format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
         datefmt='%H:%M:%S'
         )
