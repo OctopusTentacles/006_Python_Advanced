@@ -45,16 +45,15 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
+        # определить уровень лога:
+        log_level = logging.getLevelName(self.logger.level)
         log_format = {
-            'time': datetime.now().strftime('%H:%M:%S'),
-            'level': ,
-            'message':
+          'time': datetime.now().strftime('%H:%M:%S'),
+          'level': log_level,
+          'message': msg
         }
-        new_message = json.dumps(
-          {
-            'message': msg
-          }  
-        )
+        new_message = json.dumps(log_format, ensure_ascii=False)
+
         return new_message, kwargs
 
 
@@ -67,8 +66,6 @@ if __name__ == '__main__':
 
     logger = JsonAdapter(logging.getLogger(__name__))
 
-
-    logger.setLevel(logging.DEBUG)
     logger.info('Сообщение')
     logger.error('Кавычка)"')
     logger.debug("Еще одно сообщение")
