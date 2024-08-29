@@ -36,6 +36,8 @@ import json
 import logging
 import os
 
+from datetime import datetime
+
 
 # текущая директория:
 cur_dir = os.path.dirname(os.path.abspath(__file__))
@@ -43,22 +45,25 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
+        log_format = {
+            'time': datetime.now().strftime('%H:%M:%S'),
+            'level': ,
+            'message':
+        }
         new_message = json.dumps(
           {
-              'time': self.forma
+            'message': msg
           }  
         )
         return new_message, kwargs
 
 
 if __name__ == '__main__':
-    # logging.basicConfig(
-    #     level=logging.DEBUG,
-    #     filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
-    #     format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
-    #     datefmt='%H:%M:%S'
-
-    # )
+    logging.basicConfig(
+        level=logging.DEBUG,
+        filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
+        format='%(message)s',
+    )
 
     logger = JsonAdapter(logging.getLogger(__name__))
 
