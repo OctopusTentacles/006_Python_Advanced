@@ -45,11 +45,13 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
-        # определить уровень лога:
-        log_level = logging.getLevelName(self.logger.level)
+        # определить числовое значение уровня лога:
+        level_num = kwargs.pop('levelno', self.logger.level)
+        print(level_num)
+
         log_format = {
           'time': datetime.now().strftime('%H:%M:%S'),
-          'level': log_level,
+          'level': level_num,
           'message': msg
         }
         new_message = json.dumps(log_format, ensure_ascii=False)
