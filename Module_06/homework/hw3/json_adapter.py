@@ -45,25 +45,17 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
-        print(kwargs)        
-        new_message = json.dumps(
-          {
-            'time': datetime.now().strftime('%H:%M:%S'),
-            # 'level': ,
-            'message': msg
-          },
-          ensure_ascii=False
-        )
+        new_message = json.dumps(msg, ensure_ascii=False)
 
         return new_message, kwargs
 
 
 if __name__ == '__main__':
-    logger = JsonAdapter(logging.getLogger())
+    logger = JsonAdapter(logging.getLogger(__name__))
 
     logging.basicConfig(
         filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
-        format='%(asctime)s | %(levelname)s | %(message)s',
+        format='{time: %(asctime)s, level: %(levelname)s, message: %(message)s}',
         datefmt='%H:%M:%S'
     )
 
