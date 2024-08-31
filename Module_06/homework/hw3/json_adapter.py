@@ -46,15 +46,29 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
         # определить числовое значение уровня лога:
-        level_num = kwargs.pop('levelno', self.logger.level)
-        print(level_num)
+        # level_num = kwargs.get('levelno', self.logger.getEffectiveLevel())
 
-        log_format = {
-          'time': datetime.now().strftime('%H:%M:%S'),
-          'level': level_num,
-          'message': msg
-        }
-        new_message = json.dumps(log_format, ensure_ascii=False)
+        # level = logging.getLevelName(level_num)
+        # print(level_num)
+        # print(level)
+
+        # log_format = {
+        #   'time': datetime.now().strftime('%H:%M:%S'),
+        #   'level': level,
+        #   'message': msg
+        # }
+        log_level = kwargs.get('levelname', logging.getLevelName(self.logger.level))
+        print(log_level)
+        
+        new_message = json.dumps(
+          {
+            'time': datetime.now().strftime('%H:%M:%S'),
+            'level': log_level,
+            'message': msg
+          },
+          separators="\"",
+          ensure_ascii=False
+        )
 
         return new_message, kwargs
 
@@ -63,7 +77,8 @@ if __name__ == '__main__':
     logging.basicConfig(
         level=logging.DEBUG,
         filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
-        format='%(message)s',
+        # format='%(asctime)s | %(name)s | %(levelname)s | %(message)s',
+        # datefmt='%H:%M:%S'
     )
 
     logger = JsonAdapter(logging.getLogger(__name__))
