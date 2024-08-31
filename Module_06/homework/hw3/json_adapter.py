@@ -42,7 +42,6 @@ from datetime import datetime
 # текущая директория:
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 
-
 class JsonAdapter(logging.LoggerAdapter):
     def process(self, msg, kwargs):
         new_message = json.dumps(msg, ensure_ascii=False)
@@ -55,7 +54,7 @@ if __name__ == '__main__':
 
     logging.basicConfig(
         filename=os.path.join(cur_dir, 'skillbox_json_messages.log'),
-        format='{time: %(asctime)s, level: %(levelname)s, message: %(message)s}',
+        format='{"time": "%(asctime)s", "level": "%(levelname)s", "message": %(message)s}',
         datefmt='%H:%M:%S'
     )
 
