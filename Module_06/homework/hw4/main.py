@@ -12,9 +12,31 @@
 """
 
 
+import json
+import os
+
 from typing import Dict
 
+# текущая директория:
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 
+# ===================================================================
+# Файл с логами считывается только один раз.
+def read_logs():
+    logs = list()
+
+    with open(os.path.join(cur_dir, 'skillbox_json_messages.log'), 'r') as file:
+        for line in file:
+            log = json.loads(line.strip())
+            logs.append(log)
+        return(logs)
+
+
+
+logs = read_logs()
+print(logs)
+
+# ===================================================================
 def task1() -> Dict[str, int]:
     """
     1. Сколько было сообщений каждого уровня за сутки.
