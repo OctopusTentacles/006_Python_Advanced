@@ -45,7 +45,7 @@ def task1() -> Dict[str, int]:
     # найдем в каждой строке значение ключа 'level'
     # и посчитаем через Counter
     level_count = Counter(log['level'] for log in logs)
-    return level_count
+    return dict(level_count)
 
 
 def task2() -> int:
@@ -55,7 +55,7 @@ def task2() -> int:
     """
     # найдем в каждой строке значение ключа 'time'
     # преобразуем в объект datetime с формаотм '%H:%M:%S'
-    # и возьмем только часы .hour
+    # и возьмем только часы .hour -> список часов
     hours_list = [datetime.strptime(log['time'], '%H:%M:%S').hour for log in logs]
     # посчитаем через Counter
     hours_count = Counter(hours_list)
