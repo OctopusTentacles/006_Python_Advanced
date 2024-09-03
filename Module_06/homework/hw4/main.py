@@ -60,8 +60,9 @@ def task2() -> int:
     # посчитаем через Counter
     hours_count = Counter(hours_list)
     # находим самое большое кол-во часов
-    
-    pass
+    # и берем первый элемент из кортежа [0][0] - час
+    hours_most_common = hours_count.most_common(1)[0][0]
+    return hours_most_common
 
 
 def task3() -> int:
