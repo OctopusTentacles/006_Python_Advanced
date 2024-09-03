@@ -15,7 +15,9 @@
 import json
 import os
 
+from collections import Counter
 from typing import Dict
+
 
 # текущая директория:
 cur_dir = os.path.dirname(os.path.abspath(__file__))
@@ -31,10 +33,7 @@ def read_logs():
             logs.append(log)
         return(logs)
 
-
-
 logs = read_logs()
-print(logs)
 
 # ===================================================================
 def task1() -> Dict[str, int]:
@@ -42,7 +41,8 @@ def task1() -> Dict[str, int]:
     1. Сколько было сообщений каждого уровня за сутки.
     @return: словарь вида {уровень: количество}
     """
-    pass
+    level_count = Counter(log['level'] for log in logs)
+    return level_count
 
 
 def task2() -> int:
