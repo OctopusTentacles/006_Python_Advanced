@@ -16,6 +16,7 @@ import json
 import os
 
 from collections import Counter
+from datetime import datetime
 from typing import Dict
 
 
@@ -41,6 +42,8 @@ def task1() -> Dict[str, int]:
     1. Сколько было сообщений каждого уровня за сутки.
     @return: словарь вида {уровень: количество}
     """
+    # найдем в каждой строке значение ключа 'level'
+    # и посчитаем через Counter
     level_count = Counter(log['level'] for log in logs)
     return level_count
 
@@ -50,6 +53,14 @@ def task2() -> int:
     2. В какой час было больше всего логов.
     @return: час
     """
+    # найдем в каждой строке значение ключа 'time'
+    # преобразуем в объект datetime с формаотм '%H:%M:%S'
+    # и возьмем только часы .hour
+    hours_list = [datetime.strptime(log['time'], '%H:%M:%S').hour for log in logs]
+    # посчитаем через Counter
+    hours_count = Counter(hours_list)
+    # находим самое большое кол-во часов
+    
     pass
 
 
