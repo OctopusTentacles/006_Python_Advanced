@@ -103,11 +103,16 @@ def task5() -> str:
     5. Какое слово чаще всего встречалось в сообщениях уровня WARNING.
     @return: слово
     """
+    # список сообщений уровня WARNING
     warning_messages = [
         log['message'] for log in logs
         if log['level'] == 'WARNING'
     ]
-    count_words = Counter(warning_messages)
+    # разбить сообщения на слова
+    warning_words = (
+        word for message in warning_messages for word in message.split()
+    )
+    count_words = Counter(warning_words)
     print(count_words)
     return
 
