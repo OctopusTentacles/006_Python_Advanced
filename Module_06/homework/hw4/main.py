@@ -70,7 +70,18 @@ def task3() -> int:
     3. Сколько логов уровня CRITICAL было в период с 05:00:00 по 05:20:00.
     @return: количество логов
     """
-    pass
+    # временные границы
+    start_time = datetime.strptime('05:00:00', '%H:%M:%S')
+    end_time = datetime.strptime('05:20:00', '%H:%M:%S')
+    # список логов по условию
+    crittical_logs = [
+        log for log in logs
+        if log['level'] == 'CRITICAL' and (
+            start_time <= datetime.strptime(log['time'], '%H:%M:%S') <= end_time
+        )
+    ]
+    # кол-во логов - длина списка
+    return len(crittical_logs)
 
 
 def task4() -> int:
