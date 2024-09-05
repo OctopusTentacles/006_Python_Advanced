@@ -73,15 +73,15 @@ def task3() -> int:
     # временные границы
     start_time = datetime.strptime('05:00:00', '%H:%M:%S')
     end_time = datetime.strptime('05:20:00', '%H:%M:%S')
-    # список логов по условию
-    crittical_logs = [
-        log for log in logs
+    # сумма логов по условию
+    crittical_logs_sum = sum(
+        1 for log in logs
         if log['level'] == 'CRITICAL' and (
             start_time <= datetime.strptime(log['time'], '%H:%M:%S') <= end_time
         )
-    ]
+    )
     # кол-во логов - длина списка
-    return len(crittical_logs)
+    return crittical_logs_sum
 
 
 def task4() -> int:
@@ -109,9 +109,9 @@ def task5() -> str:
         if log['level'] == 'WARNING'
     ]
     # разбить сообщения на слова
-    warning_words = (
-        word for message in warning_messages for word in message.split()
-    )
+    warning_words = []
+    for message in warning_messages:
+        warning_words.extend(message.split())
     # посчитать слова
     count_words = Counter(warning_words)
     # найти наиболее повторяющееся слово
