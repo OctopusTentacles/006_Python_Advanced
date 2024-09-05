@@ -14,6 +14,7 @@
 
 import json
 import os
+import subprocess
 
 from collections import Counter
 from datetime import datetime
@@ -82,6 +83,27 @@ def task3() -> int:
     )
     # кол-во логов - длина списка
     return crittical_logs_sum
+
+
+def task3() -> int:
+    """
+    3. Сколько логов уровня CRITICAL было в период с 05:00:00 по 05:20:00.
+    @return: количество логов
+    """
+    # с помощью утилиты grep
+    crittical_log = subprocess.run(
+        [
+            'grep', '"level": "CRITICAL"', 
+            os.path.join(cur_dir, 'skillbox_json_messages.log')
+        ],
+        stdout=subprocess.PIPE
+    )
+    result = subprocess.run(
+        [
+            'grep', 
+        ]
+    )
+    return result.stdout.decode('utf-8')
 
 
 def task4() -> int:
