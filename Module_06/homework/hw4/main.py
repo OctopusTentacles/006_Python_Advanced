@@ -85,7 +85,7 @@ def task3() -> int:
     return crittical_logs_sum
 
 
-def task3() -> int:
+def task3_1() -> int:
     """
     3. Сколько логов уровня CRITICAL было в период с 05:00:00 по 05:20:00.
     @return: количество логов
@@ -100,8 +100,10 @@ def task3() -> int:
     )
     result = subprocess.run(
         [
-            'grep', 
-        ]
+            'grep', '"time": "05:00:\|05:20:"',
+        ],
+        input=crittical_log.stdout,
+        stdout=subprocess.PIPE
     )
     return result.stdout.decode('utf-8')
 
@@ -142,7 +144,7 @@ def task5() -> str:
     return most_common_word
 
 if __name__ == '__main__':
-    tasks = (task1, task2, task3, task4, task5)
+    tasks = (task1, task2, task3, task3_1, task4, task5)
     for i, task_fun in enumerate(tasks, 1):
         task_answer = task_fun()
         print(f'{i}. {task_answer}')
