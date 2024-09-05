@@ -112,9 +112,12 @@ def task5() -> str:
     warning_words = (
         word for message in warning_messages for word in message.split()
     )
+    # посчитать слова
     count_words = Counter(warning_words)
-    print(count_words)
-    return
+    # найти наиболее повторяющееся слово
+    most_common_word = count_words.most_common(1)[0][0]
+
+    return most_common_word
 
 if __name__ == '__main__':
     tasks = (task1, task2, task3, task4, task5)
