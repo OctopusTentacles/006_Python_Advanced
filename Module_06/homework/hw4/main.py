@@ -93,19 +93,19 @@ def task3_1() -> int:
     # с помощью утилиты grep
     crittical_log = subprocess.run(
         [
-            'grep', '"level": "CRITICAL"', 
+            'grep', '"level": "CRITICAL"',
             os.path.join(cur_dir, 'skillbox_json_messages.log')
         ],
         stdout=subprocess.PIPE
     )
     result = subprocess.run(
         [
-            'grep', '"time": "05:00:\|05:20:"',
+            'grep', '"time": "05:0[0-9]:\|05:1[0-9]:\|05:20:"',
         ],
         input=crittical_log.stdout,
         stdout=subprocess.PIPE
     )
-    return result.stdout.decode('utf-8')
+    return len(result.stdout.decode('utf-8').splitlines())
 
 
 def task4() -> int:
