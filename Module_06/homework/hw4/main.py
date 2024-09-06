@@ -122,6 +122,18 @@ def task4() -> int:
     return dog_message
 
 
+def task4_1() -> int:
+    # с помощью утилиты grep
+    dog_in_log = subprocess.run(
+        [
+            'grep', '-c', '"message":.*dog',
+            os.path.join(cur_dir, 'skillbox_json_messages.log')
+        ],
+        stdout=subprocess.PIPE
+    )
+    return int(dog_in_log.stdout.decode('utf-8').strip())
+
+
 def task5() -> str:
     """
     5. Какое слово чаще всего встречалось в сообщениях уровня WARNING.
@@ -144,7 +156,7 @@ def task5() -> str:
     return most_common_word
 
 if __name__ == '__main__':
-    tasks = (task1, task2, task3, task3_1, task4, task5)
+    tasks = (task1, task2, task3, task3_1, task4, task4_1, task5)
     for i, task_fun in enumerate(tasks, 1):
         task_answer = task_fun()
         print(f'{i}. {task_answer}')
