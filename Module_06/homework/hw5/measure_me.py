@@ -11,9 +11,16 @@
 Сконфигурируйте логгер, запустите программу, соберите логи 
 и посчитайте среднее время выполнения функции measure_me.
 """
+
+
 import logging
 import random
+import os
 from typing import List
+
+
+# текущая директория:
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 logger = logging.getLogger(__name__)
 
@@ -65,7 +72,13 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level="DEBUG")
+    logging.basicConfig(
+        level="DEBUG",
+        filename=os.path.join(cur_dir, 'stdout.log'),
+        format='%(asctime)s | %(levelname)s | %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S.%f'
+    )
+
     for it in range(15):
         data_line = get_data_line(10 ** 3)
         measure_me(data_line)
