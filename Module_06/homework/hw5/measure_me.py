@@ -13,9 +13,12 @@
 """
 
 
+import json
 import logging
 import random
 import os
+
+from datetime import datetime
 from typing import List
 
 
@@ -24,7 +27,27 @@ cur_dir = os.path.dirname(os.path.abspath(__file__))
 
 logger = logging.getLogger(__name__)
 
+# ===================================================================
+# анализ логов:
+def measure_log_time(log_file: str) -> float:
+    logs = []
+    leave_time = []
 
+    # найти строки с "Enter measure_me" и "Leave measure_me":
+    with open(log_file, 'r') as file:
+        for line in file:
+            log = json.loads(line.strip())  
+            logs.append(log)
+
+    enter_time = [
+        datetime.strptime(log['time'], '%Y-%m-%d %H:%M:%S.%f')
+        for log in logs
+        if log['message'] == 'Enter measure_me'
+    ]
+
+    print(enter_time)
+
+# ===================================================================
 def get_data_line(sz: int) -> List[int]:
     try:
         logger.debug("Enter get_data_line")
@@ -72,6 +95,8 @@ def measure_me(nums: List[int]) -> List[List[int]]:
 
 
 if __name__ == "__main__":
+    # ===============================================================
+    # сконфигурировать логгер:
     logging.basicConfig(
         level="DEBUG",
         filename=os.path.join(cur_dir, 'stdout.log'),
@@ -82,3 +107,5 @@ if __name__ == "__main__":
     for it in range(15):
         data_line = get_data_line(10 ** 3)
         measure_me(data_line)
+
+    measure_log_time(os.path.join(cur_dir, 'stdout.log'))
