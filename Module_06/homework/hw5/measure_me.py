@@ -37,7 +37,7 @@ def measure_log_time(log_file: str) -> float:
     # найти строки с "Enter measure_me" и "Leave measure_me":
     with open(log_file, 'r') as file:
         for line in file:
-            if "Enter measure_me" in line:
+            if 'Enter measure_me' in line:
                 # ищем время в этой строке через рег.выражения:
                 match_time = re.search(
                     r'\d{4}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d+',
@@ -47,6 +47,18 @@ def measure_log_time(log_file: str) -> float:
                 enter_time.append(
                     datetime.strptime(match_time, '%Y-%m-%d %H:%M:%S.%f')
                 )
+            elif 'Leave measure_me' in line:
+                # ищем время в этой строке через рег.выражения:
+                match_time = re.search(
+                    r'\d{4}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d+',
+                    line
+                ).group(0)
+                # добавляем в enter_time в формате datetime:
+                leave_time.append(
+                    datetime.strptime(match_time, '%Y-%m-%d %H:%M:%S.%f')
+                )
+    print(enter_time , leave_time)
+
 
 # ===================================================================
 def get_data_line(sz: int) -> List[int]:
@@ -101,8 +113,8 @@ if __name__ == "__main__":
     logging.basicConfig(
         level="DEBUG",
         filename=os.path.join(cur_dir, 'stdout.log'),
-        format='%(asctime)s | %(levelname)s | %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S.%f'
+        format='%(asctime)s.%(msecs)03d | %(levelname)s | %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
     )
 
     for it in range(15):
