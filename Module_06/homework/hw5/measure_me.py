@@ -40,7 +40,7 @@ def measure_log_time(log_file: str) -> float:
             if 'Enter measure_me' in line:
                 # ищем время в этой строке через рег.выражения:
                 match_time = re.search(
-                    r'\d{4}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d+',
+                    r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+',
                     line
                 ).group(0)
                 # добавляем в enter_time в формате datetime:
@@ -50,14 +50,15 @@ def measure_log_time(log_file: str) -> float:
             elif 'Leave measure_me' in line:
                 # ищем время в этой строке через рег.выражения:
                 match_time = re.search(
-                    r'\d{4}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d+',
+                    r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+',
                     line
                 ).group(0)
                 # добавляем в enter_time в формате datetime:
                 leave_time.append(
                     datetime.strptime(match_time, '%Y-%m-%d %H:%M:%S.%f')
                 )
-    print(enter_time , leave_time)
+    for enter, leave in zip(enter_time, leave_time):
+        print('время выполнения:', leave - enter)
 
 
 # ===================================================================
