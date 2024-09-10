@@ -16,6 +16,7 @@
 import json
 import logging
 import random
+import re
 import os
 
 from datetime import datetime
@@ -30,22 +31,22 @@ logger = logging.getLogger(__name__)
 # ===================================================================
 # анализ логов:
 def measure_log_time(log_file: str) -> float:
-    logs = []
+    enter_time = []
     leave_time = []
 
     # найти строки с "Enter measure_me" и "Leave measure_me":
     with open(log_file, 'r') as file:
         for line in file:
-            log = json.loads(line.strip())  
-            logs.append(log)
-
-    enter_time = [
-        datetime.strptime(log['time'], '%Y-%m-%d %H:%M:%S.%f')
-        for log in logs
-        if log['message'] == 'Enter measure_me'
-    ]
-
-    print(enter_time)
+            if "Enter measure_me" in line:
+                # ищем время в этой строке через рег.выражения:
+                match_time = re.search(
+                    r'\d{4}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d+',
+                    line
+                ).group(0)
+                # добавляем в enter_time в формате datetime:
+                enter_time.append(
+                    datetime.strptime(match_time, '%Y-%m-%d %H:%M:%S.%f')
+                )
 
 # ===================================================================
 def get_data_line(sz: int) -> List[int]:
