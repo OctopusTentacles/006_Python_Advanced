@@ -57,8 +57,15 @@ def measure_log_time(log_file: str) -> float:
                 leave_time.append(
                     datetime.strptime(match_time, '%Y-%m-%d %H:%M:%S.%f')
                 )
-    for enter, leave in zip(enter_time, leave_time):
-        print('время выполнения:', leave - enter)
+    # считаем время каждого выполнения функции 'measure_me':
+    measure_times = [
+        (leave - enter) for enter, leave in zip(enter_time, leave_time)
+    ]
+    # считаем среднее значение (время) из списка 'measure_time':
+    average_measure_time = sum(measure_times) / len(measure_times)
+
+    print('общее время выполнения программы:', sum(measure_times))
+    print('среднее время выполнения функции `measure_me`:', average_measure_time)
 
 
 # ===================================================================
