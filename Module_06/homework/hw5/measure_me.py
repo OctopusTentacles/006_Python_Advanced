@@ -13,13 +13,12 @@
 """
 
 
-import json
 import logging
 import random
 import re
 import os
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import List
 
 
@@ -62,9 +61,9 @@ def measure_log_time(log_file: str) -> float:
         (leave - enter) for enter, leave in zip(enter_time, leave_time)
     ]
     # считаем среднее значение (время) из списка 'measure_time':
-    average_measure_time = sum(measure_times) / len(measure_times)
+    average_measure_time = sum(measure_times, timedelta()) / len(measure_times)
 
-    print('общее время выполнения программы:', sum(measure_times))
+    print('общее время выполнения программы:', sum(measure_times, timedelta()))
     print('среднее время выполнения функции `measure_me`:', average_measure_time)
 
 
