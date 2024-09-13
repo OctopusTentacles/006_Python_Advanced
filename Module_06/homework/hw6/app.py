@@ -48,7 +48,9 @@ def site_map():
     for rule in app.url_map.iter_rules():
         if 'GET' in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
-            links.append(url, rule.endpoint)
+            links.append((url, rule.endpoint))
+    return links
+
 
 if __name__ == '__main__':
     app.run(debug=True)
