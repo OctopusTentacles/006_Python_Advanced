@@ -10,7 +10,7 @@
 """
 
 
-from flask import Flask
+from flask import Flask, url_for
 
 app = Flask(__name__)
 
@@ -34,6 +34,19 @@ def cat_page(cat_id: int):
 def index():
     return 'Главная страница'
 
+# ===================================================================
+def has_no_empty_params(rule):
+
+
+# обработчик ошибки 404:
+@app.errorhandler(404)
+def site_map():
+    # получаем список всех доступных страниц:
+    links = []
+    for rule in app.url_map.iter_rules():
+        if 'GET' in rule.methods and has_no_empty_params(rule):
+            url = url_for(rule.endpoint, **(rule.defaults or {}))
+            links.append(url, rule.endpoint)
 
 if __name__ == '__main__':
     app.run(debug=True)
