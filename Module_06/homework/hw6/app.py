@@ -49,7 +49,7 @@ def site_map():
         if 'GET' in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append((url, rule.endpoint))
-    return render_template('доступные страницы:', links=links)
+    return render_template('all_links.html', links=links), 404
 
 
 if __name__ == '__main__':
