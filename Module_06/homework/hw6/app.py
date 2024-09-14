@@ -10,7 +10,7 @@
 """
 
 
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 
 app = Flask(__name__)
 
@@ -42,18 +42,15 @@ def has_no_empty_params(rule):
 
 # обработчик ошибки 404:
 @app.errorhandler(404)
-def site_map(e):
+def site_map():
     # получаем список всех доступных страниц:
     links = []
     for rule in app.url_map.iter_rules():
         if 'GET' in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append((url, rule.endpoint))
-    return '''
-    <h1> Страница не найдена (404)</h1>
-    <p> {'\n'.join(links)}</p>
-    <u1> {} </u1>
-    '''.format(''.join(links))
+    return render_template('доступные страницы:', links=links)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
