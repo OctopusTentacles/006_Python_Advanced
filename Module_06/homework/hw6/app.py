@@ -42,15 +42,18 @@ def has_no_empty_params(rule):
 
 # обработчик ошибки 404:
 @app.errorhandler(404)
-def site_map():
+def site_map(e):
     # получаем список всех доступных страниц:
     links = []
     for rule in app.url_map.iter_rules():
         if 'GET' in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append((url, rule.endpoint))
-    return links
-
+    return '''
+    <h1> Страница не найдена (404)</h1>
+    <p> {'\n'.join(links)}</p>
+    <u1> {} </u1>
+    '''.format(''.join(links))
 
 if __name__ == '__main__':
     app.run(debug=True)
