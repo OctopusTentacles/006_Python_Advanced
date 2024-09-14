@@ -1,5 +1,15 @@
-<ul>
-    {% for url, endpoint in links %}
-    <li><a href="{{ url }}">{{ endpoint }}</a></li>
-    {% endfor %}
-</ul>
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    
+    <body>
+        <h1>Страница не найдена!</h1>
+        <ul>
+            {% for url, endpoint in links %}
+                <li><a href="{{ url }}">{{ endpoint}}</a></li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
