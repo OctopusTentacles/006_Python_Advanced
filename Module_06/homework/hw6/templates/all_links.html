@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
+<!doctype html>
 
-    </head>
-    
-    <body>
-        <h1>Страница не найдена!</h1>
-        <ul>
-            {% for url, endpoint in links %}
-                <li><a href="{{ url }}">{{ endpoint}}</a></li>
-            {% endfor %}
-        </ul>
-    </body>
+<head>
+    <title>Страница не найдена</title>
+</head>
+
+<body>
+    <h1>Страница не найдена!</h1>
+    <ul>
+        {% for url, endpoint in links %}
+            <li><a href="{{ url }}">{{ endpoint}}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+
 </html>
