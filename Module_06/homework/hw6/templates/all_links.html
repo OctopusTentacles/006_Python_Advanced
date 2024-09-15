@@ -1,16 +1,20 @@
 <!doctype html>
 
+
 <head>
     <title>Страница не найдена</title>
 </head>
 
+
 <body>
-    <h1>Страница не найдена!</h1>
+    <h1>Страница не найдена! Ошибка 404!</h1>
+    <p>Доступные ссылки сайта:</p>
     <ul>
         {% for url, endpoint in links %}
             <li><a href="{{ url }}">{{ endpoint}}</a></li>
         {% endfor %}
     </ul>
 </body>
+
 
 </html>
