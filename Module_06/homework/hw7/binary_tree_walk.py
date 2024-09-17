@@ -83,8 +83,9 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
 # от корня до самого глубинного узла, а потом возвращается 
 # и обходит другие пути
 
-# поиск в ширину (BFS) - сначали берется родительский узел
+# поиск в ширину (BFS) - сначала берется родительский узел
 # потом его потомки - сначала левый потомок, затем правый
+# потомок добавляется в очередь для следующего посещения
 
 # судя по логам используется BFS
 
@@ -93,6 +94,18 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
     nodes: Dict[int, BinaryTreeNode] = {}
     # корень дерева:
     root = None
+
+    # прочитать файл логов и извлечь информацию
+    # посещение узла - INFO:Visiting
+    # добавление в очередь - DEBUG
+    with open(path_to_log_file, 'r') as file:
+        for line in file:
+            line = line.strip()
+
+            # если посещение узла:
+            if line.startswith('INFO:Visiting'):
+                # берем номер узла и ложим в словарь:
+                
     pass
 
 
