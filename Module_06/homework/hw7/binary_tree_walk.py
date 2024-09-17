@@ -105,7 +105,12 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
             # если посещение узла:
             if line.startswith('INFO:Visiting'):
                 # берем номер узла и ложим в словарь:
-                
+                # split[1] - INFO:Visiting <BinaryTreeNode "[" 396938]>
+                # split[0] - 396938 "]" >
+                node_value = int(line.split('[')[1].split(']')[0])
+
+                if node_value not in nodes:
+                    nodes[node_value] = BinaryTreeNode(node_value)
     pass
 
 
