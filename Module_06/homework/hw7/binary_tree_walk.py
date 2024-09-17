@@ -36,9 +36,9 @@ logger = logging.getLogger("tree_walk")
 
 @dataclass
 class BinaryTreeNode:
-    val: int
-    left: Optional["BinaryTreeNode"] = None
-    right: Optional["BinaryTreeNode"] = None
+    val: int    # значение узла
+    left: Optional["BinaryTreeNode"] = None # левый потомок
+    right: Optional["BinaryTreeNode"] = None # правый потомок
 
     def __repr__(self):
         return f"<BinaryTreeNode[{self.val}]>"
@@ -91,7 +91,7 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
 
 def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
     # словарь для хранения узлов по значению:
-    nodes: Dict[int, BinaryTreeNode] = {}
+    nodes_dict: Dict[int, BinaryTreeNode] = {}
     # корень дерева:
     root = None
 
@@ -109,11 +109,17 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
                 # split[0] - 396938 "]" >
                 node_value = int(line.split('[')[1].split(']')[0])
 
-                if node_value not in nodes:
-                    nodes[node_value] = BinaryTreeNode(node_value)
-    pass
+                if node_value not in nodes_dict:
+                    nodes_dict[node_value] = BinaryTreeNode(node_value)
+                
+                # проверить корень дерева:
+                if root is None:
+                    root = nodes_dict[node_value]
+
+    return root
 
 
+# ===================================================================
 if __name__ == "__main__":
     logging.basicConfig(
         level=logging.DEBUG,
