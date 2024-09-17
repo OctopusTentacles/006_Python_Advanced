@@ -22,10 +22,15 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 import itertools
 import logging
 import random
+import os
+
 from collections import deque
 from dataclasses import dataclass
-from typing import Optional
+from typing import Optional, Dict
 
+
+# текущая директория:
+cur_dir = os.path.dirname(os.path.abspath(__file__))
 logger = logging.getLogger("tree_walk")
 
 
@@ -73,8 +78,21 @@ def get_tree(max_depth: int, level: int = 1) -> Optional[BinaryTreeNode]:
 
     return node
 
+# ===================================================================
+# поиск в глубину (DFS) - сначала идёт по одному пути 
+# от корня до самого глубинного узла, а потом возвращается 
+# и обходит другие пути
+
+# поиск в ширину (BFS) - сначали берется родительский узел
+# потом его потомки - сначала левый потомок, затем правый
+
+# судя по логам используется BFS
 
 def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
+    # словарь для хранения узлов по значению:
+    nodes: Dict[int, BinaryTreeNode] = {}
+    # корень дерева:
+    root = None
     pass
 
 
