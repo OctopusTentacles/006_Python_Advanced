@@ -128,9 +128,13 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
                 # <BinaryTreeNode[396980]> - [6]
 
                 # из первой части получить родительский узел:
-                node_parent = int(line_parts[0].split('[')[1].split(']')[0])
+                value_parent = int(line_parts[0].split('[')[1].split(']')[0])
                 # из шестой части получить дочерний узел:
-                node_child = int(line_parts[6].split('[')[1].split(']')[0])
+                value_child = int(line_parts[6].split('[')[1].split(']')[0])
+
+                # проверить дочернее значение в словаре и создать узел:
+                if value_child not in nodes_dict:
+                    nodes_dict[value_child] = BinaryTreeNode(value_child)
   
 
 
