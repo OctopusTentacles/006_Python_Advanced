@@ -119,7 +119,18 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
             
             # если добавление в очередь:_____________________________
             elif line.startswith('DEBUG'):
-                
+                # разделим строку на части:
+                line_parts = line.split()
+
+                # нас интересуют:
+                # DEBUG:<BinaryTreeNode[396981]> - [0]
+                # right / left
+                # <BinaryTreeNode[396980]> - [6]
+
+                # из первой части получить родительский узел:
+                node_parent = int(line_parts[0].split('[')[1].split(']')[0])
+
+  
 
 
     return root
