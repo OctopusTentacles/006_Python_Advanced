@@ -102,7 +102,7 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
         for line in file:
             line = line.strip()
 
-            # если посещение узла:
+            # если посещение узла:___________________________________
             if line.startswith('INFO:Visiting'):
                 # берем номер узла и ложим в словарь:
                 # split[1] - INFO:Visiting <BinaryTreeNode "[" 396938]>
@@ -115,6 +115,12 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
                 # проверить корень дерева:
                 if root is None:
                     root = nodes_dict[node_value]
+
+            
+            # если добавление в очередь:_____________________________
+            elif line.startswith('DEBUG'):
+                
+
 
     return root
 
