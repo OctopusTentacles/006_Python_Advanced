@@ -129,7 +129,8 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 
                 # из первой части получить родительский узел:
                 node_parent = int(line_parts[0].split('[')[1].split(']')[0])
-
+                # из шестой части получить дочерний узел:
+                node_child = int(line_parts[6].split('[')[1].split(']')[0])
   
 
 
