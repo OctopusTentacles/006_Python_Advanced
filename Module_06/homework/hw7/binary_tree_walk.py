@@ -142,7 +142,7 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
                 elif 'right' in line_parts:
                     nodes_dict[value_parent].right = nodes_dict[value_child]
 
-    return root
+    print(root)
 
 
 # ===================================================================
@@ -150,8 +150,13 @@ if __name__ == "__main__":
     logging.basicConfig(
         level=logging.DEBUG,
         format="%(levelname)s:%(message)s",
-        filename="walk_log_4.txt",
+        filename=os.path.join(cur_dir, "walk_log_4.txt"),
     )
 
     root = get_tree(7)
     walk(root)
+
+
+    restore_tree(os.path.join(cur_dir, "walk_log_4.txt"))
+
+    
