@@ -147,17 +147,15 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
 # ===================================================================
 # ===================================================================
 # структура дерева:
-def print_tree(node, level=0):
+def print_tree(node, level=10):
     if node is not None:
-        print('КОРЕНЬ:', node)
-        print(' ' * level * 4 + f'Node: {node.val}')
+        # print(' ' * level * 4 + f'Node: {node.val}')
         if node.left:
-            print(' ' * level * 4 + ' Left:')
-            print_tree(node.left, level+1)
+            print(' ' * (level - 4), ' Left:', node.val)
+            print_tree(node.left, level-1)
         if node.right:
-            print(' ' * )
-
-
+            print(' ' * (level + 4), ' Right:', node.val)
+            print_tree(node.left, level+1)
 
 # ===================================================================
 # ===================================================================
@@ -172,5 +170,7 @@ if __name__ == "__main__":
     walk(root)
 
     tree_root = restore_tree(os.path.join(cur_dir, "walk_log_4.txt"))
+    print(' ' * 10, 'КОРЕНЬ:', tree_root.val)
+
     print_tree(tree_root)
 
