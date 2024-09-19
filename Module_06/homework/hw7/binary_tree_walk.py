@@ -135,8 +135,12 @@ def restore_tree(path_to_log_file: str) -> BinaryTreeNode:
                 # проверить дочернее значение в словаре и создать узел:
                 if value_child not in nodes_dict:
                     nodes_dict[value_child] = BinaryTreeNode(value_child)
-  
 
+                # определить лево или право:
+                if 'left' in line_parts:
+                    nodes_dict[value_parent].left = nodes_dict[value_child]
+                elif 'right' in line_parts:
+                    nodes_dict[value_parent].right = nodes_dict[value_child]
 
     return root
 
