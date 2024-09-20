@@ -171,7 +171,7 @@ if __name__ == "__main__":
     walk(root)
 
     tree_root = restore_tree(os.path.join(cur_dir, "walk_log_4.txt"))
-    print('КОРЕНЬ:', tree_root)
+    print('\nКОРЕНЬ:', tree_root)
 
     print_tree(tree_root)
 
