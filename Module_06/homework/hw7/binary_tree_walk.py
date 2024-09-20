@@ -152,7 +152,11 @@ def print_tree(node, level=0):
         left_val = node.left.val if node.left else 'None'
         right_val = node.right.val if node.right else 'None'
 
+        print(f'Level {level}\tNode: {node.val}\tLeft: {left_val}\tRight: {right_val}')
         
+        print_tree(node.left, level+1)
+        print_tree(node.right, level+1)
+
 
 # ===================================================================
 # ===================================================================
