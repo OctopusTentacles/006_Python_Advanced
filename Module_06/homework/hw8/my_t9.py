@@ -25,10 +25,28 @@
 """
 
 
+import re
+import os
+
 from typing import List
 
 
+cur_dir = os.path.dirname(os.path.abspath(__file__))
+
 def my_t9(input_numbers: str) -> List[str]:
+    t9_data = {
+        '2': 'abc',
+        '3': 'def',
+        '4': 'ghi',
+        '5': 'jkl',
+        '6': 'mno',
+        '7': 'pqrs',
+        '8': 'tuv',
+        '9': 'wxyz',
+    }
+    # составить выражение соответствующее цифрам input_numbers:
+    # 227 = abcabcpqrs
+    input_letters = ''.join([f'[{t9_data[num]}]' for num in input_numbers])
     ...
 
 
