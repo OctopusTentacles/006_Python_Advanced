@@ -44,9 +44,14 @@ def my_t9(input_numbers: str) -> List[str]:
         '8': 'tuv',
         '9': 'wxyz',
     }
-    # составить выражение соответствующее цифрам input_numbers:
-    # 227 = abcabcpqrs
-    input_letters = ''.join([f'[{t9_data[num]}]' for num in input_numbers])
+    # составить рег.выражение соответствующее цифрам input_numbers:
+    # 227 = [abc][abc][pqrs]
+    pattern = ''.join([f'[{t9_data[num]}]' for num in input_numbers])
+    reg_expression = re.compile(f'^{pattern}$')
+
+    # прочитать файл со словами:
+    with open(os.path.join(cur_dir, 'eng_words.txt')) as file:
+        words_list = file.read().splitlines()
     ...
 
 
