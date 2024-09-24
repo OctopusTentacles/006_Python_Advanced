@@ -52,7 +52,10 @@ def my_t9(input_numbers: str) -> List[str]:
     # прочитать файл со словами:
     with open(os.path.join(cur_dir, 'eng_words.txt')) as file:
         words_list = file.read().splitlines()
-    ...
+    
+    # проверить список слов через рег.выражение:
+    result = [word for word in words_list if reg_expression.match(word.lower())]
+    return result
 
 
 if __name__ == '__main__':
