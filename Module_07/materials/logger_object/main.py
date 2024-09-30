@@ -7,6 +7,9 @@ from subprocess_utils import get_kernel_version
 
 logging.basicConfig(level='DEBUG')
 logger = logging.getLogger('main')
+logger.setLevel('INFO')
+
+utils_logger = logging.getLogger('utils')
 
 app = flask.Flask(__name__)
 
