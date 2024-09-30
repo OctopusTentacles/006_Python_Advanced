@@ -5,10 +5,14 @@ from http_utils import get_ip_address
 from subprocess_utils import get_kernel_version
 
 
+# настройка основного логгера (root):
 logging.basicConfig(level='DEBUG')
+
+# логгер main с уровнем INFO:
 logger = logging.getLogger('main')
 logger.setLevel('INFO')
 
+# логгер utils с уровнем DEBUG:
 utils_logger = logging.getLogger('utils')
 
 app = flask.Flask(__name__)
