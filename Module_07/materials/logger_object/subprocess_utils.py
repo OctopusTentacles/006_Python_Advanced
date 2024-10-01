@@ -6,7 +6,7 @@ import shlex
 KERNEL_VERSION = None
 
 
-# настройка логгера logger_utils и его дочерних логгеров:
+# настройка дочернего логгера от logger_utils:
 logger = logging.getLogger('logger_utils.subprocess_utils')
 
 
