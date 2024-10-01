@@ -8,6 +8,10 @@ from subprocess_utils import get_kernel_version
 # настройка основного логгера (root):
 logging.basicConfig(level='DEBUG')
 
+# настройка логгера logger_utils:
+logger_utils = logging.getLogger('logger_utils')
+
+
 # логгер main с уровнем INFO:
 main_logger = logging.getLogger('main')
 main_logger.setLevel('INFO')
