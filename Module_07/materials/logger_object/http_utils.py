@@ -4,8 +4,12 @@ import time
 import requests
 
 
+# настройка логгера logger_utils и его дочерних логгеров:
 logger_utils = logging.getLogger('logger_utils')
 logger_http_utils = logging.getLogger('logger_utils.http_utils')
+
+# уровень логирования для родителя:
+logger_utils.setLevel('INFO')
 
 GET_IP_URL = 'https://api.ipify.org?format=json'
 
