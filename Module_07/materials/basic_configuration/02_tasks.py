@@ -3,11 +3,18 @@ import logging
 
 # корневой логгер:
 root = logging.getLogger()
+root.setLevel(logging.DEBUG)
 
 # handlers:
 
 sub_handler = logging.StreamHandler()
 sub_handler.setLevel(logging.DEBUG)
+
+# formatter:
+formatter = logging.Formatter(
+    fmt='%(name)s || %(levelname)s || %(message)s || %(module)s,%(funcName)s:%(lineno)d'
+)
+sub_handler.setFormatter(formatter)
 
 # логгер sub_1 с уровнем INFO:
 sub_1 = logging.getLogger('sub_1')
