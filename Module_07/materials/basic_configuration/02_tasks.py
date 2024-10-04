@@ -24,7 +24,7 @@ sub_1.addHandler(sub_handler)
 # logger sub_2 уровень унаследует от root:
 sub_2 = logging.getLogger('sub_2')
 
-# loger sub_sub_1 с уровнем DEBUG:
+# loger sub_sub_1 с уровнем DEBUG, наследует от sub_1 sub_handler:
 sub_sub_1 = logging.getLogger('sub_1.sub_sub_1')
 sub_sub_1.setLevel(logging.DEBUG)
 
