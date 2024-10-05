@@ -17,7 +17,17 @@ dict_config = {
     },
 
     'loggers': {
-
+        'sub_1': {
+            'level': 'INFO',
+            'handlers': [],
+        },
+        'sub_2': {
+            'level': '',
+            'propagate': 'FALSE'
+        },
+        'sub_sub_1': {
+            'level': 'DEBUG',
+        }
     },
 
     # 'filters': {},
