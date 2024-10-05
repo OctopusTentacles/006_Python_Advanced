@@ -9,7 +9,11 @@ dict_config = {
     },
 
     'handlers': {
-
+        'root_handler': {
+            'class': 'logging.StreamHandler',
+            'level': 'DEBUG',
+            'formatter': 'formatter'
+        }
     },
 
     'loggers': {
