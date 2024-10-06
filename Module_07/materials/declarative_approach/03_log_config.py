@@ -1,4 +1,7 @@
+import os
 
+
+log_dir = os.path.join(os.path.dirname(__file__), 'log_file.log')
 dict_config = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -15,7 +18,14 @@ dict_config = {
             'class': 'logging.StreamHandler',
             'level': 'DEBUG',
             'formatter': 'formatter'
-        }
+        },
+        'file_handler': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'formatter',
+            'filename': log_dir,
+            'mode': 'a'
+        },
     },
 
     'loggers': {
