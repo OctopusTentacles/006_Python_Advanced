@@ -34,7 +34,7 @@ dict_config = {
         },
         'sub_1': {
             'level': 'INFO',
-            'handlers': ['root_handler', 'file_handler'],
+            'handlers': ['file_handler'],
         },
         'sub_2': {
             # 'level': 'DEBUG', # наследует от root
@@ -43,7 +43,7 @@ dict_config = {
         },
         'sub_sub_1': {
             'level': 'DEBUG',
-            'handlers': ['root_handler'],
+            'handlers': [],
         }
     },
 
