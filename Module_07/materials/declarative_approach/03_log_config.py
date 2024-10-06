@@ -35,10 +35,11 @@ dict_config = {
         },
         'sub_1': {
             'level': 'INFO',
-            'handlers': ['root_handler'],
+            'handlers': ['root_handler', 'file_handler'],
         },
         'sub_2': {
             # 'level': 'DEBUG', # наследует от root
+            'handlers': ['file_handler'],
             'propagate': False
         },
         'sub_sub_1': {
