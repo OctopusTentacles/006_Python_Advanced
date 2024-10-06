@@ -8,8 +8,7 @@ dict_config = {
 
     'formatters': {
         'formatter': {
-            'format': '%(name)s || %(levelname)s || %(message)s ||\
-                  %(module)s,%(funcName)s:%(lineno)d'
+            'format': '%(name)s || %(levelname)s || %(message)s || %(module)s,%(funcName)s:%(lineno)d'
         }
     },
 
