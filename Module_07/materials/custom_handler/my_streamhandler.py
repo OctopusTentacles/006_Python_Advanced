@@ -14,4 +14,9 @@ class MyStreamHandler(logging.StreamHandler):
     def __init__(self, stream=None):
         if stream is None:
             stream = sys.stderr
-        super().__init__(stream)
+        super().__init__(stream) # Вызов конструктора родителя для инициализации
+
+# Если вы не вызовете super().__init__(stream), 
+# то поток не будет передан в родительский класс StreamHandler, 
+# и логирование может не работать корректно, 
+# так как не будет задан поток для вывода логов.
