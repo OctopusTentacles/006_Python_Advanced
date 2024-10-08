@@ -21,5 +21,19 @@ dict_config = {
         }
     },
 
-    'handlers': {}
+    'handlers': {
+        'my_streamhandler': {
+            'class': MyStreamHandler,
+            'level': 'DEBUG',
+            'formatter': 'formatter'
+        },
+        'file_handler': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'formatter',
+            'file_name': log_dir,
+            'mode': 'a'
+        }
+    },
+    
 }
