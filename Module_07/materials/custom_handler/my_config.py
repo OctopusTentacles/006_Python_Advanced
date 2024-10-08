@@ -35,5 +35,24 @@ dict_config = {
             'mode': 'a'
         }
     },
-    
+
+    'loggers': {
+        '': { # root logger
+            'level': 'DEBUG',
+            'handlers': 'my_streamhandler'
+        },
+        'sub_1': {
+            'level': 'INFO',
+            'handlers': ['file_handler'],
+        },
+        'sub_2': {
+            # 'level': 'DEBUG', # наследует от root
+            'handlers': ['file_handler'],
+            'propagate': False
+        },
+        'sub_sub_1': {
+            'level': 'DEBUG',
+            'handlers': [],
+        }
+    }
 }
