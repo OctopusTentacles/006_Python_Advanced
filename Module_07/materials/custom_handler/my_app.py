@@ -13,3 +13,23 @@ sub_1 = logging.getLogger('sub_1')
 sub_2 = logging.getLogger('sub_2')
 sub_sub_1 = logging.getLogger('sub_1.sub_sub_1')
 
+def main():
+    print("=== Логирование от корневого логгера ===")
+    root.debug('This is a root debug message\n')
+
+    print("\n=== Логирование от sub_1 ===")
+    sub_1.debug('This debug message from sub_1 should not appear')
+    sub_1.info('This is an info message from sub_1')
+    # Логируем сообщение с дополнительным полем через `extra`:
+    sub_1.info('This message with extra', extra={'very': 'much'})
+
+    print("\n=== Логирование от sub_2 (не должно передаваться root) ===")
+    sub_2.info('This is an info message from sub_2')
+
+    print("\n=== Логирование от sub_sub_1 ===")
+    sub_sub_1.debug('This is a debug message from sub_sub_1')
+    sub_sub_1.info('This is an info message from sub_sub_1')
+
+
+if __name__ == '__main__':
+    main()
