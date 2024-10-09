@@ -54,5 +54,8 @@ dict_config = {
             'level': 'DEBUG',
             'handlers': [],
         }
-    }
+    },
+
+    #  'filters': {},
+    #  'root': {} # == '': {}
 }
