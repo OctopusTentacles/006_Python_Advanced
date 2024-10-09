@@ -16,6 +16,11 @@ class MyStreamHandler(logging.StreamHandler):
             stream = sys.stderr
         super().__init__(stream) # Вызов конструктора родителя для инициализации
 
+    def emit(self, record):
+        # Здесь можно обработать запись лога (record) перед выводом, если нужно
+        super().emit(record)  
+        # Используем родительский emit для стандартного поведения
+
 # Если вы не вызовете super().__init__(stream), 
 # то поток не будет передан в родительский класс StreamHandler, 
 # и логирование может не работать корректно, 
