@@ -23,7 +23,7 @@ dict_config = {
 
     'handlers': {
         'my_streamhandler': {
-            'class': MyStreamHandler,
+            'class': 'my_streamhandler.MyStreamHandler',
             'level': 'DEBUG',
             'formatter': 'formatter'
         },
@@ -31,7 +31,7 @@ dict_config = {
             'class': 'logging.FileHandler',
             'level': 'DEBUG',
             'formatter': 'formatter',
-            'file_name': log_dir,
+            'filename': log_dir,
             'mode': 'a'
         }
     },
@@ -39,7 +39,7 @@ dict_config = {
     'loggers': {
         '': { # root logger
             'level': 'DEBUG',
-            'handlers': 'my_streamhandler'
+            'handlers': ['my_streamhandler']
         },
         'sub_1': {
             'level': 'INFO',
