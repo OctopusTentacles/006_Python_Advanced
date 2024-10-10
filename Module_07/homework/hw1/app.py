@@ -4,12 +4,15 @@ import sys
 from utils import string_to_operator
 
 
-logging.basicConfig(level='DEBUG')
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s || %(name)s || %(levelname)s || %(message)s'
+)
 logger = logging.getLogger('arithmetic_logger')
 
 
 def calc(args):
-    logger.info("Arguments: ", args)
+    logger.info(f"Arguments: {args}")
 
     num_1 = args[0]
     operator = args[1]
@@ -31,7 +34,7 @@ def calc(args):
 
     result = operator_func(num_1, num_2)
 
-    logger.info("Result: ", result)
+    logger.info(f"Result: {result}")
     logger.info(f"{num_1} {operator} {num_2} = {result}")
 
 
