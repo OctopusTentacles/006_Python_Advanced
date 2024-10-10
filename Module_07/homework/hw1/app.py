@@ -27,7 +27,7 @@ def calc(args):
     try:
         num_2 = float(num_2)
     except ValueError as e:
-        logger.error("Error while converting number 1")
+        logger.error("Error while converting number 2")
         logger.debug(e)
 
     operator_func = string_to_operator(operator)
@@ -40,4 +40,4 @@ def calc(args):
 
 if __name__ == '__main__':
     # calc(sys.argv[1:])
-    calc('2+3')
+    calc('2*3')
