@@ -22,6 +22,9 @@ def logging_config():
         handlers=[handler]
     )
 
+# logging:
+logging_config()
+logger = logging.getLogger('arithmetic_logger')
 
 
 def calc(args):
