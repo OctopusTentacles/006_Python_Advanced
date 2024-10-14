@@ -26,6 +26,13 @@ class LevelFileHandler(logging.Handler):
             handler = logging.FileHandler(log_dir)
 
             # форматирование логов:
+            formatter = logging.Formatter(
+                '%(levelname)s || %(name)s || %(asctime)s || line %(lineno)d || %(message)s'
+            )
+            handler.setFormatter(formatter)
+
+            # сохранить обработчик для каждого уровня:
+            self.handlers[level] = handler
 
 
 def get_logger(name):
