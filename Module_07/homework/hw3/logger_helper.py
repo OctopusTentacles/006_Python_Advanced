@@ -33,6 +33,16 @@ class LevelFileHandler(logging.Handler):
 
             # сохранить обработчик для каждого уровня:
             self.handlers[level] = handler
+        
+    def emit(self, record):
+        """
+        метод проверяет, есть ли обработчик для уровня логов, 
+        и использует его для записи сообщения.
+
+        Args:
+            record (LogRecord): объект, содержащий все необходимые 
+            данные о текущем лог-сообщении.
+        """
 
 
 def get_logger(name):
