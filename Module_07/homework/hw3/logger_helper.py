@@ -43,6 +43,13 @@ class LevelFileHandler(logging.Handler):
             record (LogRecord): объект, содержащий все необходимые 
             данные о текущем лог-сообщении.
         """
+        log_level = record.levelno
+        handler = self.handlers.get(log_level)
+
+        # запись лога в файл через нужный обработчик:
+        if handler:
+            handler.emit(record)
+        
 
 
 def get_logger(name):
