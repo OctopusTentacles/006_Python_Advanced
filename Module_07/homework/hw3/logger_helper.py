@@ -53,6 +53,12 @@ class LevelFileHandler(logging.Handler):
 
 
 def get_logger(name):
-    ...
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.DEBUG)
+
+    # добавляем LevelFileHandler:
+    handler = LevelFileHandler(base_filename='calc')
+    logger.addHandler(handler)
+
     return logger
 
