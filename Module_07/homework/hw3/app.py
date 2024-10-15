@@ -5,7 +5,11 @@ from utils import string_to_operator
 from logger_helper import get_logger
 
 
-logger = getattr('arithmetic_logger')
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s || %(name)s || %(levelname)s || %(message)s'
+# )
+logger = get_logger('arithmetic_logger')
 
 
 def calc(args):
