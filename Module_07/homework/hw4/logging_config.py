@@ -20,7 +20,15 @@ dict_config = {
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_debug.log'),
             'mode': 'a'
-        }
+        },
+        'file_info': {
+            'class': 'logging.FileHandler',
+            'level': 'INFO',
+            'formatter': 'base',
+            'filename': os.path.join(log_dir, 'calc_debug.log'),
+            'mode': 'a'
+        },
+        
     },
 
     'loggers': {
