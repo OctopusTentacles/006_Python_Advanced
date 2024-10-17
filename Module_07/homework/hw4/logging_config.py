@@ -29,13 +29,21 @@ dict_config = {
             'mode': 'a'
         },
         'file_error': {
-            'clas': 'logging.FileHandler',
+            'class': 'logging.FileHandler',
             'level': 'ERROR',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_error.log'),
             'mode': 'a'
         },
+        'file_warning': {
+            'class': 'logging.FileHandler',
+            'level': 'WARNING',
+            'formatter': 'base',
+            'filename': os.path.join(log_dir, 'calc_warning.log'),
+            'mode': 'a'
+        },
         
+
 
     },
 
