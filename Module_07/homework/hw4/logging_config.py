@@ -10,7 +10,13 @@ dict_config = {
     },
 
     'handlers': {
-
+        'file_debug': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'base',
+            'filename': '',
+            'mode': 'a'
+        }
     },
 
     'loggers': {
