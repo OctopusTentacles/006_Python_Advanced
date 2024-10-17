@@ -1,3 +1,7 @@
+import os
+
+
+log_dir = os.path.join(os.path.dirname(__file__), 'logs')
 
 dict_config = {
     'version': 1,
@@ -14,7 +18,7 @@ dict_config = {
             'class': 'logging.FileHandler',
             'level': 'DEBUG',
             'formatter': 'base',
-            'filename': '',
+            'filename': os.path.join(log_dir, 'calc_debug.log'),
             'mode': 'a'
         }
     },
