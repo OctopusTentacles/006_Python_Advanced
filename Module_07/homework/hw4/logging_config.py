@@ -42,9 +42,13 @@ dict_config = {
             'filename': os.path.join(log_dir, 'calc_warning.log'),
             'mode': 'a'
         },
-        
-
-
+        'file_critical': {
+            'class': 'logging.FileHandler',
+            'level': 'CRITICAL',
+            'formatter': 'base',
+            'filename': os.path.join(log_dir, 'calc_critical.log'),
+            'mode': 'a'
+        }
     },
 
     'loggers': {
