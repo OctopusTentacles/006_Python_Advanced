@@ -28,7 +28,15 @@ dict_config = {
             'filename': os.path.join(log_dir, 'calc_debug.log'),
             'mode': 'a'
         },
+        'file_error': {
+            'clas': 'logging.FileHandler',
+            'level': 'ERROR',
+            'formatter': 'base',
+            'filename': os.path.join(log_dir, 'calc_error.log'),
+            'mode': 'a'
+        },
         
+
     },
 
     'loggers': {
