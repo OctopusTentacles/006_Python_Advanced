@@ -3,6 +3,9 @@ import os
 
 log_dir = os.path.join(os.path.dirname(__file__), 'logs')
 
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
 dict_config = {
     'version': 1,
     'disable_existing_loggers': False,
