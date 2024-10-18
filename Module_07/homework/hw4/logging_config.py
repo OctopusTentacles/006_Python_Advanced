@@ -55,6 +55,19 @@ dict_config = {
     },
 
     'loggers': {
-
+        'arithmetic_logger': {
+            'level': 'DEBUG',
+            'handlers': [
+                'file_debug', 'file_info', 'file_error',
+                'file_warning', 'file_critical'
+            ]
+        },
+        'operators_logger': {
+            'level': 'DEBUG',
+            'handlers': [
+                'file_debug', 'file_info', 'file_error',
+                'file_warning', 'file_critical'
+            ]
+        }
     },
 }
