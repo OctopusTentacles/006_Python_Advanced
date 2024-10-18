@@ -60,14 +60,21 @@ dict_config = {
             'handlers': [
                 'file_debug', 'file_info', 'file_error',
                 'file_warning', 'file_critical'
-            ]
+            ],
+            # отключить передачу логов выше,
+            # устранить дублирование логов:
+            'propagate': False,
         },
         'operators_logger': {
             'level': 'DEBUG',
             'handlers': [
                 'file_debug', 'file_info', 'file_error',
                 'file_warning', 'file_critical'
-            ]
+            ],
+            # отключить передачу логов выше,
+            # устранить дублирование логов:
+            'propagate': False,
+
         }
     },
 }
