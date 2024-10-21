@@ -1,4 +1,15 @@
+import logging
 import os
+
+
+class LevelFileHandler(logging.Handler):
+    def __init__(self, filename, level):
+        super().__init__(filename)
+        self.level = level
+
+    def emit(self, record):
+        if record.levelno == self.level:
+            super().emit(record)
 
 
 log_dir = os.path.join(os.path.dirname(__file__), 'logs')
