@@ -2,10 +2,11 @@ import logging
 import os
 
 
-class LevelFileHandler(logging.Handler):
-    def __init__(self, filename, level):
-        super().__init__(filename)
+class LevelFileHandler(logging.FileHandler):
+    def __init__(self, filename, level, **kwargs):
         self.level = level
+        super().__init__(filename, level, **kwargs)
+
 
     def emit(self, record):
         if record.levelno == self.level:
@@ -29,35 +30,35 @@ dict_config = {
 
     'handlers': {
         'file_debug': {
-            'class': 'logging.FileHandler',
+            '()': LevelFileHandler,
             'level': 'DEBUG',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_debug.log'),
             'mode': 'a'
         },
         'file_info': {
-            'class': 'logging.FileHandler',
+            '()': LevelFileHandler,
             'level': 'INFO',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_info.log'),
             'mode': 'a'
         },
         'file_error': {
-            'class': 'logging.FileHandler',
+            '()': LevelFileHandler,
             'level': 'ERROR',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_error.log'),
             'mode': 'a'
         },
         'file_warning': {
-            'class': 'logging.FileHandler',
+            '()': LevelFileHandler,
             'level': 'WARNING',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_warning.log'),
             'mode': 'a'
         },
         'file_critical': {
-            'class': 'logging.FileHandler',
+            '()': LevelFileHandler,
             'level': 'CRITICAL',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'calc_critical.log'),
