@@ -1,6 +1,5 @@
 import logging
 import os
-import sys
 
 
 class LevelFileHandler(logging.Handler):
