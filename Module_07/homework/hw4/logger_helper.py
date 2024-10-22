@@ -39,6 +39,10 @@ class LevelFileHandler(logging.Handler):
 
         # запись лога в файл через нужный обработчик:
         if handler:
+            formatter = logging.Formatter(
+                '%(levelname)s || %(name)s || %(asctime)s || line %(lineno)d || %(message)s'
+            )
+            handler.setFormatter(formatter)
             handler.emit(record)
         
 
