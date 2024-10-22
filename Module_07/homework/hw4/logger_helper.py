@@ -20,17 +20,8 @@ class LevelFileHandler(logging.Handler):
             # имя файла логирования типа calc + _ + debug + .log:
             filename = f'{self.base_filename}_{level_name}.log'
 
-            # обработчик с выводом потока в файл:
-            log_dir = os.path.join(os.path.dirname(__file__), filename)
-            handler = logging.FileHandler(log_dir)
+            handler = logging.FileHandler(filename)
 
-            # форматирование логов:
-            formatter = logging.Formatter(
-                '%(levelname)s || %(name)s || %(asctime)s || line %(lineno)d || %(message)s'
-            )
-            handler.setFormatter(formatter)
-
-            # сохранить обработчик для каждого уровня:
             self.handlers[level] = handler
         
     def emit(self, record):
