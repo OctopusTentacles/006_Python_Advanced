@@ -18,41 +18,12 @@ dict_config = {
     },
 
     'handlers': {
-        'file_debug': {
-            'class': 'logging.FileHandler',
+        'file_handler': {
+            'class': 'logger_helper.LevelFileHandler',
             'level': 'DEBUG',
             'formatter': 'base',
-            'filename': os.path.join(log_dir, 'calc_debug.log'),
-            'mode': 'a'
+            'base_filename': os.path.join(log_dir, 'calc')
         },
-        'file_info': {
-            'class': 'logging.FileHandler',
-            'level': 'INFO',
-            'formatter': 'base',
-            'filename': os.path.join(log_dir, 'calc_info.log'),
-            'mode': 'a'
-        },
-        'file_error': {
-            'class': 'logging.FileHandler',
-            'level': 'ERROR',
-            'formatter': 'base',
-            'filename': os.path.join(log_dir, 'calc_error.log'),
-            'mode': 'a'
-        },
-        'file_warning': {
-            'class': 'logging.FileHandler',
-            'level': 'WARNING',
-            'formatter': 'base',
-            'filename': os.path.join(log_dir, 'calc_warning.log'),
-            'mode': 'a'
-        },
-        'file_critical': {
-            'class': 'logging.FileHandler',
-            'level': 'CRITICAL',
-            'formatter': 'base',
-            'filename': os.path.join(log_dir, 'calc_critical.log'),
-            'mode': 'a'
-        }
     },
 
     'loggers': {
