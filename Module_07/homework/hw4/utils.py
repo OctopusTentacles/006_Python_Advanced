@@ -31,5 +31,10 @@ def string_to_operator(value: str) -> Callable[[Numeric, Numeric], Numeric]:
     if value not in OPERATORS:
         logger.error(f"wrong operator value {value}")
         raise ValueError("wrong operator value")
+    
+    logger.warning("This is a warning message")
+    logger.error("This is an error message")
+    logger.critical("This is a critical message")
+
 
     return OPERATORS[value]
