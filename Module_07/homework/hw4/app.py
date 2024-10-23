@@ -43,4 +43,4 @@ def calc(args):
 
 if __name__ == '__main__':
     # calc(sys.argv[1:])
-    calc('2*3')
+    calc('2 *3')

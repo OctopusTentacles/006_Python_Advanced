@@ -3,7 +3,7 @@ import os
 
 
 class LevelFileHandler(logging.Handler):
-    def __init__(self, base_filename):
+    def __init__(self, base_filename, formatter=None):
         super().__init__()
         self.base_filename = base_filename
         self.handlers = {}
@@ -22,6 +22,9 @@ class LevelFileHandler(logging.Handler):
 
             handler = logging.FileHandler(filename)
 
+            if formatter:
+                handler.setFormatter(formatter)
+
             self.handlers[level] = handler
         
     def emit(self, record):
@@ -34,26 +37,16 @@ class LevelFileHandler(logging.Handler):
             record (LogRecord): объект, содержащий все необходимые 
             данные о текущем лог-сообщении.
         """
-        log_level = record.levelno
-        handler = self.handlers.get(log_level)
+        handler = self.handlers.get(record.levelno)
 
         # запись лога в файл через нужный обработчик:
         if handler:
-        #     formatter = logging.Formatter(
-        #         '%(levelname)s || %(name)s || %(asctime)s || line %(lineno)d || %(message)s'
-        #     )
-            # handler.setFormatter(formatter)
             handler.emit(record)
         
 
-
-def get_logger(name):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-
-    # добавляем LevelFileHandler:
-    handler = LevelFileHandler(base_filename='calc')
-    logger.addHandler(handler)
-
-    return logger
-
+    def setFormatter(self, formatter):
+        """
+        Применяем форматтер ко всем обработчикам внутри LevelFileHandler.
+        """
+        for handler in self.handlers.values():
+            handler.setFormatter(formatter)
