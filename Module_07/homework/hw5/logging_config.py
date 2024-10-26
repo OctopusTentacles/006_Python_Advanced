@@ -16,19 +16,19 @@ dict_config = {
 
     'formatters': {
         'base': {
-            'format': '%(levelname)s || %(name)s || %(asctime)s || line %(lineno)d || %(message)s'
+            'format': '%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s'
         }
     },
 
     'handlers': {
         'rotating_handler': {
-            'class': 'TimedRotatingFileHandler',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
             'level': 'INFO',
             'formatter': 'base',
             'filename': os.path.join(log_dir, 'utils.log'),
             'when': 'S',
             'interval': 10,
-            'backupCount': 1,
+            'backupCount': 2,
             'encoding': 'utf8'
         },
     },
@@ -36,8 +36,8 @@ dict_config = {
     'loggers': {
         'utils': {
             'level': 'INFO',
-            'handlers': 'rotating_handler',
+            'handlers': ['rotating_handler'],
             'propagate': False,
         }
     }
-},
+}

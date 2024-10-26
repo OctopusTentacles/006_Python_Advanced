@@ -7,7 +7,7 @@ from logging_config import dict_config
 
 
 logging.config.dictConfig(dict_config)
-logger = logging.getLogger('arithmetic_logger')
+logger = logging.getLogger('app')
 
 
 def calc(args):

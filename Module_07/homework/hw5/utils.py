@@ -7,7 +7,7 @@ from logging_config import dict_config
 
 
 logging.config.dictConfig(dict_config)
-logger = logging.getLogger('operators_logger')
+logger = logging.getLogger('utils')
 
 OPERATORS = {
     '+': add,
@@ -31,7 +31,10 @@ def string_to_operator(value: str) -> Callable[[Numeric, Numeric], Numeric]:
     if value not in OPERATORS:
         logger.error(f"wrong operator value {value}")
         raise ValueError("wrong operator value")
-    
+
+
+    logger.debug("This is a debug message")
+    logger.info("This is an info message")
     logger.warning("This is a warning message")
     logger.error("This is an error message")
     logger.critical("This is a critical message")
