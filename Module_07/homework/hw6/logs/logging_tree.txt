@@ -1,0 +1,21 @@
+<--""
+   Level WARNING
+   |
+   o   "arithmetic_logger"
+   |   Level DEBUG
+   |   Propagate OFF
+   |   Handler <LevelFileHandler (DEBUG)>
+   |     Level DEBUG
+   |
+   o   "operators_logger"
+   |   Level DEBUG
+   |   Propagate OFF
+   |   Handler <LevelFileHandler (DEBUG)>
+   |     Level DEBUG
+   |
+   o   "utils"
+       Level INFO
+       Propagate OFF
+       Handler TimedRotatingFile '/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_07/homework/hw6/logs/utils.log' when='S' interval=10 backupCount=2
+         Level INFO
+         Formatter fmt='%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s' datefmt=None

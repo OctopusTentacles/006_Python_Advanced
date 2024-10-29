@@ -1,0 +1,12 @@
+INFO     || utils      || 2024-10-29 15:58:57,735 || line 38   || This is an info message
+WARNING  || utils      || 2024-10-29 15:58:57,735 || line 39   || This is a warning message
+ERROR    || utils      || 2024-10-29 15:58:57,735 || line 40   || This is an error message
+CRITICAL || utils      || 2024-10-29 15:58:57,735 || line 41   || This is a critical message
+INFO     || utils      || 2024-10-29 15:58:59,532 || line 38   || This is an info message
+WARNING  || utils      || 2024-10-29 15:58:59,532 || line 39   || This is a warning message
+ERROR    || utils      || 2024-10-29 15:58:59,533 || line 40   || This is an error message
+CRITICAL || utils      || 2024-10-29 15:58:59,533 || line 41   || This is a critical message
+INFO     || utils      || 2024-10-29 15:59:00,485 || line 38   || This is an info message
+WARNING  || utils      || 2024-10-29 15:59:00,485 || line 39   || This is a warning message
+ERROR    || utils      || 2024-10-29 15:59:00,485 || line 40   || This is an error message
+CRITICAL || utils      || 2024-10-29 15:59:00,485 || line 41   || This is a critical message
