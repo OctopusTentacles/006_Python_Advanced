@@ -12,15 +12,6 @@ log_dir = os.path.join(os.path.dirname(__file__), 'logs')
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
-# ===================================================================
-# файл для структуры логгеров:
-with open(os.path.join(log_dir, 'logging_tree.txt'), 'w') as file:
-    with redirect_stdout(file):
-        # func printout выводит дерево логов:
-        printout()
-# ===================================================================
-
-
 dict_config = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -69,3 +60,13 @@ dict_config = {
         }
     }
 }
+
+logging.config.dictConfig(dict_config)
+# ===================================================================
+# файл для структуры логгеров:
+with open(os.path.join(log_dir, 'logging_tree.txt'), 'w') as file:
+    with redirect_stdout(file):
+        # func printout выводит дерево логов:
+        printout()
+# ===================================================================
+
