@@ -3,6 +3,7 @@ import logging.config
 import os
 
 from contextlib import redirect_stdout
+from logging import LogRecord
 from logging.handlers import TimedRotatingFileHandler
 from logging_tree import printout
 
@@ -11,6 +12,25 @@ log_dir = os.path.join(os.path.dirname(__file__), 'logs')
 
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
+
+# ===================================================================
+# class logging.Filter - базовый класс для создания фильтров логирования.
+# def filter() - пропускает все сообщения, возвращая True.
+# - создать класс, наследуемый от logging.Filter,
+# - настроить метод filter() на проверку не ASCII-символов.
+class ASCIIFilter(logging.Filter):
+    """Фильтр для отбора сообщений, содержащих только ASCII-символы."""
+    def filter(self, record: LogRecord) -> bool:
+        """
+        Определяет, содержатся ли в сообщении логирования только ASCII-символы.
+
+        Args:
+            record (LogRecord): Объект лог-записи, содержащий информацию о сообщении логирования.
+
+        Returns:
+            bool: True, если сообщение содержит только ASCII-символы, иначе False.
+        """
+        return record.getMessage().isascii()
 
 dict_config = {
     'version': 1,
