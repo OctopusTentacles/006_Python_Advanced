@@ -40,7 +40,7 @@ dict_config = {
 
     'filters': {
         'ascii_filter': {
-            '()': 'ASCIIFilter'
+            '()': 'logging_config.ASCIIFilter'
         }
     },
 
