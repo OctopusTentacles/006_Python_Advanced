@@ -31,10 +31,18 @@ class ASCIIFilter(logging.Filter):
             bool: True, если сообщение содержит только ASCII-символы, иначе False.
         """
         return record.getMessage().isascii()
+    
+# ===================================================================
 
 dict_config = {
     'version': 1,
     'disable_existing_loggers': False,
+
+    'filters': {
+        'ascii_filter': {
+            '()': 'ASCIIFilter'
+        }
+    },
 
     'formatters': {
         'base': {
@@ -47,7 +55,8 @@ dict_config = {
             'class': 'logger_helper.LevelFileHandler',
             'level': 'DEBUG',
             'formatter': 'base',
-            'base_filename': os.path.join(log_dir, 'calc')
+            'base_filename': os.path.join(log_dir, 'calc'),
+            'filters': ['ascii_filter'],
         },
 
         'rotating_handler': {
@@ -58,7 +67,8 @@ dict_config = {
             'when': 'S',
             'interval': 10,
             'backupCount': 2,
-            'encoding': 'utf8'
+            'encoding': 'utf8',
+            'filters': ['ascii_filter'],
         },
     },
 
