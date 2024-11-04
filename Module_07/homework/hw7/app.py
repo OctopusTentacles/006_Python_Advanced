@@ -40,4 +40,7 @@ def calc(args):
 if __name__ == '__main__':
     calc('2*3')
     logger.debug("This is a debug message")
+    logger.debug("This is a debug message NOT ASCII ÎŒØ∏‡°⁄·°€йцукен")
+
     logger.info("This is an info message")
+    logger.info("This is an info message NOT ASCII ÎŒØ∏‡°⁄·°€йцукен")
