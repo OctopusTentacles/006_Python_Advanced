@@ -35,6 +35,9 @@ def string_to_operator(value: str) -> Callable[[Numeric, Numeric], Numeric]:
 
 
     logger_utils.debug("This is a debug message")
+    
+    logger_utils.info("This is not ASCII message - ŒØ∏‡°⁄·°€йцукен")
+
     logger_utils.info("This is an info message")
     logger_utils.warning("This is a warning message")
     logger_utils.error("This is an error message")
