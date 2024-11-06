@@ -31,7 +31,21 @@ class ASCIIFilter(logging.Filter):
             bool: True, если сообщение содержит только ASCII-символы, иначе False.
         """
         return record.getMessage().isascii()
-    
+
+# хочу записывать логи с не ASCII символами в отдельный журнал
+class NonASCIIFilter(logging.Filter):
+    """Фильтр для отбора сообщений, содержащих не-ASCII символы."""
+    def filter(self, record: LogRecord) -> bool:
+        """
+        Определяет, содержатся ли в сообщении логирования не-ASCII символы.
+
+        Args:
+            record (LogRecord): Объект лог-записи, содержащий информацию о сообщении логирования.
+
+        Returns:
+            bool: True, если сообщение содержит не-ASCII символы, иначе False.
+        """
+        return not record.getMessage().isascii()
 # ===================================================================
 
 dict_config = {
@@ -41,7 +55,10 @@ dict_config = {
     'filters': {
         'ascii_filter': {
             '()': 'logging_config.ASCIIFilter'
-        }
+        },
+        'non_ascii_filter': {
+            '()': 'logging_config.NonASCIIFilter'
+        },
     },
 
     'formatters': {
@@ -70,22 +87,29 @@ dict_config = {
             'encoding': 'utf8',
             'filters': ['ascii_filter'],
         },
+        'non_ascii_handler': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'base',
+            'filename': os.path.join(log_dir, 'non_ascii.log'),
+            'filters': ['non_ascii_filter'],
+        },
     },
 
     'loggers': {
         'arithmetic_logger': {
             'level': 'DEBUG',
-            'handlers': ['file_handler'],
+            'handlers': ['file_handler', 'non_ascii_handler'],
             'propagate': False,
         },
         'operators_logger': {
             'level': 'DEBUG',
-            'handlers': ['file_handler'],
+            'handlers': ['file_handler', 'non_ascii_handler'],
             'propagate': False,
         },
         'utils': {
             'level': 'INFO',
-            'handlers': ['rotating_handler'],
+            'handlers': ['rotating_handler', 'non_ascii_handler'],
             'propagate': False,
         }
     }
