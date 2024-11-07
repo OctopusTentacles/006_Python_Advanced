@@ -29,7 +29,9 @@ def logs():
     Рендерим список полученных логов
     return: список логов обернутый в тег HTML <pre></pre>
     """
-    ...
+    log_text = (json.dumps(log) for log in log_storage)
+    
+    return f'<pre>{log_text}</pre>', 200
 
 
 # ===================================================================
