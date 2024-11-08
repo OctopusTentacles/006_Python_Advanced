@@ -3,6 +3,8 @@ from flask import Flask, request
 
 
 app = Flask(__name__)
+
+# хранилище логов:
 log_storage = []
 
 

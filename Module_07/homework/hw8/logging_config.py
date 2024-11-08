@@ -94,6 +94,14 @@ dict_config = {
             'filename': os.path.join(log_dir, 'non_ascii.log'),
             'filters': ['non_ascii_filter'],
         },
+        'http_handler': {
+            'class': 'logging.handlers.HTTPHandler',
+            'level': 'DEBUG',
+            'formatter': 'base',
+            'host': 'localhost:5000',
+            'url': '/log',
+            'method': 'POST',
+        },
     },
 
     'loggers': {
