@@ -97,9 +97,8 @@ dict_config = {
         'http_handler': {
             'class': 'logging.handlers.HTTPHandler',
             'level': 'DEBUG',
-            'formatter': 'base',
             'host': 'localhost:5000',
-            'url': '/log',
+            'url': '/logs',
             'method': 'POST',
         },
     },
@@ -107,17 +106,17 @@ dict_config = {
     'loggers': {
         'arithmetic_logger': {
             'level': 'DEBUG',
-            'handlers': ['file_handler', 'non_ascii_handler'],
+            'handlers': ['file_handler', 'non_ascii_handler', 'http_handler'],
             'propagate': False,
         },
         'operators_logger': {
             'level': 'DEBUG',
-            'handlers': ['file_handler', 'non_ascii_handler'],
+            'handlers': ['file_handler', 'non_ascii_handler', 'http_handler'],
             'propagate': False,
         },
         'utils': {
             'level': 'INFO',
-            'handlers': ['rotating_handler', 'non_ascii_handler'],
+            'handlers': ['rotating_handler', 'non_ascii_handler', 'http_handler'],
             'propagate': False,
         }
     }

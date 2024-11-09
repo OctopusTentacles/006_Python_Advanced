@@ -8,7 +8,7 @@ app = Flask(__name__)
 log_storage = []
 
 
-@app.route('/log', methods=['POST'])
+@app.route('/logs', methods=['POST'])
 def log():
     """
     Записываем полученные логи которые пришли к нам на сервер
@@ -31,7 +31,7 @@ def logs():
     Рендерим список полученных логов
     return: список логов обернутый в тег HTML <pre></pre>
     """
-    log_text = (json.dumps(log) for log in log_storage)
+    log_text = '\n'.join(json.dumps(log, indent=2) for log in log_storage)
     
     return f'<pre>{log_text}</pre>', 200
 
