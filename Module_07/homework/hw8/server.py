@@ -18,11 +18,13 @@ def log():
     """
     # получить данные в json формате:
     data = request.json
+    print(f"Получены данные: {data}")  # Временный вывод для отладки
+
     if data:
         log_storage.append(data)
         return 'Логи получены', 201
     return 'Записи логирования не получены', 400
-    ...
+    
 
 
 @app.route('/logs', methods=['GET'])

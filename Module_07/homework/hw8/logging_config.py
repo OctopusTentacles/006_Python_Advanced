@@ -96,8 +96,8 @@ dict_config = {
         },
         'http_handler': {
             'class': 'logging.handlers.HTTPHandler',
-            'level': 'DEBUG',
-            'host': 'http://127.0.0.1:5000',
+            'level': 'INFO',
+            'host': '127.0.0.1:5000',
             'url': '/logs',
             'method': 'POST',
         },
