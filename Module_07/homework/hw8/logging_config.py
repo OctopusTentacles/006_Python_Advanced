@@ -5,6 +5,7 @@ import os
 from contextlib import redirect_stdout
 from logging import LogRecord
 from logging.handlers import TimedRotatingFileHandler
+from logging.handlers import HTTPHandler
 from logging_tree import printout
 
 
@@ -14,6 +15,16 @@ if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
 # ===================================================================
+class PostHTTPHandler(HTTPHandler):
+    def __init__(self, host, url, method='POST'):
+        super().__init__(host, url, method=method)
+
+
+class GetHTTPHandler(HTTPHandler):
+    def __init__(self, host, url, method='GET'):
+        super().__init__(host, url, method=method)
+
+
 # class logging.Filter - базовый класс для создания фильтров логирования.
 # def filter() - пропускает все сообщения, возвращая True.
 # - создать класс, наследуемый от logging.Filter,
@@ -94,13 +105,21 @@ dict_config = {
             'filename': os.path.join(log_dir, 'non_ascii.log'),
             'filters': ['non_ascii_filter'],
         },
-        'http_handler': {
-            'class': 'logging.handlers.HTTPHandler',
+        'post_http_handler': {
+            'class': 'logging_config.PostHTTPHandler',
+            'level': 'INFO',
+            'host': '127.0.0.1:5000',
+            'url': '/log',
+            
+        },
+        'get_http_handler': {
+            'class': 'logging_config.GetHTTPHandler',
             'level': 'INFO',
             'host': '127.0.0.1:5000',
             'url': '/logs',
-            'method': 'POST',
+            
         },
+
     },
 
     'loggers': {
@@ -119,9 +138,9 @@ dict_config = {
             'handlers': ['rotating_handler', 'non_ascii_handler'],
             'propagate': False,
         },
-        'http_logger': {
+        'post_logger': {
             'level': 'DEBUG',
-            'handlers': ['http_handler'],
+            'handlers': ['post_http_handler', 'get_http_handler'],
             'propagate': False,
         },
     }

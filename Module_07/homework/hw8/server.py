@@ -8,7 +8,7 @@ app = Flask(__name__)
 log_storage = []
 
 
-@app.route('/logs', methods=['POST'])
+@app.route('/log', methods=['POST'])
 def log():
     """
     Записываем полученные логи которые пришли к нам на сервер
@@ -22,10 +22,11 @@ def log():
 
     if data:
         log_storage.append(data)
+        print('Лог успешно сохранен:', data)  # Вывод в консоль
         return 'Логи получены', 201
+    print('Данные не получены')
     return 'Записи логирования не получены', 400
     
-
 
 @app.route('/logs', methods=['GET'])
 def logs():

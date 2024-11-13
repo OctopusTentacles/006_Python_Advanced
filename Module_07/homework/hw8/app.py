@@ -8,13 +8,13 @@ from logging_config import dict_config
 
 logging.config.dictConfig(dict_config)
 logger = logging.getLogger('arithmetic_logger')
-logger_http = logging.getLogger('http_logger')
+logger_http = logging.getLogger('post_logger')
 
 
 def calc(args):
     logger.info(f"Arguments: {args}")
 
-    print("Отправка лога на сервер")
+    print("Отправка логов на сервер")
     logger_http.info("HTTPHandler is active and attempting to send logs.")
     logger_http.info(f"Arguments: {args}")
 
