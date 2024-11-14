@@ -1,3 +1,5 @@
+import json
+import http.client
 import logging
 import logging.config
 import os
@@ -16,8 +18,31 @@ if not os.path.exists(log_dir):
 
 # ===================================================================
 class PostHTTPHandler(HTTPHandler):
-    def __init__(self, host, url, method='POST'):
-        super().__init__(host, url, method=method)
+    # def __init__(self, host, url, method='POST'):
+    #     super().__init__(host, url, method=method)
+    def emit(self, record: LogRecord) -> None:
+        try:
+            # Преобразуем данные логирования в JSON
+            log_entry = self.format(record)
+            json_data = json.dumps({'message': log_entry})
+
+            # Создаем подключение к серверу
+            connection = http.client.HTTPConnection(self.host)
+            headers = {'Content-Type': 'application/json'}
+
+            # Отправляем POST-запрос с заголовком
+            connection.request('POST', self.url, body=json_data, headers=headers)
+
+            # Получаем ответ сервера
+            response = connection.getresponse()
+            if response.status != 201:
+                print(f"Ошибка отправки лога на сервер: {response.status} {response.reason}")
+
+            # Закрываем соединение
+            connection.close()
+
+        except Exception as e:
+            print(f"Ошибка отправки лога: {e}")
 
 
 class GetHTTPHandler(HTTPHandler):

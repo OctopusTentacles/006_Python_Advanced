@@ -6,10 +6,10 @@
    |   Propagate OFF
    |   Handler <LevelFileHandler (DEBUG)>
    |     Level DEBUG
-   |     Filter <logging_config.ASCIIFilter object at 0x103008a10>
+   |     Filter <logging_config.ASCIIFilter object at 0x10529f9d0>
    |   Handler File '/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_07/homework/hw8/logs/non_ascii.log'
    |     Level DEBUG
-   |     Filter <logging_config.NonASCIIFilter object at 0x103008a50>
+   |     Filter <logging_config.NonASCIIFilter object at 0x10529fa10>
    |     Formatter fmt='%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s' datefmt=None
    |
    o   "operators_logger"
@@ -17,10 +17,10 @@
    |   Propagate OFF
    |   Handler <LevelFileHandler (DEBUG)>
    |     Level DEBUG
-   |     Filter <logging_config.ASCIIFilter object at 0x103008a10>
+   |     Filter <logging_config.ASCIIFilter object at 0x10529f9d0>
    |   Handler File '/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_07/homework/hw8/logs/non_ascii.log'
    |     Level DEBUG
-   |     Filter <logging_config.NonASCIIFilter object at 0x103008a50>
+   |     Filter <logging_config.NonASCIIFilter object at 0x10529fa10>
    |     Formatter fmt='%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s' datefmt=None
    |
    o   "post_logger"
@@ -36,9 +36,9 @@
        Propagate OFF
        Handler TimedRotatingFile '/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_07/homework/hw8/logs/utils.log' when='S' interval=10 backupCount=2
          Level INFO
-         Filter <logging_config.ASCIIFilter object at 0x103008a10>
+         Filter <logging_config.ASCIIFilter object at 0x10529f9d0>
          Formatter fmt='%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s' datefmt=None
        Handler File '/Users/artem/Documents/PROGRAMMING/SkillBox/006_Python_Advanced/Module_07/homework/hw8/logs/non_ascii.log'
          Level DEBUG
-         Filter <logging_config.NonASCIIFilter object at 0x103008a50>
+         Filter <logging_config.NonASCIIFilter object at 0x10529fa10>
          Formatter fmt='%(levelname)-8s || %(name)-10s || %(asctime)s || line %(lineno)-4d || %(message)s' datefmt=None
