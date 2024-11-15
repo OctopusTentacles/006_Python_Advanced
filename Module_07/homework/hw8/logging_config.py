@@ -133,6 +133,7 @@ dict_config = {
         'post_http_handler': {
             'class': 'logging_config.PostHTTPHandler',
             'level': 'INFO',
+            'formatter': 'base',
             'host': '127.0.0.1:5000',
             'url': '/log',
             
@@ -140,6 +141,7 @@ dict_config = {
         'get_http_handler': {
             'class': 'logging_config.GetHTTPHandler',
             'level': 'INFO',
+            'formatter': 'base',
             'host': '127.0.0.1:5000',
             'url': '/logs',
             

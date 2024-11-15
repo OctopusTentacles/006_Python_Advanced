@@ -40,7 +40,8 @@ def calc(args):
 
     logger.info(f"Result: {result}")
     logger.info(f"{num_1} {operator} {num_2} = {result}")
-
+    logger_http.info(f"Result: {result}")
+    logger_http.info(f"{num_1} {operator} {num_2} = {result}")
 
 if __name__ == '__main__':
     calc('2*3')

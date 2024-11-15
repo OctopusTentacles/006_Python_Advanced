@@ -9,6 +9,8 @@ from logging_config import dict_config
 logging.config.dictConfig(dict_config)
 logger_operator = logging.getLogger('operators_logger')
 logger_utils = logging.getLogger('utils')
+logger_http = logging.getLogger('post_logger')
+
 
 OPERATORS = {
     '+': add,
@@ -42,6 +44,8 @@ def string_to_operator(value: str) -> Callable[[Numeric, Numeric], Numeric]:
     logger_utils.warning("This is a warning message")
     logger_utils.error("This is an error message")
     logger_utils.critical("This is a critical message")
+    logger_http.info("This is an info message from utils.py")
+
 
 
     return OPERATORS[value]

@@ -1,0 +1,4 @@
+INFO     || utils      || 2024-11-15 15:46:08,639 || line 43   || This is an info message
+WARNING  || utils      || 2024-11-15 15:46:08,639 || line 44   || This is a warning message
+ERROR    || utils      || 2024-11-15 15:46:08,639 || line 45   || This is an error message
+CRITICAL || utils      || 2024-11-15 15:46:08,639 || line 46   || This is a critical message
