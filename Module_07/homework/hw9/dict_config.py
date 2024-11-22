@@ -22,5 +22,32 @@
             'level': 'DEBUG',
             'handlers': 'consoleHandler',
         },
+        'appLogger': {
+            'level': 'DEBUG',
+            'handlers': ['consolHandler', 'fileHandler'],
+            'qualname': 'appLogger',
+            'propagate': False,
+        },
+    },
+
+
+    'handlers': {
+        'consoleHandler': {
+            'class': 'logging.StreamHandler',
+            'level': 'WARNING',
+            'formatter': 'consoleFormatter',
+            'stream': 'ext://sys.stdout',
+        },
+        'fileHandler': {
+            'class': 'logging.FileHandler',
+            'level': 'DEBUG',
+            'formatter': 'fileFormatter',
+            'stream': 'logfile.log',
+        },
+    },
+
+
+    'formatters': {
+        
     }
 }
