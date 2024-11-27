@@ -15,8 +15,6 @@
 
 
 
-
-
     'loggers': {
         'root': {
             'level': 'DEBUG',
@@ -48,6 +46,13 @@
 
 
     'formatters': {
-        
+        'fileFormatter': {
+            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S%Z'
+        },
+        'consoleFormatter': {
+            'format': '%(levelname)s - %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S%Z'
+        },
     }
 }
