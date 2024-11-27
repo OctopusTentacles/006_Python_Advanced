@@ -2,32 +2,17 @@
 
 {
     'loggers': {
-        'keys': ['root', 'appLogger']
-    },
-
-    'handlers': {
-        'keys': ['consoleHandler', 'fileHandler']
-    },
-
-    'formatters': {
-        'keys': ['fileFormatter', 'consoleFormatter']
-    },
-
-
-
-    'loggers': {
         'root': {
             'level': 'DEBUG',
-            'handlers': 'consoleHandler',
+            'handlers': ['consoleHandler'],
         },
         'appLogger': {
             'level': 'DEBUG',
-            'handlers': ['consolHandler', 'fileHandler'],
+            'handlers': ['consoleHandler', 'fileHandler'],
             'qualname': 'appLogger',
             'propagate': False,
         },
     },
-
 
     'handlers': {
         'consoleHandler': {
@@ -40,19 +25,18 @@
             'class': 'logging.FileHandler',
             'level': 'DEBUG',
             'formatter': 'fileFormatter',
-            'stream': 'logfile.log',
+            'filename': 'logfile.log',
         },
     },
-
 
     'formatters': {
         'fileFormatter': {
             'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-            'datefmt': '%Y-%m-%dT%H:%M:%S%Z'
+            'datefmt': '%Y-%m-%dT%H:%M:%S%Z',
         },
         'consoleFormatter': {
             'format': '%(levelname)s - %(message)s',
-            'datefmt': '%Y-%m-%dT%H:%M:%S%Z'
+            'datefmt': '%Y-%m-%dT%H:%M:%S%Z',
         },
-    }
+    },
 }
