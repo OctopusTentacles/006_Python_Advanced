@@ -17,3 +17,16 @@ def ini_to_dict(ini_file_path):
 
     config = configparser.ConfigParser()
     config.read(file_path)
+
+    # Преобразуем структуру ConfigParser в словарь
+    config_dict = {section: dict(config.items(section)) for section in config.sections()}
+   
+    # Обрабатываем ключи (handlers, formatters и т.д.):
+    if 'loggers' in config_dict:
+        config_dict['loggers'] = {
+            key: {
+                subkey: (value.split(',') if ',' in value else value)
+                for subkey, value in config.items(key)
+            }
+            for key in config_dict['loggers']['keys'].split(',')
+        }
