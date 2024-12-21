@@ -30,3 +30,11 @@ def ini_to_dict(ini_file_path):
             }
             for key in config_dict['loggers']['keys'].split(',')
         }
+
+    if 'handlers' in config_dict:
+        config_dict['handlers'] = {
+            key: {
+
+            }
+            for key in config_dict['handlers']['keys'].split(',')
+        }
