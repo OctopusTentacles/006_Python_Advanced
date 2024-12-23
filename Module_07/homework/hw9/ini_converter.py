@@ -34,7 +34,7 @@ def ini_to_dict(ini_file_path):
     if 'handlers' in config_dict:
         config_dict['handlers'] = {
             key: {
-
-            }
+                subkey: (value if subkey != 'args' else eval(value))
+                for subkey, value in config.items(key)            }
             for key in config_dict['handlers']['keys'].split(',')
         }
