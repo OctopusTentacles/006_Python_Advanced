@@ -38,3 +38,15 @@ def ini_to_dict(ini_file_path):
                 for subkey, value in config.items(key)            }
             for key in config_dict['handlers']['keys'].split(',')
         }
+    
+    if 'formatters' in config_dict:
+        config_dict['formatters'] = {
+            key: dict(config.items(key))
+            for key in config_dict['formatters']['keys'].split(',')
+        }
+
+    return config_dict
+
+ini_file = 'logging_conf.ini'
+
+converted_dict = ini_to_dict(ini_file)
