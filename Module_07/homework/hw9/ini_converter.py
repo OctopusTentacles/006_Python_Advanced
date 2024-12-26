@@ -1,8 +1,9 @@
 import configparser
+import json
 import os
 
 
-def ini_to_dict(ini_file_path):
+def ini_to_dict(ini_file_name):
     """
     Конвертирует INI-файл в словарь.
     
@@ -13,9 +14,9 @@ def ini_to_dict(ini_file_path):
         dict: Конфигурация в формате словаря.
     """
 
-    file_path = os.path.join(os.path.dirname(__file__), ini_file_path)
+    file_path = os.path.join(os.path.dirname(__file__), ini_file_name)
 
-    config = configparser.ConfigParser()
+    config = configparser.ConfigParser(interpolation=None)
     config.read(file_path)
 
     # Преобразуем структуру ConfigParser в словарь
@@ -48,5 +49,12 @@ def ini_to_dict(ini_file_path):
     return config_dict
 
 ini_file = 'logging_conf.ini'
+output_file = 'logging_config.json'
 
 converted_dict = ini_to_dict(ini_file)
+
+# Сохраняем словарь в JSON-файл
+with open(output_file, 'w', encoding='utf-8') as json_file:
+    json.dump(converted_dict, json_file, indent=4, ensure_ascii=False)
+
+print(f"Конфигурация сохранена в файл: {output_file}")
