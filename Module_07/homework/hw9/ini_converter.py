@@ -22,14 +22,12 @@ def ini_to_dict(ini_file_name):
     # Преобразуем структуру ConfigParser в словарь
     config_dict = {section: dict(config.items(section)) for section in config.sections()}
    
-    # Обрабатываем ключи (handlers, formatters и т.д.):
+    # Переработка loggers
     if 'loggers' in config_dict:
+        logger_keys = config_dict['loggers']['keys'].split(',')
         config_dict['loggers'] = {
-            key: {
-                subkey: (value.split(',') if ',' in value else value)
-                for subkey, value in config.items(key)
-            }
-            for key in config_dict['loggers']['keys'].split(',')
+            logger_key.strip(): dict(config.items(f'logger_{logger_key.strip()}'))
+            for logger_key in logger_keys
         }
 
     if 'handlers' in config_dict:
