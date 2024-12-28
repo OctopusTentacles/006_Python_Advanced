@@ -30,21 +30,29 @@ def ini_to_dict(ini_file_name):
             for logger_key in logger_keys
         }
 
+    # Переработка handlers
     if 'handlers' in config_dict:
+        handler_keys = config_dict['handlers']['keys'].split(',')
         config_dict['handlers'] = {
-            key: {
-                subkey: (value if subkey != 'args' else eval(value))
-                for subkey, value in config.items(key)            }
-            for key in config_dict['handlers']['keys'].split(',')
+            handler_key.strip(): {
+                key: (eval(value) if key == 'args' else value)
+                for key, value in config.items(f'handler_{handler_key.strip()}')
+            }
+            for handler_key in handler_keys
         }
-    
+
+    # Переработка formatters
     if 'formatters' in config_dict:
+        formatter_keys = config_dict['formatters']['keys'].split(',')
         config_dict['formatters'] = {
-            key: dict(config.items(key))
-            for key in config_dict['formatters']['keys'].split(',')
+            formatter_key.strip(): dict(config.items(f'formatter_{formatter_key.strip()}'))
+            for formatter_key in formatter_keys
         }
 
     return config_dict
+
+
+
 
 ini_file = 'logging_conf.ini'
 output_file = 'logging_config.json'
