@@ -1,6 +1,7 @@
 import configparser
 import json
 import os
+import sys
 
 
 def ini_to_dict(ini_file_name):
@@ -35,7 +36,7 @@ def ini_to_dict(ini_file_name):
         handler_keys = config_dict['handlers']['keys'].split(',')
         config_dict['handlers'] = {
             handler_key.strip(): {
-                key: (eval(value) if key == 'args' else value)
+                key: (str(value) if key == 'args' else value)
                 for key, value in config.items(f'handler_{handler_key.strip()}')
             }
             for handler_key in handler_keys
