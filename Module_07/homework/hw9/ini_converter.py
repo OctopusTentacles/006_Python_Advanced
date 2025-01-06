@@ -4,7 +4,7 @@ import os
 import sys
 
 
-def ini_to_dict(ini_file_name):
+def ini_to_dict(ini_file):
     """
     Конвертирует INI-файл в словарь.
     
@@ -15,10 +15,8 @@ def ini_to_dict(ini_file_name):
         dict: Конфигурация в формате словаря.
     """
 
-    file_path = os.path.join(os.path.dirname(__file__), ini_file_name)
-
     config = configparser.ConfigParser(interpolation=None)
-    config.read(file_path)
+    config.read(ini_file)
 
     # Преобразуем структуру ConfigParser в словарь
     config_dict = {section: dict(config.items(section)) for section in config.sections()}
@@ -53,15 +51,19 @@ def ini_to_dict(ini_file_name):
     return config_dict
 
 
+file_path = os.path.dirname(__file__)
 
 
 ini_file = 'logging_conf.ini'
 output_file = 'logging_config.json'
 
-converted_dict = ini_to_dict(ini_file)
+path_ini_file = os.path.join(file_path, ini_file)
+path_output_file = os.path.join(file_path, output_file)
+
+converted_dict = ini_to_dict(path_ini_file)
 
 # Сохраняем словарь в JSON-файл
-with open(output_file, 'w', encoding='utf-8') as json_file:
+with open(path_output_file, 'w', encoding='utf-8') as json_file:
     json.dump(converted_dict, json_file, indent=4, ensure_ascii=False)
 
 print(f"Конфигурация сохранена в файл: {output_file}")
