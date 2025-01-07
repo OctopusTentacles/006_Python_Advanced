@@ -9,7 +9,7 @@ def ini_to_dict(ini_file):
     Конвертирует INI-файл в словарь.
     
     Args:
-        ini_file_path (str): Путь к INI-файлу.
+        ini_file (str): Путь к INI-файлу.
     
     Returns:
         dict: Конфигурация в формате словаря.
